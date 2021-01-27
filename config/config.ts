@@ -1,5 +1,7 @@
 import { defineConfig } from 'umi';
 import path from 'path';
+import routerData from './router.config';
+import { headScripts, metas } from './common.config';
 
 export default defineConfig({
   nodeModulesTransform: {
@@ -13,12 +15,23 @@ export default defineConfig({
     chrome: 58,
     ie: 9,
   },
-  publicPath: '/static/',
+  routes: routerData,
+  manifest: {
+    basePath: '/',
+  },
+  publicPath: './',
+  dynamicImport: {
+    loading: '@/layouts/Loading',
+  },
   history: {
     type: 'hash',
   },
   alias: {
     '@/': path.resolve(__dirname, '../src/'),
   },
-  routes: [{ path: '/', component: '@/pages/index' }],
+  headScripts,
+  metas,
+  favicon: '/assets/icon/favico.ico',
+  links: [{ rel: 'icon', href: '/assets/icon/favico.ico' }],
+  title: 'starry star',
 });

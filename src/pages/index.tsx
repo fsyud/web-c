@@ -5,6 +5,7 @@ import { RibbonsFun } from '@/utils/lib/bg';
 
 export default () => {
   useEffect(() => {
+    // 引入canvas背景
     RibbonsFun();
   }, []);
 

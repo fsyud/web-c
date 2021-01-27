@@ -1,6 +1,15 @@
 .init_page {
-  background-color: #fff;
   z-index: 999;
   position: absolute;
   width: 100%;
+  padding: 0 10%;
+
+  :global {
+    .ant-layout {
+      .ant-layout-header {
+        margin-left: -10%;
+        padding: 0 10%;
+      }
+    }
+  }
 }

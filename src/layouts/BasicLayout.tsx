@@ -1,6 +1,7 @@
 import React from 'react';
 import { ConfigProvider, Layout, Menu, Breadcrumb } from 'antd';
 import zh_CN from 'antd/es/locale/zh_CN';
+import { Menus } from '@/constant';
 
 const { Header, Content, Footer } = Layout;
 
@@ -13,9 +14,9 @@ const BasicLayout: React.FC<{}> = (props) => {
         <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
           <div className="logo" />
           <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-            <Menu.Item key="1">nav 1</Menu.Item>
-            <Menu.Item key="2">nav 2</Menu.Item>
-            <Menu.Item key="3">nav 3</Menu.Item>
+            {Menus.map((s: { key: number; label: string }) => (
+              <Menu.Item key={s.key}>{s.label}</Menu.Item>
+            ))}
           </Menu>
         </Header>
         <Content
