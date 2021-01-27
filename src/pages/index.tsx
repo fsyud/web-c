@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import styles from './index.less';
+import BasicLayout from '@/layouts/BasicLayout';
 import { RibbonsFun } from '@/utils/lib/bg';
 
 export default () => {
@@ -8,8 +9,11 @@ export default () => {
   }, []);
 
   return (
-    <div>
-      <h1 className={styles.title}>Page index1</h1>
-    </div>
+    <>
+      <div id="myCanvas"></div>
+      <div className={styles.init_page}>
+        <BasicLayout />
+      </div>
+    </>
   );
 };

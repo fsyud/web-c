@@ -13,7 +13,6 @@ export default defineConfig({
     chrome: 58,
     ie: 9,
   },
-  fastRefresh: {},
   publicPath: '/static/',
   history: {
     type: 'hash',
