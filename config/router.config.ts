@@ -1,21 +1,12 @@
 export default [
   {
     path: '/',
-    component: '@/pages/index',
+    component: '../layouts/BasicLayout',
+    authority: ['admin'],
     routes: [
       {
         path: '/',
-        component: '@/pages/index',
-        routes: [
-          {
-            path: 'Article',
-            component: 'Article',
-          },
-          {
-            path: 'Regard',
-            component: 'Regard',
-          },
-        ],
+        redirect: '/Article',
       },
     ],
   },

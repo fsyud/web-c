@@ -12,8 +12,8 @@
     "baseUrl": "./",
     "strict": true,
     "paths": {
-      "@/*": ["src/*"],
-      "@@/*": ["src/.umi/*"]
+      "@/*": ["./src/*"],
+      "@@/*": ["./src/.umi/*"]
     },
     "allowSyntheticDefaultImports": true,
     "outDir": "build/dist"
@@ -26,6 +26,7 @@
     "scripts",
     "src/.umi/*",
     "webpack",
-    "lib"
+    "lib",
+    "src/.umi/*"
   ]
 }

@@ -13,7 +13,10 @@ export default defineConfig({
     android: 5,
     ios: 7,
     chrome: 58,
-    ie: 9,
+    ie: 11,
+  },
+  dva: {
+    hmr: true,
   },
   routes: routerData,
   manifest: {
@@ -21,17 +24,13 @@ export default defineConfig({
   },
   publicPath: './',
   dynamicImport: {
-    loading: '@/layouts/Loading',
-  },
-  history: {
-    type: 'hash',
+    loading: '@/components/PageLoading/index',
   },
   alias: {
     '@/': path.resolve(__dirname, '../src/'),
   },
   headScripts,
   metas,
-  favicon: '/assets/icon/favico.ico',
-  links: [{ rel: 'icon', href: '/assets/icon/favico.ico' }],
+  favicon: './favico.ico',
   title: 'starry star',
 });
