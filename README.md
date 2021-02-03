@@ -1,6 +1,6 @@
 # blog project
 
-[Online address](https://www.sky.singlebuck.cn)
+[Online address](https://www.singlebuck.cn)
 ## Getting Started
 
 Install dependencies,

@@ -1,0 +1,20 @@
+.init_page {
+  z-index: 999;
+  position: absolute;
+  width: 100%;
+  padding: 0 10%;
+
+  :global {
+    .ant-layout {
+      .ant-layout-header {
+        padding: 0;
+      }
+    }
+  }
+
+  .header {
+    position: 'fixed';
+    z-index: 1;
+    width: '100%';
+  }
+}
