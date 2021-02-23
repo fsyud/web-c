@@ -192,7 +192,7 @@ const ribbonsFunc = () => {
         this._canvas.style['width'] = '100%';
         this._canvas.style['height'] = '100%';
         this._canvas.style['z-index'] = '1';
-        this._canvas.style['background-color'] = '#130c0e';
+        this._canvas.style['background-color'] = '#fff';
         this._canvas.id = 'bgCanvas';
         this._onResize();
 

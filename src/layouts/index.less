@@ -2,19 +2,55 @@
   z-index: 999;
   position: absolute;
   width: 100%;
-  padding: 0 10%;
+  padding: 0 15%;
+
+  .init_header {
+    color: rgba(255, 255, 255, 0.65);
+    background: #fff;
+    width: 120%;
+    margin-left: -15%;
+    height: 64px;
+    position: fixed;
+    box-shadow: 0px 10px 13px -10px #b6b4b4;
+    z-index: 10;
+
+    .ant-menu {
+      height: 64px;
+    }
+  }
 
   :global {
     .ant-layout {
+      background: none;
       .ant-layout-header {
+        z-index: 99;
         padding: 0;
+        line-height: 62px;
+
+        .ant-menu-horizontal {
+          border-bottom: none;
+        }
       }
     }
   }
 
   .header {
-    position: 'fixed';
+    position: fixed;
     z-index: 1;
     width: '100%';
+    background-color: #fff;
+    width: 70%;
+    margin: auto;
+    .logo {
+      position: absolute;
+    }
+
+    .menu {
+      margin-left: 50px;
+    }
+  }
+
+  .footer {
+    background: none;
   }
 }

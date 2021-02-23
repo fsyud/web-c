@@ -26,11 +26,18 @@ export default defineConfig({
   dynamicImport: {
     loading: '@/components/PageLoading/index',
   },
+  locale: {
+    // default zh-CN
+    default: 'zh-CN',
+    antd: true,
+    // default true, when it is true, will use `navigator.language` overwrite default
+    baseNavigator: true,
+  },
   alias: {
     '@/': path.resolve(__dirname, '../src/'),
   },
   headScripts,
   metas,
-  favicon: './favico.ico',
+  favicon: './star.ico',
   title: 'starry star',
 });

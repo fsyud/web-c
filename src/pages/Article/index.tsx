@@ -1,9 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Form, Card } from 'antd';
+import { ConnectProps } from 'umi';
+import ParticlesBg from 'particles-bg';
+import StandardFormRow from './components/StandardFormRow';
+import TagSelect from './components/TagSelect';
 
-interface ArticleProps {}
+const FormItem = Form.Item;
+
+interface ArticleProps {
+  dispatch: ConnectProps<any>;
+}
+interface FormDataType {
+  tag_ids: (string | number)[];
+}
+
+const tyoeArr = [
+  { v: 1, n: '全部' },
+  { v: 2, n: 'java' },
+  { v: 3, n: '前端' },
+  { v: 4, n: '后端' },
+  { v: 5, n: '工具' },
+  { v: 6, n: 'mac' },
+  { v: 7, n: '算法' },
+  { v: 8, n: 'git' },
+  { v: 9, n: 'mysql' },
+  { v: 10, n: 'react' },
+];
 
 const Article: React.FC<ArticleProps> = (props) => {
-  return <> 'Article'</>;
+  const [formData, setFormData] = useState<FormDataType>({
+    tag_ids: [1],
+  });
+
+  const [form] = Form.useForm();
+  return (
+    <>
+      <Card bordered={false}>
+        <Form
+          form={form}
+          layout="inline"
+          initialValues={{ initialValue: formData }}
+          onValuesChange={(changedValues, { initialValue, ...values }) => {
+            setFormData(values as FormDataType);
+          }}
+        >
+          <StandardFormRow title="所属标签" block style={{ paddingBottom: 11 }}>
+            <FormItem name="category">
+              <TagSelect expandable>
+                {tyoeArr?.map((tag) => (
+                  // @ts-ignore
+                  <TagSelect.Option value={tag.v} key={tag.v}>
+                    {tag.n}
+                  </TagSelect.Option>
+                ))}
+              </TagSelect>
+            </FormItem>
+          </StandardFormRow>
+        </Form>
+      </Card>
+      <ParticlesBg type="polygon" bg={true} />
+    </>
+  );
 };
 
 export default Article;
