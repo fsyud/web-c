@@ -4,6 +4,7 @@ import { ConnectProps } from 'umi';
 import ParticlesBg from 'particles-bg';
 import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';
+import styles from './index.less';
 
 const FormItem = Form.Item;
 
@@ -34,7 +35,7 @@ const Article: React.FC<ArticleProps> = (props) => {
 
   const [form] = Form.useForm();
   return (
-    <>
+    <div className={styles.article_main}>
       <Card bordered={false}>
         <Form
           form={form}
@@ -58,8 +59,11 @@ const Article: React.FC<ArticleProps> = (props) => {
           </StandardFormRow>
         </Form>
       </Card>
+      <Card bordered={false} className={styles.article_content}>
+        <h4>因服务器搬迁原因！博客升级中，给您带来不便请谅解！✨✨✨✨✨</h4>
+      </Card>
       <ParticlesBg type="polygon" bg={true} />
-    </>
+    </div>
   );
 };
 
