@@ -59,8 +59,8 @@ const Article: React.FC<ArticleProps> = (props) => {
           </StandardFormRow>
         </Form>
       </Card>
-      <Card bordered={false} className={styles.article_content}>
-        <h4>因服务器搬迁原因！博客升级中，给您带来不便请谅解！✨✨✨✨✨</h4>
+      <Card bordered={false}>
+        因服务器搬迁原因！博客升级中，给您带来不便请谅解！✨✨✨✨✨
       </Card>
       <ParticlesBg type="polygon" bg={true} />
     </div>
