@@ -49,7 +49,7 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
     return (
       <div className={styles.init_page}>
         <ForkMeOnGithub
-          repo="https://github.com/whatthefoo/fork-me-on-github"
+          repo="https://github.com/starryskystar"
           colorBackground="black"
           colorOctocat="white"
         />
