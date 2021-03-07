@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ConfigProvider, Layout, Menu, Row, Col, Radio } from 'antd';
+// @ts-ignore
+import ForkMeOnGithub from 'fork-me-on-github';
 import { Link, Dispatch } from 'umi';
 import zh_CN from 'antd/es/locale/zh_CN';
 import enUS from 'antd/lib/locale/en_US';
@@ -46,6 +48,11 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
   const ContentNode = (): React.ReactNode => {
     return (
       <div className={styles.init_page}>
+        <ForkMeOnGithub
+          repo="https://github.com/whatthefoo/fork-me-on-github"
+          colorBackground="black"
+          colorOctocat="white"
+        />
         <div className={styles.init_header}>
           {/* <img src="@/assets/icon/star_big.ico" width="64" height="64" alt="logo"/> */}
         </div>

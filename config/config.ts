@@ -18,6 +18,7 @@ export default defineConfig({
   dva: {
     hmr: true,
   },
+  ignoreMomentLocale: true,
   routes: routerData,
   manifest: {
     basePath: '/',
