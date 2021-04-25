@@ -25,7 +25,6 @@
     "antd": "^4.11.1",
     "classnames": "^2.2.6",
     "fork-me-on-github": "^1.0.6",
-    "particles-bg": "^2.5.0",
     "react-mouse-particles": "^1.1.2",
     "umi": "^3.3.3"
   },

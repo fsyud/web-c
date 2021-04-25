@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Card } from 'antd';
 import { ConnectProps } from 'umi';
-import ParticlesBg from 'particles-bg';
 import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';
 import styles from './index.less';
@@ -62,7 +61,6 @@ const Article: React.FC<ArticleProps> = (props) => {
       <Card bordered={false}>
         因服务器搬迁原因！博客升级中，给您带来不便请谅解！✨✨✨✨✨
       </Card>
-      <ParticlesBg type="polygon" bg={true} />
     </div>
   );
 };
