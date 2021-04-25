@@ -59,7 +59,7 @@ const Article: React.FC<ArticleProps> = (props) => {
         </Form>
       </Card>
       <Card bordered={false}>
-        因服务器搬迁原因！博客升级中，给您带来不便请谅解！✨✨✨✨✨
+        因服务器搬迁原因！博客升级中，给您带来不便请谅解！✨✨
       </Card>
     </div>
   );
