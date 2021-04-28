@@ -1,0 +1,56 @@
+@pro-header-hover-bg: rgba(0, 0, 0, 0.025);
+
+.header {
+  position: fixed;
+  z-index: 1;
+  width: '100%';
+  background-color: #fff;
+  width: 70%;
+  margin: auto;
+  .logo {
+    position: absolute;
+    left: 73px;
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .menu {
+    margin-left: 120px;
+  }
+
+  :global {
+    .ant-col-8 {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+
+      .ant-radio-group {
+        margin-right: 50px;
+      }
+    }
+  }
+
+  .action {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    padding: 0 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+    > span {
+      vertical-align: middle;
+    }
+    &:hover {
+      background: @pro-header-hover-bg;
+    }
+    &:global(.opened) {
+      background: @pro-header-hover-bg;
+    }
+  }
+}
+
+.footer {
+  background: none;
+}

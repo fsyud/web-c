@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Card } from 'antd';
 import { ConnectProps } from 'umi';
 import StandardFormRow from './components/StandardFormRow';
@@ -32,6 +32,10 @@ const Article: React.FC<ArticleProps> = (props) => {
     tag_ids: [1],
   });
 
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
+
   const [form] = Form.useForm();
   return (
     <div className={styles.article_main}>
@@ -40,8 +44,8 @@ const Article: React.FC<ArticleProps> = (props) => {
           form={form}
           layout="inline"
           initialValues={{ initialValue: formData }}
-          onValuesChange={(changedValues, { initialValue, ...values }) => {
-            setFormData(values as FormDataType);
+          onValuesChange={(changedValues, _) => {
+            setFormData(changedValues);
           }}
         >
           <StandardFormRow title="所属标签" block style={{ paddingBottom: 11 }}>

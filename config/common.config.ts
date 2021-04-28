@@ -33,8 +33,7 @@ export const metas = [
   },
   {
     name: 'keywords',
-    content:
-      '日常记录、创作、学习、生活、娱乐、旅行、随笔、我在测试哈哈哈哈、梦想的小那字',
+    content: '日常记录、创作、学习、生活、娱乐、旅行、随笔',
   },
   {
     name: 'og:title',

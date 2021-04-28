@@ -131,6 +131,7 @@ class TagSelect extends Component<TagSelectProps, TagSelectState> {
     node.type &&
     // @ts-ignore
     (node.type.isTagSelectOption ||
+      // @ts-ignore
       node.type.displayName === 'TagSelectOption');
 
   static Option: TagSelectOptionProps & {

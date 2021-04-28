@@ -5,7 +5,7 @@ interface RegardProps {}
 const Regard: React.FC<RegardProps> = (props) => {
   return (
     <>
-      <div>...</div>
+      <div>跳转</div>
     </>
   );
 };
