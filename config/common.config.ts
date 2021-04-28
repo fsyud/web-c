@@ -25,10 +25,18 @@ export const metas = [
   },
   {
     name: 'description',
-    content: '博客',
+    content: '博客，记录日常开发笔记',
   },
   {
-    name: 'blog',
-    content: '博客',
+    name: 'author',
+    content: 'naze',
+  },
+  {
+    name: 'keywords',
+    content: '日常记录、创作、学习、生活、娱乐、旅行、随笔',
+  },
+  {
+    name: 'og:title',
+    content: '日常记录、创作、学习、生活、娱乐、旅行、随笔',
   },
 ];
