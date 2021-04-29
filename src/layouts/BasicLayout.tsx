@@ -2,10 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { ConfigProvider, Layout, Row, Col } from 'antd';
 // @ts-ignore
 import ForkMeOnGithub from 'fork-me-on-github';
+import { useHistory } from 'umi';
 import enUS from 'antd/lib/locale/en_US';
 import { Dispatch } from 'umi';
-import { RibbonsFun } from '@/utils/lib/bg';
+import TeHome from './content/TeHome';
+import TeAwhile from './content/TeAwhile';
+import TeBook from './content/TeBook';
 import Header from './Header';
+import { Menus } from '@/constant';
 import styles from './index.less';
 
 const { Content, Footer } = Layout;
@@ -15,12 +19,12 @@ export interface BasicLayoutType {
 }
 
 const BasicLayout: React.FC<BasicLayoutType> = (props) => {
+  const history = useHistory();
   const { dispatch, children } = props;
   const [languages, setLanguages] = useState<any>(enUS);
 
   useEffect(() => {
-    // 引入canvas背景
-    RibbonsFun();
+    // 路由监听不同模版
   }, []);
 
   const curLanguages = (val: any): void => {
@@ -41,41 +45,43 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
     </Footer>
   );
 
+  const DiffContent = <T extends React.ReactNode>(ELE: T): any => {
+    const curPath = history.location.pathname;
+    if (curPath.includes(Menus[0].path)) {
+      return <TeHome children={ELE} />;
+    }
+    if (curPath.includes(Menus[1].path)) {
+      return <TeAwhile children={ELE} />;
+    }
+    if (curPath.includes(Menus[2].path)) {
+      return <TeBook children={ELE} />;
+    }
+  };
+
   const ContentNode = (): React.ReactNode => {
     return (
       <div className={styles.init_page}>
-        <ForkMeOnGithub
-          repo="https://github.com/starryskystar"
-          colorBackground="black"
-          colorOctocat="white"
-        />
-        <div className={styles.init_header}>
-          {/* <img src="@/assets/icon/star_big.ico" width="64" height="64" alt="logo"/> */}
+        <div className={styles.github}>
+          <ForkMeOnGithub
+            repo="https://github.com/starryskystar"
+            colorBackground="black"
+            colorOctocat="white"
+          />
         </div>
         <ConfigProvider locale={languages}>
           <Layout>
             <Header curLanguages={curLanguages} />
-            <Content
-              className="site-layout"
-              style={{ padding: '0 50px', marginTop: 64 }}
-            >
-              <div className="site-layout-background" style={{ padding: 24 }}>
-                {children}
-              </div>
+            <Content className={styles.site_layout}>
+              {DiffContent(children)}
             </Content>
-            {defaultFooterDom}
+            {/* {defaultFooterDom} */}
           </Layout>
         </ConfigProvider>
       </div>
     );
   };
 
-  return (
-    <>
-      <div id="myCanvas"></div>
-      {ContentNode()}
-    </>
-  );
+  return <>{ContentNode()}</>;
 };
 
 export default BasicLayout;

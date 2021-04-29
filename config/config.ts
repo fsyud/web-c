@@ -39,6 +39,6 @@ export default defineConfig({
   },
   headScripts,
   metas,
-  favicon: './star.ico',
+  favicon: './head.ico',
   title: 'starry star',
 });

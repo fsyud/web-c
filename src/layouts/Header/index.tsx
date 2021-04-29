@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Layout, Menu, Row, Col, Radio } from 'antd';
+import { Layout, Menu, Row, Col, Button } from 'antd';
 import { Menus } from '@/constant';
 import enUS from 'antd/lib/locale/en_US';
 import zh_CN from 'antd/es/locale/zh_CN';
@@ -27,7 +27,6 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
   };
 
   const onSelect = (e: any): void => {
-    console.log(e);
     setCur(e.key);
   };
 
@@ -54,14 +53,18 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
         </Col>
         <Col span={8}>
           <SelectLang className={styles.action} />
-          <Radio.Group size="small" value={languages} onChange={changeLocale}>
+          <div className={styles.header_right}>
+            <Button type="link">登录</Button>
+            <Button className={styles.register}>注册</Button>
+          </div>
+          {/* <Radio.Group size="small" value={languages} onChange={changeLocale}>
             <Radio.Button key="en" value={enUS}>
               English
             </Radio.Button>
             <Radio.Button key="cn" value={zh_CN}>
               中文
             </Radio.Button>
-          </Radio.Group>
+          </Radio.Group> */}
         </Col>
       </Row>
     </Header>
