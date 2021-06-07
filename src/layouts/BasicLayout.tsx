@@ -47,7 +47,8 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
 
   const DiffContent = <T extends React.ReactNode>(ELE: T): any => {
     const curPath = history.location.pathname;
-    if (curPath.includes(Menus[0].path)) {
+    console.log(curPath);
+    if (curPath.includes(Menus[0].path) || curPath === '/') {
       return <TeHome children={ELE} />;
     }
     if (curPath.includes(Menus[1].path)) {
