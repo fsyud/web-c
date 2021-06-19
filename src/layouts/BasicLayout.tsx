@@ -45,9 +45,9 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
     </Footer>
   );
 
+  // 不同路由之间
   const DiffContent = <T extends React.ReactNode>(ELE: T): any => {
     const curPath = history.location.pathname;
-    console.log(curPath);
     if (curPath.includes(Menus[0].path) || curPath === '/') {
       return <TeHome children={ELE} />;
     }
@@ -59,6 +59,7 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
     }
   };
 
+  // defaultFooterDom
   const ContentNode = (): React.ReactNode => {
     return (
       <div className={styles.init_page}>
@@ -75,7 +76,6 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
             <Content className={styles.site_layout}>
               {DiffContent(children)}
             </Content>
-            {/* {defaultFooterDom} */}
           </Layout>
         </ConfigProvider>
       </div>
