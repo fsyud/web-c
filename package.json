@@ -23,7 +23,6 @@
     "@ant-design/pro-layout": "^6.5.0",
     "@umijs/preset-react": "1.x",
     "antd": "^4.11.1",
-    "classnames": "^2.2.6",
     "fork-me-on-github": "^1.0.6",
     "react-mouse-particles": "^1.1.2",
     "umi": "^3.3.3"
@@ -33,6 +32,7 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "@umijs/test": "^3.3.3",
+    "classnames": "^2.3.1",
     "cz-conventional-changelog": "^3.3.0",
     "lint-staged": "^10.0.7",
     "path": "^0.12.7",
