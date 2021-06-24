@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import ArtTool from '@/components/Article/ArtTool';
+import BackTop from '@/components/Article/BackTop';
+
 import styles from './index.less';
 
 interface ArtDetailProps {}
@@ -32,6 +34,7 @@ const ArtDetail: React.FC<ArtDetailProps> = (props) => {
         </div>
       </div>
       <ArtTool />
+      <BackTop />
     </div>
   );
 };
