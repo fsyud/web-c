@@ -26,6 +26,12 @@ export default [
         component: '@/pages/Book',
       },
       {
+        path: '/artDetail',
+        name: 'artDetail',
+        icon: 'smile',
+        component: '@/pages/ArtDetail',
+      },
+      {
         component: './404',
       },
     ],

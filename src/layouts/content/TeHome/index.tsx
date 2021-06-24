@@ -42,6 +42,18 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
           <aside>
             <Skeleton />
           </aside>
+          <aside>
+            <p>
+              <a
+                onClick={() => {
+                  window.open('http://beian.miit.gov.cn/', '_blank');
+                }}
+              >
+                皖ICP备2021008857号
+              </a>
+            </p>
+            <p>版权所有 © 2021 starryskystar</p>
+          </aside>
         </Col>
       </Row>
     </div>

@@ -1,3 +1,5 @@
+@import '../../../style/common.less';
+
 .tehome {
   width: 1000px;
 
@@ -18,17 +20,12 @@
     aside {
       background-color: #fff;
       padding: 16px;
+      margin-bottom: 16px;
 
       &:nth-of-type(1) {
-        margin-bottom: 16px;
-
         .tehome_one {
           h5 {
-            border-left: 3px solid rgb(24, 144, 255);
-            padding-left: 12px;
-            font-size: 15px;
-            font-weight: 400;
-            margin-bottom: 20px;
+            .asideH5Title();
           }
 
           ul {
@@ -52,6 +49,18 @@
                 }
               }
             }
+          }
+        }
+      }
+
+      &:nth-of-type(3) {
+        background-color: #f8f8f8;
+
+        p {
+          color: #6c757d;
+          margin-bottom: 0;
+          a {
+            color: #6c757d;
           }
         }
       }

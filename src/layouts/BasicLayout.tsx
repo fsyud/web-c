@@ -9,6 +9,7 @@ import TeHome from './content/TeHome';
 import TeAwhile from './content/TeAwhile';
 import TeBook from './content/TeBook';
 import Header from './Header';
+import TeArt from './content/TeArt';
 import { Menus } from '@/constant';
 import styles from './index.less';
 
@@ -56,6 +57,9 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
     }
     if (curPath.includes(Menus[2].path)) {
       return <TeBook children={ELE} />;
+    }
+    if (curPath.includes('artDetail')) {
+      return <TeArt children={ELE} />;
     }
   };
 

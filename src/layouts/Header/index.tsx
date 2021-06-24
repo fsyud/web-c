@@ -15,10 +15,17 @@ interface HeadersProps {
 const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
   const curPath = history.location.pathname;
 
+  const curActiveKey = (): string => {
+    if (curPath.includes('artDetail')) {
+      return 'clear';
+    } else {
+      return Menus.find((s: any) => curPath.includes(s.path))?.key || '1';
+    }
+  };
+
   const [languages, setLanguages] = useState<any>(enUS);
-  const [cur, setCur] = useState<string>(
-    Menus.find((s: any) => curPath.includes(s.path))?.key || '1',
-  );
+
+  const [cur, setCur] = useState<string>(curActiveKey());
 
   const changeLocale = (e: any) => {
     const localeValue = e.target.value;

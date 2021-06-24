@@ -8,6 +8,7 @@ interface ArtListProps {
 const ArtList: React.FC<ArtListProps> = (props) => {
   const ScanArticle = (): void => {
     console.log('跳转');
+    window.open(`/artDetail`);
   };
 
   return (
