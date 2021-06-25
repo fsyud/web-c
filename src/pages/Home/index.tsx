@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Skeleton, Divider, Button } from 'antd';
 import classnames from 'classnames';
+import { useDispatch, useSelector } from 'dva';
 import TagSelect from '@/components/Article/TagSelect';
 import ArtList from '@/components/Article/ArtList';
 
@@ -11,7 +12,18 @@ interface AboutProps {}
 const btnConf: string[] = ['本月最热', '全部热门', '最新'];
 
 const About: React.FC<AboutProps> = (props) => {
+  const dispatch = useDispatch();
+  const { isHistoryReport } = useSelector(({ reportDetail }: any) => {
+    return { ...reportDetail };
+  });
+
   const [btnType, setBtnType] = useState<number>();
+
+  useEffect(() => {
+    dispatch({
+      type: 'article/fetchArticle',
+    });
+  }, [dispatch]);
 
   const TypeClick = (pm: number): void => {
     setBtnType(pm);
@@ -36,6 +48,7 @@ const About: React.FC<AboutProps> = (props) => {
               className={btnStyle(index)}
               onClick={() => TypeClick(index)}
               type="link"
+              key={index}
             >
               {s}
             </Button>

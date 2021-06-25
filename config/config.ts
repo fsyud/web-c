@@ -1,7 +1,10 @@
 import { defineConfig } from 'umi';
 import path from 'path';
-import routerData from './router.config';
+import routerData from './router';
+import proxy from './proxy';
 import { headScripts, metas } from './common.config';
+
+const { REACT_APP_ENV } = process.env;
 
 export default defineConfig({
   nodeModulesTransform: {
@@ -34,6 +37,7 @@ export default defineConfig({
     // default true, when it is true, will use `navigator.language` overwrite default
     baseNavigator: true,
   },
+  proxy: proxy[REACT_APP_ENV || 'dev'],
   alias: {
     '@/': path.resolve(__dirname, '../src/'),
   },
