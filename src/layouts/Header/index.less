@@ -10,9 +10,11 @@
   justify-content: center;
   align-items: center;
   box-shadow: 0 1px 8px rgb(231, 235, 247);
+
   .logo {
     position: absolute;
     left: -52px;
+
     img {
       width: 52px;
     }
@@ -26,6 +28,8 @@
   :global {
     .ant-row {
       width: 1000px;
+      height: 68px;
+
       .ant-col-8 {
         display: flex;
         flex-direction: row;
@@ -38,37 +42,68 @@
     }
   }
 
-  .header_right {
-    .register {
-      border: 1px solid #06f;
-      color: #06f;
-    }
-    .register:hover {
-      background-color: rgba(0, 102, 255, 0.11);
-    }
+  .header_r__main {
+    display: flex;
+    flex-direction: row-reverse;
+    min-width: 500px;
+    .header_tool {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
 
-    :global {
-      .ant-btn-link:hover {
-        color: #06f;
+      :global {
+        .ant-btn-group {
+          margin-left: 16px;
+          .ant-btn-default {
+            color: #fff;
+            background-color: #1e80ff;
+            border: none;
+          }
+        }
+      }
+
+      .action {
+        display: flex;
+        align-items: center;
+        height: 48px;
+        padding: 0 12px;
+        margin-left: 32px;
+        cursor: pointer;
+        transition: all 0.3s;
+
+        > span {
+          vertical-align: middle;
+        }
+
+        &:hover {
+          background: @pro-header-hover-bg;
+        }
+
+        &:global(.opened) {
+          background: @pro-header-hover-bg;
+        }
       }
     }
-  }
 
-  .action {
-    display: flex;
-    align-items: center;
-    height: 48px;
-    padding: 0 12px;
-    cursor: pointer;
-    transition: all 0.3s;
-    > span {
-      vertical-align: middle;
-    }
-    &:hover {
-      background: @pro-header-hover-bg;
-    }
-    &:global(.opened) {
-      background: @pro-header-hover-bg;
+    .header_right {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-left: 32px;
+      .register {
+        border: 1px solid #06f;
+        color: #06f;
+      }
+
+      .register:hover {
+        background-color: rgba(0, 102, 255, 0.11);
+      }
+
+      :global {
+        .ant-btn-link:hover {
+          color: #06f;
+        }
+      }
     }
   }
 }

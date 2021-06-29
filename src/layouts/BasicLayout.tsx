@@ -61,6 +61,9 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
     if (curPath.includes('artDetail')) {
       return <TeArt children={ELE} />;
     }
+    if (curPath.includes('writeArt')) {
+      return <TeBook children={ELE} />;
+    }
   };
 
   // defaultFooterDom

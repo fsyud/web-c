@@ -32,6 +32,12 @@ export default [
         component: '@/pages/ArtDetail',
       },
       {
+        path: '/writeArt',
+        name: 'writeArt',
+        icon: 'smile',
+        component: '@/pages/WriteArt',
+      },
+      {
         component: './404',
       },
     ],

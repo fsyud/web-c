@@ -27,6 +27,7 @@
     "src/.umi/*",
     "webpack",
     "lib",
-    "src/.umi/*"
+    "src/.umi/*",
+    "config"
   ]
 }

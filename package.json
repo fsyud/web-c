@@ -24,6 +24,7 @@
     "@ant-design/pro-layout": "^6.5.0",
     "@umijs/preset-react": "1.x",
     "antd": "^4.11.1",
+    "braft-editor": "^2.3.9",
     "fork-me-on-github": "^1.0.6",
     "react-mouse-particles": "^1.1.2",
     "umi": "^3.3.3",
