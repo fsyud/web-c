@@ -3,4 +3,10 @@ declare namespace API {
     name: string;
     password: string;
   };
+  type artParams = {
+    title: string;
+    content: string;
+    type: number;
+    author: string;
+  };
 }

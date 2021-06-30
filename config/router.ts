@@ -5,32 +5,33 @@ export default [
     routes: [
       {
         path: '/',
-        redirect: '/Home',
+        redirect: '/home',
       },
       {
-        path: '/Home',
+        path: '/home',
         name: 'home',
         icon: 'smile',
         component: '@/pages/Home',
       },
       {
-        path: '/Awhile',
+        path: '/detail',
+        name: 'detail',
+        icon: 'smile',
+        component: '@/pages/Detail',
+      },
+      {
+        path: '/awhile',
         name: 'awhile',
         icon: 'smile',
         component: '@/pages/Awhile',
       },
       {
-        path: '/Book',
+        path: '/book',
         name: 'book',
         icon: 'smile',
         component: '@/pages/Book',
       },
-      {
-        path: '/artDetail',
-        name: 'artDetail',
-        icon: 'smile',
-        component: '@/pages/ArtDetail',
-      },
+
       {
         path: '/writeArt',
         name: 'writeArt',

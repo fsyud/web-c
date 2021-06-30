@@ -9,7 +9,7 @@
 }
 
 .art_list {
-  ul {
+  .art_list__main {
     .flexCloumn();
     padding-left: 0;
     li {
@@ -19,11 +19,13 @@
       padding: 3px 0 8px 0;
       .art_cont__left {
         display: flex;
+        align-items: center;
         flex-direction: row;
         max-height: 53px;
         .art_c__l___one {
           .flexCloumn();
-          width: 50px;
+          width: 40px;
+          height: 40px;
           border: 1px #1890ff solid;
           border-radius: 4px;
           justify-content: center;
@@ -32,6 +34,7 @@
           span {
             display: flex;
             .centerCommon();
+            font-size: 12px;
           }
         }
 

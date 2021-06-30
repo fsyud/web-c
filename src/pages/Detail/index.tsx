@@ -4,9 +4,9 @@ import BackTop from '@/components/Article/BackTop';
 
 import styles from './index.less';
 
-interface ArtDetailProps {}
+interface DetailProps {}
 
-const ArtDetail: React.FC<ArtDetailProps> = (props) => {
+const Detail: React.FC<DetailProps> = (props) => {
   return (
     <div className={styles.art_detail}>
       <div className={styles.art_main}>
@@ -39,4 +39,4 @@ const ArtDetail: React.FC<ArtDetailProps> = (props) => {
   );
 };
 
-export default ArtDetail;
+export default Detail;

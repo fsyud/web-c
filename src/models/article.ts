@@ -1,5 +1,6 @@
 import { Effect, Reducer } from 'umi';
-import { getHomeList } from '@/service/home';
+import { message } from 'antd';
+import { getHomeList, createArticle } from '@/service/home';
 
 export type CuurrentArt = {};
 export interface ArticleModelType {
@@ -9,6 +10,7 @@ export interface ArticleModelType {
   };
   effects: {
     fetchArticle: Effect;
+    createArticle: Effect;
   };
   reducers: {
     saveCurrentArticleList: Reducer<any>;
@@ -25,9 +27,16 @@ const ArticleModel: ArticleModelType = {
       const response = yield call(getHomeList);
 
       yield put({
-        type: 'saveCurrentUser',
+        type: 'saveCurrentArticleList',
         payload: response,
       });
+    },
+    *createArticle({ payload }, { call, put }) {
+      const response = yield call(createArticle, payload);
+      // console.log(response);
+      if (response) {
+        message.info(response.msg);
+      }
     },
   },
   reducers: {

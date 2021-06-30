@@ -4,9 +4,9 @@ interface tyoeArrType {
 }
 
 const Menus = [
-  { key: '1', label: '首页', path: 'Home' },
-  { key: '2', label: '时刻', path: 'Awhile' },
-  { key: '3', label: '小书', path: 'Book' },
+  { key: '1', label: '首页', path: 'home' },
+  { key: '2', label: '时刻', path: 'awhile' },
+  { key: '3', label: '小书', path: 'book' },
 ];
 
 const tyoeArr: tyoeArrType[] = [

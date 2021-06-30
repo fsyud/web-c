@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Skeleton, Divider, Button } from 'antd';
+import { Divider, Button } from 'antd';
 import classnames from 'classnames';
 import { useDispatch, useSelector } from 'dva';
 import TagSelect from '@/components/Article/TagSelect';
@@ -13,9 +13,6 @@ const btnConf: string[] = ['本月最热', '全部热门', '最新'];
 
 const About: React.FC<AboutProps> = (props) => {
   const dispatch = useDispatch();
-  const { isHistoryReport } = useSelector(({ reportDetail }: any) => {
-    return { ...reportDetail };
-  });
 
   const [btnType, setBtnType] = useState<number>();
 
@@ -60,10 +57,6 @@ const About: React.FC<AboutProps> = (props) => {
       <div className={styles.h_main}>
         <ArtList />
       </div>
-
-      <Skeleton active />
-
-      <Skeleton active />
     </div>
   );
 };
