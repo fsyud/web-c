@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation } from 'umi';
 import ArtTool from '@/components/Article/ArtTool';
 import BackTop from '@/components/Article/BackTop';
 
@@ -7,6 +8,9 @@ import styles from './index.less';
 interface DetailProps {}
 
 const Detail: React.FC<DetailProps> = (props) => {
+  const params = useLocation();
+
+  console.log(params);
   return (
     <div className={styles.art_detail}>
       <div className={styles.art_main}>

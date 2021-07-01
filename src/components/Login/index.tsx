@@ -20,10 +20,6 @@ const Login: React.FC<LoginProps> = (props) => {
       notification.success({
         message: res.msg,
       });
-    } else {
-      notification.error({
-        message: res.msg,
-      });
     }
   };
 

@@ -74,8 +74,8 @@ const WriteArt: React.FC<{}> = () => {
       <Drawer
         title="预览"
         placement="top"
-        closable={false}
-        width={1000}
+        closable={true}
+        height={1000}
         onClose={() => setVisible(false)}
         className={styles.curDrawer}
         visible={visible}
@@ -84,6 +84,7 @@ const WriteArt: React.FC<{}> = () => {
           style={{
             width: 1000,
             margin: '0 auto',
+            paddingBottom: 100,
           }}
         >
           <div

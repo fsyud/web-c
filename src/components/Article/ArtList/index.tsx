@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Skeleton } from 'antd';
+import { Link } from 'umi';
 import { useSelector } from 'dva';
 import styles from './index.less';
 
@@ -12,9 +13,8 @@ const ArtList: React.FC<ArtListProps> = (props) => {
     return { ...article };
   });
 
-  const ScanArticle = (): void => {
-    console.log('跳转');
-    window.open('/detail?id=22');
+  const ScanArticle = (id: string): void => {
+    window.open(`home/detail/${id}`, '_blank');
   };
 
   return (
@@ -37,7 +37,7 @@ const ArtList: React.FC<ArtListProps> = (props) => {
                 </div>
 
                 <div className={styles.art_cont__right}>
-                  <h6 onClick={() => ScanArticle()}>{s.title}</h6>
+                  <h6 onClick={() => ScanArticle(s._id)}>{s.title}</h6>
                   <div className={styles.art_c__r___b}>
                     <div className={styles.art_c__r___b____l}>前端</div>
                     <div className={styles.art_c__r___b____r}>naze</div>

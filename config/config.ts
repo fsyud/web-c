@@ -1,6 +1,6 @@
 import { defineConfig } from 'umi';
 import path from 'path';
-import routerData from './router';
+import routerData from './router.config';
 import proxy from './proxy';
 import { headScripts, metas } from './common.config';
 
