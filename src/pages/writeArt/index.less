@@ -1,0 +1,30 @@
+.write_art {
+  .header {
+    display: flex;
+    flex-direction: row-reverse;
+    height: 63px;
+    align-items: center;
+
+    :global {
+      input {
+        height: 63px;
+        font-size: 30px;
+        color: #1d2129;
+        border: none;
+        margin-right: 80px;
+
+        &:focus {
+          border: none;
+        }
+      }
+    }
+  }
+
+  .curDrawer {
+    :global {
+      .ant-drawer-content-wrapper {
+        height: 100%;
+      }
+    }
+  }
+}
