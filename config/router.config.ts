@@ -8,31 +8,31 @@ export default [
         redirect: '/home',
       },
       {
-        path: 'home',
+        path: '/home',
         name: 'home',
-        component: '@/pages/home',
+        component: './home',
       },
       {
-        path: 'home/detail/:id',
+        path: '/detail/:id',
         name: 'detail',
         icon: 'smile',
-        component: '@/pages/home/detail',
+        component: './home/detail',
       },
       {
-        path: 'awhile',
+        path: '/awhile',
         name: 'awhile',
-        component: '@/pages/awhile',
+        component: './awhile',
       },
       {
-        path: 'book',
+        path: '/book',
         name: 'book',
-        component: '@/pages/book',
+        component: './book',
       },
 
       {
-        path: 'writeArt',
+        path: '/writeArt',
         name: 'writeArt',
-        component: '@/pages/writeArt',
+        component: './writeArt',
       },
       {
         component: './404',
