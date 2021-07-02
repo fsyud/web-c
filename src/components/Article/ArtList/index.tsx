@@ -8,12 +8,10 @@ interface ArtListProps {
   item?: any;
 }
 
-const ArtList: React.FC<ArtListProps> = (props) => {
+const ArtList: React.FC<ArtListProps> = () => {
   const { list } = useSelector(({ article }: any) => {
     return { ...article };
   });
-
-  console.log(window.location.href);
 
   const ScanArticle = (id: string): void => {
     window.open(`${window.location.href}/detail/${id}`, '_blank');

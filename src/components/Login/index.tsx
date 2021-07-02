@@ -14,11 +14,15 @@ const Login: React.FC<LoginProps> = (props) => {
   }, [props.visible]);
 
   const onFinish = async (values: any): Promise<any> => {
-    const res = await registerUser(values);
+    const { data } = await registerUser(values);
 
-    if (res.success) {
+    if (data.success) {
       notification.success({
-        message: res.msg,
+        message: data.msg,
+      });
+    } else {
+      notification.error({
+        message: data.msg,
       });
     }
   };

@@ -26,10 +26,12 @@ const ArticleModel: ArticleModelType = {
     *fetchArticle(_, { call, put }) {
       const response = yield call(getHomeList);
 
-      yield put({
-        type: 'saveCurrentArticleList',
-        payload: response,
-      });
+      if (response) {
+        yield put({
+          type: 'saveCurrentArticleList',
+          payload: response.data || [],
+        });
+      }
     },
     *createArticle({ payload }, { call, put }) {
       const response = yield call(createArticle, payload);
