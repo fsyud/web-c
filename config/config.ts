@@ -26,7 +26,6 @@ export default defineConfig({
   manifest: {
     basePath: '/',
   },
-  publicPath: './',
   dynamicImport: {
     loading: '@/components/PageLoading/index',
   },

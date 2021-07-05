@@ -14,7 +14,7 @@ const ArtList: React.FC<ArtListProps> = () => {
   });
 
   const ScanArticle = (id: string): void => {
-    window.open(`${window.location.href}/detail/${id}`, '_blank');
+    window.open(`/detail/${id}`, '_blank');
   };
 
   return (

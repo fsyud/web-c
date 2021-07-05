@@ -1,6 +1,6 @@
 # blog project
 
-[Online address](https://www.singlebuck.cn)
+[星空🌃](https://www.starryskystar.space)
 ## Getting Started
 
 Install dependencies,

@@ -10,32 +10,32 @@ export default [
       {
         path: '/home',
         name: 'home',
-        component: './home',
+        component: '@/pages/home',
       },
       {
         path: '/detail/:id',
         name: 'detail',
         icon: 'smile',
-        component: './home/detail',
+        component: '@/pages/home/detail',
       },
       {
         path: '/awhile',
         name: 'awhile',
-        component: './awhile',
+        component: '@/pages/awhile',
       },
       {
         path: '/book',
         name: 'book',
-        component: './book',
+        component: '@/pages/book',
       },
 
       {
         path: '/writeArt',
         name: 'writeArt',
-        component: './writeArt',
+        component: '@/pages/writeArt',
       },
       {
-        component: './404',
+        component: '@/pages/404',
       },
     ],
   },
