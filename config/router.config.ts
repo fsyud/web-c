@@ -15,7 +15,6 @@ export default [
       {
         path: '/detail/:id',
         name: 'detail',
-        icon: 'smile',
         component: '@/pages/home/detail',
       },
       {

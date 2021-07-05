@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Skeleton } from 'antd';
-import { Link } from 'umi';
+import { useHistory, useDispatch } from 'umi';
 import { useSelector } from 'dva';
 import styles from './index.less';
 
@@ -9,15 +9,15 @@ interface ArtListProps {
 }
 
 const ArtList: React.FC<ArtListProps> = () => {
+  const history = useHistory();
   const { list } = useSelector(({ article }: any) => {
     return { ...article };
   });
 
   const ScanArticle = (id: string): void => {
-    window.open(`/detail/${id}`, '_blank');
+    window.open(`/detail/${id}`);
+    // history.push(`/detail/${id}`)
   };
-
-  console.log(list);
 
   return (
     <div className={styles.art_list}>

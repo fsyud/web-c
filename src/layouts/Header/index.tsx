@@ -21,7 +21,7 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
   const [languages, setLanguages] = useState<any>(enUS);
 
   const curActiveKey = (): string => {
-    if (curPath.includes('artDetail') || curPath.includes('writeArt')) {
+    if (curPath.includes('detail') || curPath.includes('writeArt')) {
       return 'clear';
     } else {
       return Menus.find((s: any) => curPath.includes(s.path))?.key || '1';
