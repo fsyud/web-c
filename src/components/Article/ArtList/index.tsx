@@ -17,6 +17,8 @@ const ArtList: React.FC<ArtListProps> = () => {
     window.open(`/detail/${id}`, '_blank');
   };
 
+  console.log(list);
+
   return (
     <div className={styles.art_list}>
       <Skeleton active loading={list.length === 0}>
