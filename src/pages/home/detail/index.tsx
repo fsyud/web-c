@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useDispatch, useSelector } from 'umi';
 import { Skeleton } from 'antd';
 import ArtTool from '@/components/Article/ArtTool';
 import BackTop from '@/components/Article/BackTop';
+import MarkdownBody from '@/components/Article/MarkdownBody';
 
 import styles from './index.less';
 
@@ -43,7 +44,9 @@ const Detail: React.FC<DetailProps> = (props) => {
             </div>
           </div>
 
-          <div className={styles.art_content}>{content}</div>
+          <div className={styles.art_content}>
+            <MarkdownBody markdown={content} />
+          </div>
         </div>
       </Skeleton>
 

@@ -37,10 +37,9 @@ const ArticleModel: ArticleModelType = {
       }
     },
     *createArticle({ payload }, { call, _ }) {
-      const response = yield call(createArticle, payload);
-      // console.log(response);
-      if (response) {
-        message.info(response.msg);
+      const { data } = yield call(createArticle, payload);
+      if (data) {
+        message.info(data.msg);
       }
     },
     *getArticleDetail({ payload }, { call, put }) {

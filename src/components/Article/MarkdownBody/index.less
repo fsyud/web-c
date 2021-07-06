@@ -1,0 +1,35 @@
+// highlight
+body .markdown-body,
+body .editor-preview,
+body .editor-preview-active,
+body .editor-preview-side,
+body .editor-preview-active-side {
+  background-color: transparent;
+
+  ul {
+    padding-left: 24px;
+  }
+
+  pre {
+    background-color: #282c34;
+    border-radius: 4px;
+    padding: 24px;
+  }
+
+  .line-numbers {
+    code {
+      border: none;
+    }
+
+    .line-numbers-rows {
+      top: -16px;
+      bottom: -16px;
+      padding: 15px 0;
+      border-right: 1px solid rgba(0, 0, 0, 0.66);
+
+      > span::before {
+        color: hsla(0, 0%, 100%, 0.3);
+      }
+    }
+  }
+}
