@@ -3,7 +3,8 @@ import { ConfigProvider, Layout, Row, Col } from 'antd';
 // @ts-ignore
 import ForkMeOnGithub from 'fork-me-on-github';
 import { useHistory } from 'umi';
-import enUS from 'antd/lib/locale/en_US';
+// import enUS from 'antd/lib/locale/en_US';
+import zh_CN from 'antd/es/locale/zh_CN';
 import { Dispatch } from 'umi';
 import TeHome from './content/TeHome';
 import TeAwhile from './content/TeAwhile';
@@ -22,7 +23,7 @@ export interface BasicLayoutType {
 const BasicLayout: React.FC<BasicLayoutType> = (props) => {
   const history = useHistory();
   const { dispatch, children } = props;
-  const [languages, setLanguages] = useState<any>(enUS);
+  const [languages, setLanguages] = useState<any>(zh_CN);
 
   useEffect(() => {
     // 路由监听不同模版

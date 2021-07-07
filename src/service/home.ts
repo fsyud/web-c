@@ -13,9 +13,10 @@ export type getArtDeatilParamsType = {
 };
 
 // 获取文章列表
-export async function getHomeList(params: homeListParamsType) {
+export async function getArticleList(params: homeListParamsType) {
   return request('/api/home/list', {
     method: 'POST',
+    data: params,
   });
 }
 

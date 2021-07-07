@@ -9,4 +9,9 @@ declare namespace API {
     type: number;
     author: string;
   };
+  type reponseData = {
+    code: number;
+    data: any[];
+    message: string;
+  };
 }

@@ -7,9 +7,7 @@ export function rendererLink(href: string, title: string, text: string) {
 
   if (url.slice(0, 1) !== '#') {
     const urlParams = new URL(href, window.location.origin);
-
     url = urlParams.href;
-
     target = urlParams.host !== window.location.host ? '_blank' : false;
   }
 

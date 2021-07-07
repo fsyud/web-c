@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { useParams, useDispatch, useSelector } from 'umi';
-import { Skeleton } from 'antd';
+import { Skeleton, Card } from 'antd';
 import ArtTool from '@/components/Article/ArtTool';
 import BackTop from '@/components/Article/BackTop';
 import MarkdownBody from '@/components/Article/MarkdownBody';
+import ArticleComments from '@/components/Article/ArticleComments';
 
 import styles from './index.less';
 
@@ -44,9 +45,13 @@ const Detail: React.FC<DetailProps> = (props) => {
             </div>
           </div>
 
-          <div className={styles.art_content}>
+          <Card bordered={false}>
             <MarkdownBody markdown={content} />
-          </div>
+          </Card>
+
+          <Card bordered={false} style={{ marginTop: 24 }} id="commentsCard">
+            <ArticleComments />
+          </Card>
         </div>
       </Skeleton>
 

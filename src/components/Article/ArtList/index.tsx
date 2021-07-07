@@ -1,19 +1,12 @@
 import React from 'react';
 import { Skeleton } from 'antd';
-import { useHistory, useDispatch } from 'umi';
-import { useSelector } from 'dva';
 import styles from './index.less';
 
 interface ArtListProps {
-  item?: any;
+  item: any[];
 }
 
-const ArtList: React.FC<ArtListProps> = () => {
-  const history = useHistory();
-  const { list } = useSelector(({ article }: any) => {
-    return { ...article };
-  });
-
+const ArtList: React.FC<ArtListProps> = ({ item }) => {
   const ScanArticle = (id: string): void => {
     window.open(`/detail/${id}`);
     // history.push(`/detail/${id}`)
@@ -21,9 +14,9 @@ const ArtList: React.FC<ArtListProps> = () => {
 
   return (
     <div className={styles.art_list}>
-      <Skeleton active loading={list.length === 0}>
+      <Skeleton active loading={item.length === 0}>
         <ul className={styles.art_list__main}>
-          {list.map((s: any, index: number) => {
+          {item.map((s: any, index: number) => {
             return (
               <li key={index}>
                 <div className={styles.art_cont__left}>

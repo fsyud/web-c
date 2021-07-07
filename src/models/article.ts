@@ -1,6 +1,6 @@
 import { Effect, Reducer } from 'umi';
 import { message } from 'antd';
-import { getHomeList, createArticle, getArtDeatil } from '@/service/home';
+import { getArticleList, createArticle, getArtDeatil } from '@/service/home';
 
 export type CuurrentArt = {};
 export interface ArticleModelType {
@@ -10,12 +10,10 @@ export interface ArticleModelType {
     detail: object;
   };
   effects: {
-    fetchArticle: Effect;
     createArticle: Effect;
     getArticleDetail: Effect;
   };
   reducers: {
-    saveCurrentArticleList: Reducer<any>;
     artList: Reducer<any>;
   };
 }
@@ -27,15 +25,6 @@ const ArticleModel: ArticleModelType = {
     detail: {},
   },
   effects: {
-    *fetchArticle(_, { call, put }) {
-      const response = yield call(getHomeList);
-      if (response) {
-        yield put({
-          type: 'saveCurrentArticleList',
-          payload: response.data || [],
-        });
-      }
-    },
     *createArticle({ payload }, { call, _ }) {
       const { data } = yield call(createArticle, payload);
       if (data) {
@@ -53,12 +42,6 @@ const ArticleModel: ArticleModelType = {
     },
   },
   reducers: {
-    saveCurrentArticleList(state, action) {
-      return {
-        ...state,
-        list: action.payload || [],
-      };
-    },
     artList(state, action) {
       return {
         ...state,
