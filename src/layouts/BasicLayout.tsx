@@ -27,6 +27,18 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
 
   useEffect(() => {
     // 路由监听不同模版
+    window.addEventListener(
+      'error',
+      (errorEvent) => {
+        console.log(errorEvent);
+        console.log(errorEvent.message);
+
+        if (errorEvent.type === 'error') {
+          history.push('./404');
+        }
+      },
+      true,
+    );
   }, []);
 
   const curLanguages = (val: any): void => {
@@ -56,7 +68,7 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
     if (curPath.includes(Menus[1].path)) {
       return <TeAwhile children={ELE} />;
     }
-    if (curPath.includes(Menus[2].path)) {
+    if (curPath.includes(Menus[2].path) || curPath.includes('404')) {
       return <TeBook children={ELE} />;
     }
     if (curPath.includes('detail')) {
