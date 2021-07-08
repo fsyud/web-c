@@ -123,7 +123,7 @@ const About: React.FC<{}> = () => {
 
       <div className={styles.h_main}>
         <ArtList item={curList} />
-        {!curNull && <SkeletonPrivite />}
+        {!curNull && curList.length !== 0 && <SkeletonPrivite />}
         {curNull && <div className={styles.h_main__end}>没有更多...</div>}
       </div>
     </div>

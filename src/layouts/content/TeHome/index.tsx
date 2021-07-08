@@ -1,10 +1,8 @@
 import React from 'react';
 import { Row, Col, Skeleton, Affix } from 'antd';
-import {
-  HighlightOutlined,
-  MessageOutlined,
-  ReadOutlined,
-} from '@ant-design/icons';
+import communicate from '@/assets/svg/communicate.svg';
+import questionnaire from '@/assets/svg/questionnaire.svg';
+import study from '@/assets/svg/study.svg';
 import styles from './index.less';
 
 interface TeHomeProps {
@@ -24,16 +22,16 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
               <h5>写下你想说的</h5>
               <ul>
                 <li>
-                  <HighlightOutlined />
+                  <img src={questionnaire} alt="error" />
                   <span>写文章</span>
                 </li>
                 <li>
-                  <MessageOutlined />
+                  <img src={communicate} alt="error" />
                   <span>发片刻</span>
                 </li>
                 <li>
-                  <ReadOutlined />
-                  <span>写文章</span>
+                  <img src={study} alt="error" />
+                  <span>撰小书</span>
                 </li>
               </ul>
             </div>
