@@ -35,7 +35,7 @@ const Detail: React.FC<DetailProps> = (props) => {
         <div className={styles.art_main}>
           <div className={styles.art_head}>
             <a href="">
-              <img src={require('@/assets/icon/logo.png')} alt="error" />
+              <img src={require('@/assets/icon/pencil.png')} alt="error" />
             </a>
             <div className={styles.art_h__right}>
               <div className={styles.name}>月下</div>

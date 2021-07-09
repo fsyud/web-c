@@ -42,6 +42,6 @@ export default defineConfig({
   },
   headScripts,
   metas,
-  favicon: './dophins.ico',
-  title: 'starry star',
+  favicon: './pencil.ico',
+  title: 'StarryStar - 代码里不仅有bug 还有时光',
 });

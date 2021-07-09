@@ -66,7 +66,8 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
       <Row>
         <Col span={10}>
           <div className={styles.logo}>
-            <img src={require('@/assets/icon/logo.png')} alt="error" />
+            <img src={require('@/assets/icon/pencil.png')} alt="error" />
+            <strong>星空</strong>
           </div>
           <Menu
             theme="light"
