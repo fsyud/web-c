@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
+import { useHistory } from 'umi';
 import { Tag } from 'antd';
 import styles from './index.less';
 
@@ -8,6 +9,8 @@ interface TagSelectProps {
 }
 
 const TagSelect: React.FC<TagSelectProps> = (props) => {
+  const history = useHistory();
+
   const { list } = props;
 
   const [curIndex, setCurIndex] = useState<number>();
@@ -35,7 +38,7 @@ const TagSelect: React.FC<TagSelectProps> = (props) => {
           </Tag>
         );
       })}
-      <Tag>更多...</Tag>
+      <Tag onClick={() => history.push('/tag-column')}>更多...</Tag>
     </div>
   );
 };

@@ -30,8 +30,6 @@ const WriteArt: React.FC<{}> = () => {
   ];
 
   const submit = async (): Promise<any> => {
-    console.log(value.toHTML());
-
     if (!curtitle) {
       message.error('请填写标题！');
       return;

@@ -4,17 +4,14 @@ import Prism from 'prismjs';
 export function rendererLink(href: string, title: string, text: string) {
   let url = href;
   let target: boolean | string = false;
-
   if (url.slice(0, 1) !== '#') {
     const urlParams = new URL(href, window.location.origin);
     url = urlParams.href;
     target = urlParams.host !== window.location.host ? '_blank' : false;
   }
-
   if (!url) {
     return text;
   }
-
   let out = `<a href="${url}"`;
   if (title) {
     out += ` title="${title}"`;
@@ -35,7 +32,6 @@ export function rendererParagraph(text: string) {
 
 export function getDefaultMarkedOptions() {
   const renderer = new marked.Renderer();
-
   renderer.link = rendererLink;
   renderer.paragraph = rendererParagraph;
 

@@ -18,6 +18,11 @@ export default [
         component: '@/pages/home/detail',
       },
       {
+        path: '/tag-column',
+        name: 'tag-column',
+        component: '@/pages/home/tagcolumn',
+      },
+      {
         path: '/awhile',
         name: 'awhile',
         component: '@/pages/awhile',

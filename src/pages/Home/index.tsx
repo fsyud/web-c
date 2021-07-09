@@ -40,14 +40,17 @@ const About: React.FC<{}> = () => {
 
   const getArtList = async (params: number): Promise<any> => {
     setIsLoading(true);
-
     const res: API.reponseData = await getArticleList({
       page: params,
       pageSize,
     });
-    if (res) {
-      if (Array.isArray(res.data) && res.data.length === 0) {
-        setIsLoading(true);
+    if (res && Array.isArray(res.data)) {
+      if (res.data.length < 15) {
+        if (res.data.length === 0) {
+          setIsLoading(true);
+        } else {
+          setCurList({ type: 'add', data: res.data });
+        }
         setCurNull(true);
       } else {
         setIsLoading(false);

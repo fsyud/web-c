@@ -23,7 +23,7 @@ export async function getArticleList(params: homeListParamsType) {
 // 写文章
 export async function createArticle(params: createArtParamsType) {
   return request('/api/home/create', {
-    method: 'PUT',
+    method: 'POST',
     data: params,
   });
 }

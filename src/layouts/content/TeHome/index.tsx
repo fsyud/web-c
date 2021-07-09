@@ -22,15 +22,23 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
               <h5>写下你想说的</h5>
               <ul>
                 <li>
-                  <img src={questionnaire} alt="error" />
+                  <div>
+                    <img src={questionnaire} alt="error" />
+                  </div>
+
                   <span>写文章</span>
                 </li>
                 <li>
-                  <img src={communicate} alt="error" />
+                  <div>
+                    <img src={communicate} alt="error" />
+                  </div>
+
                   <span>发片刻</span>
                 </li>
                 <li>
-                  <img src={study} alt="error" />
+                  <div>
+                    <img src={study} alt="error" />
+                  </div>
                   <span>撰小书</span>
                 </li>
               </ul>

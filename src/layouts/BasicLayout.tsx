@@ -68,7 +68,11 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
     if (curPath.includes(Menus[1].path)) {
       return <TeAwhile children={ELE} />;
     }
-    if (curPath.includes(Menus[2].path) || curPath.includes('404')) {
+    if (
+      curPath.includes(Menus[2].path) ||
+      curPath.includes('404') ||
+      curPath.includes('tag-column')
+    ) {
       return <TeBook children={ELE} />;
     }
     if (curPath.includes('detail')) {

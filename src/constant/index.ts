@@ -22,4 +22,17 @@ const tyoeArr: tyoeArrType[] = [
   { v: 10, n: 'react' },
 ];
 
-export { Menus, tyoeArr };
+// tag-column
+const typeDefine: {
+  type: number;
+  name: string;
+}[] = [
+  { type: 1, name: '生活' },
+  { type: 2, name: '旅行' },
+  { type: 3, name: '娱乐休闲' },
+  { type: 4, name: '技术' },
+  { type: 5, name: '学习' },
+  { type: 6, name: '科技' },
+];
+
+export { Menus, tyoeArr, typeDefine };

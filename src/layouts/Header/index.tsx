@@ -21,7 +21,11 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
   const [languages, setLanguages] = useState<any>(enUS);
 
   const curActiveKey = (): string => {
-    if (curPath.includes('detail') || curPath.includes('writeArt')) {
+    if (
+      curPath.includes('detail') ||
+      curPath.includes('writeArt') ||
+      curPath.includes('tag-column')
+    ) {
       return 'clear';
     } else {
       return Menus.find((s: any) => curPath.includes(s.path))?.key || '1';
@@ -65,10 +69,13 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
     <Header className={styles.header}>
       <Row>
         <Col span={10}>
-          <div className={styles.logo}>
-            <img src={require('@/assets/icon/pencil.png')} alt="error" />
-            <strong>星空</strong>
-          </div>
+          <Link to={Menus[0].path} style={{ color: 'black' }}>
+            <div className={styles.logo}>
+              <img src={require('@/assets/icon/pencil.png')} alt="error" />
+              <strong>星空</strong>
+            </div>
+          </Link>
+
           <Menu
             theme="light"
             mode="horizontal"
