@@ -30,7 +30,12 @@ const ArtList: React.FC<ArtListProps> = ({ item }) => {
                       {moment(s.create_time).format('YYYY-MM-DD')}
                     </div>
                   </h6>
-                  <h5 onClick={() => ScanArticle(s._id)}>{s.title}</h5>
+                  <h5
+                    className={styles.lsi_title}
+                    onClick={() => ScanArticle(s._id)}
+                  >
+                    {s.title}
+                  </h5>
                   <div className={styles.art_footer}>
                     <div className={styles.f_one}>
                       <img src={eye} alt="" />
