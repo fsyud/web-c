@@ -1,5 +1,6 @@
 import marked from 'marked';
 import Prism from 'prismjs';
+import moment from 'moment';
 
 export function rendererLink(href: string, title: string, text: string) {
   let url = href;
@@ -48,7 +49,6 @@ export function getDefaultMarkedOptions() {
           return Prism.highlight(code, grammar, language);
         }
       }
-
       return code;
     },
   };
@@ -57,3 +57,22 @@ export function getDefaultMarkedOptions() {
 export function resetMarkedOptions() {
   marked.setOptions(getDefaultMarkedOptions());
 }
+
+// 天数计算
+export const DiffDay = (params: any): string => {
+  let isDay: string;
+  //获取当前时间
+  let m1 = moment();
+  //获取需要对比的时间
+  let m2 = moment(params);
+  //计算相差多少天 day可以是second minute
+  const day = m2.diff(m1, 'day');
+  isDay = day === 0 ? '今天' : day + '天前';
+  return isDay;
+};
+
+export const getStringDay = (params: string): string => {
+  return `${moment(params).format('YYYY')}年${moment(params).format(
+    'MM',
+  )}月${moment(params).format('DD')}日`;
+};

@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, useDispatch, useSelector } from 'umi';
+import moment from 'moment';
+import { getStringDay } from '@/utils/utils';
 import { Skeleton, Card } from 'antd';
 import ArtTool from '@/components/Article/ArtTool';
 import BackTop from '@/components/Article/BackTop';
@@ -14,12 +16,6 @@ const Detail: React.FC<DetailProps> = (props) => {
   const params: any = useParams();
   const dispatch = useDispatch();
 
-  const { detail } = useSelector(({ article }: any) => {
-    return { ...article };
-  });
-
-  const { content } = detail;
-
   useEffect(() => {
     dispatch({
       type: 'article/getArticleDetail',
@@ -28,6 +24,12 @@ const Detail: React.FC<DetailProps> = (props) => {
       },
     });
   }, []);
+
+  const { detail } = useSelector(({ article }: any) => {
+    return { ...article };
+  });
+
+  const { content, create_times } = detail;
 
   return (
     <div className={styles.art_detail}>
@@ -40,7 +42,7 @@ const Detail: React.FC<DetailProps> = (props) => {
             <div className={styles.art_h__right}>
               <div className={styles.name}>月下</div>
               <div className={styles.meta}>
-                <time>2021年06月23日</time>
+                <time>{getStringDay(create_times)}</time>
               </div>
             </div>
           </div>

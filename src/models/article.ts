@@ -1,6 +1,6 @@
 import { Effect, Reducer } from 'umi';
 import { message } from 'antd';
-import { getArticleList, createArticle, getArtDeatil } from '@/service/home';
+import { createArticle, getArtDeatil } from '@/service/home';
 
 export type CuurrentArt = {};
 export interface ArticleModelType {

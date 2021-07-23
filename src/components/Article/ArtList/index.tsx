@@ -1,9 +1,9 @@
 import React from 'react';
 import { Skeleton } from 'antd';
-import moment from 'moment';
 import eye from '@/assets/svg/eye.svg';
 import great from '@/assets/svg/great.svg';
 import commit from '@/assets/svg/commit.svg';
+import { DiffDay } from '@/utils/utils';
 
 import styles from './index.less';
 interface ArtListProps {
@@ -12,7 +12,8 @@ interface ArtListProps {
 
 const ArtList: React.FC<ArtListProps> = ({ item }) => {
   const ScanArticle = (id: string): void => {
-    window.open(`/detail/${id}`);
+    const w: any = window.open('about:blank');
+    w.location.href = `/detail/${id}`;
   };
 
   return (
@@ -26,9 +27,7 @@ const ArtList: React.FC<ArtListProps> = ({ item }) => {
                   <h6>
                     <div className={styles.h6_l}>{s.author}</div>
                     <div className={styles.h6_line}></div>
-                    <div className={styles.h6_r}>
-                      {moment(s.create_time).format('YYYY-MM-DD')}
-                    </div>
+                    <div className={styles.h6_r}>{DiffDay(s.create_times)}</div>
                   </h6>
                   <h5
                     className={styles.lsi_title}
