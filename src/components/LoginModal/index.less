@@ -1,0 +1,106 @@
+.login {
+  .extra_photo {
+    position: relative;
+
+    .pto {
+      width: 120px;
+      height: 200px;
+      left: 120px;
+      top: -167px;
+      position: absolute;
+
+      img {
+        width: 120px;
+        top: 0;
+        left: 0;
+        position: absolute;
+      }
+    }
+
+    .pto_one {
+      top: -182px;
+
+      img {
+        height: 180px;
+      }
+    }
+
+    .pto_two {
+      top: -194px;
+
+      img {
+        height: 220px;
+      }
+    }
+
+    .pto_three {
+      top: -182px;
+      left: 99px;
+
+      img {
+        height: 180px;
+      }
+    }
+  }
+
+  :global {
+    .ant-modal-header {
+      border-bottom: none;
+    }
+
+    .ant-modal-body {
+      padding-top: 16px;
+    }
+
+    .ant-form-item {
+      margin-bottom: 8px;
+
+      input {
+        height: 39px;
+      }
+
+      .ant-input-password {
+        input {
+          height: 31px;
+        }
+      }
+
+      .ant-btn-block {
+        height: 39px;
+        margin-top: 16px;
+      }
+    }
+  }
+
+  .extra_login {
+    .extra_login__head {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-direction: row;
+
+      li {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+
+        div {
+          width: 60px;
+          height: 60px;
+          border-radius: 30px;
+          display: flex;
+          background-color: #f4f8fb;
+          justify-content: center;
+          align-items: center;
+          img {
+            width: 30px;
+          }
+        }
+      }
+    }
+  }
+}

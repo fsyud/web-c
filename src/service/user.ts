@@ -6,3 +6,10 @@ export async function registerUser(params: API.userInfo) {
     data: params,
   });
 }
+
+export async function userLogin(params: API.userInfo) {
+  return request('/api/login/user_login', {
+    method: 'POST',
+    data: params,
+  });
+}

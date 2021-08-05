@@ -22,19 +22,14 @@ const ArtList: React.FC<ArtListProps> = ({ item }) => {
         <ul className={styles.art_list__main}>
           {item.map((s: any, index: number) => {
             return (
-              <li key={index}>
+              <li key={index} onClick={() => ScanArticle(s._id)}>
                 <div className={styles.lsi_main}>
                   <h6>
                     <div className={styles.h6_l}>{s.author}</div>
                     <div className={styles.h6_line}></div>
                     <div className={styles.h6_r}>{DiffDay(s.create_times)}</div>
                   </h6>
-                  <h5
-                    className={styles.lsi_title}
-                    onClick={() => ScanArticle(s._id)}
-                  >
-                    {s.title}
-                  </h5>
+                  <h5 className={styles.lsi_title}>{s.title}</h5>
                   <div className={styles.art_footer}>
                     <div className={styles.f_one}>
                       <img src={eye} alt="" />

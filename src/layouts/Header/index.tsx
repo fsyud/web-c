@@ -5,7 +5,7 @@ import enUS from 'antd/lib/locale/en_US';
 // import zh_CN from 'antd/es/locale/zh_CN';
 import { Link, SelectLang, history } from 'umi';
 import { DownOutlined } from '@ant-design/icons';
-import Login from '@/components/Login';
+import LoginModal from '@/components/LoginModal';
 
 import styles from './index.less';
 
@@ -123,7 +123,7 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
           </Radio.Group> */}
         </Col>
       </Row>
-      <Login
+      <LoginModal
         visible={modalVisable}
         maskClosable
         closable

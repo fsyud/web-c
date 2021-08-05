@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useParams, useDispatch, useSelector } from 'umi';
-import moment from 'moment';
 import { getStringDay } from '@/utils/utils';
 import { Skeleton, Card } from 'antd';
 import ArtTool from '@/components/Article/ArtTool';
@@ -15,6 +14,10 @@ interface DetailProps {}
 const Detail: React.FC<DetailProps> = (props) => {
   const params: any = useParams();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    // window.location.reload()
+  }, []);
 
   useEffect(() => {
     dispatch({
