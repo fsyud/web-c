@@ -39,7 +39,7 @@ const LoginModal: React.FC<LoginModalProps> = (props) => {
       notification.success({
         message: data.msg,
       });
-      localStorage.setItem('STARRY_STAR_SKY', data.token);
+      localStorage.setItem('STARRY_STAR_SKY', data.access_token);
     } else {
       notification.error({
         message: data.msg,

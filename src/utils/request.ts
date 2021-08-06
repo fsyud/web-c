@@ -1,6 +1,6 @@
 /** Request 网络请求工具 更详细的 api 文档: https://github.com/umijs/umi-request */
 import { extend } from 'umi-request';
-import { notification } from 'antd';
+import { notification, message } from 'antd';
 
 const codeMessage: Record<number, string> = {
   200: '服务器成功返回请求的数据。',
@@ -8,7 +8,7 @@ const codeMessage: Record<number, string> = {
   202: '一个请求已经进入后台排队（异步任务）。',
   204: '删除数据成功。',
   400: '发出的请求有错误，服务器没有进行新建或修改数据的操作。',
-  401: '用户没有权限（令牌、用户名、密码错误）。',
+  401: '您还未登录！',
   403: '用户得到授权，但是访问是被禁止的。',
   404: '发出的请求针对的是不存在的记录，服务器没有进行操作。',
   406: '请求的格式不可得。',
@@ -30,10 +30,9 @@ const errorHandler = (error: { response: Response }): Response => {
     const errorText = codeMessage[response.status] || response.statusText;
     const { status, url } = response;
 
-    notification.error({
-      message: `Request error ${status}: ${url}`,
-      description: errorText,
-    });
+    console.log(status, url, '#####################');
+
+    message.warning(errorText);
   } else if (!response) {
     notification.error({
       description: 'Your network is abnormal and cannot connect to the server',
@@ -50,7 +49,9 @@ const errorHandler = (error: { response: Response }): Response => {
 const request = extend({
   errorHandler, // default error handling
   credentials: 'include', // Does the default request bring cookies
-  token: localStorage.getItem('STARRY_STAR_SKY'),
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('STARRY_STAR_SKY')}`,
+  },
 });
 
 export default request;
