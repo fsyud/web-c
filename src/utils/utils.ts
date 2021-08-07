@@ -82,8 +82,7 @@ export const getDefaultMarkedOptions = (): any => {
     headerIds: false,
     gfm: true,
     breaks: true,
-    highlight(code: string, lang: string) {
-      console.log(code, lang);
+    highlight: (code: string, lang: string) => {
       if (lang) {
         const language = lang.toLowerCase();
         const grammar = Prism.languages[language];

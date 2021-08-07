@@ -54,10 +54,7 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
                 <div className={styles.tehome_one}>
                   <h5>最新片刻</h5>
                   <ul className={styles.tehome_moment}>
-                    <li>sadsad</li>
-                    <li>sadsad</li>
-                    <li>sadsad</li>
-                    <li>sadsad</li>
+                    <li>上班摸鱼</li>
                   </ul>
                 </div>
               </aside>
@@ -65,10 +62,7 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
                 <div className={styles.tehome_one}>
                   <h5>热门</h5>
                   <ul className={styles.tehome_moment}>
-                    <li>sadsad</li>
-                    <li>sadsad</li>
-                    <li>sadsad</li>
-                    <li>sadsad</li>
+                    <li>上班摸鱼</li>
                   </ul>
                 </div>
               </aside>

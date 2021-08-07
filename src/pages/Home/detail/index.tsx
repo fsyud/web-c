@@ -18,10 +18,6 @@ const Detail: React.FC<DetailProps> = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // window.location.reload()
-  }, []);
-
-  useEffect(() => {
     dispatch({
       type: 'article/getArticleDetail',
       payload: {
@@ -58,7 +54,7 @@ const Detail: React.FC<DetailProps> = (props) => {
                 {content && (
                   <MarkdownBody
                     getTocify={(tocInstance) => {
-                      console.log(tocInstance, 'tocInstance');
+                      // console.log(tocInstance, 'tocInstance');
                       setTocify(tocInstance);
                     }}
                     markdown={content}

@@ -1,0 +1,15 @@
+/* 隐藏搜索框 */
+body .emoji-mart-search {
+  display: none;
+}
+
+body .emoji-mart-anchor-bar {
+  background-color: #ccdbee !important;
+  border-radius: 2px;
+}
+
+body .emoji-mart-category-label {
+  display: none;
+}
+
+body .emoji-mart-scroll {}

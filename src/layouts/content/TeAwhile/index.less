@@ -1,3 +1,5 @@
+@import '../../../style/common.less';
+
 .box {
   width: 100%;
   height: 100%;
@@ -12,6 +14,26 @@
     aside {
       padding: 16px;
     }
+
+    :global {
+      .ant-space-item {
+        width: 93px;
+        .ant-radio-button-wrapper {
+          width: 100%;
+          border-radius: 5px;
+          border: none;
+          margin-top: 8px;
+
+          &::before {
+            content: none;
+          }
+
+          &:nth-of-type(1) {
+            margin-top: 0;
+          }
+        }
+      }
+    }
   }
 
   .teawhile_main {
@@ -19,7 +41,7 @@
 
     .init_section {
       .box();
-      padding: 16px;
+      background: none;
     }
   }
 
@@ -27,6 +49,18 @@
     .box();
     aside {
       padding: 16px;
+
+      &:nth-of-type(1) {
+        .tehome_one {
+          h5 {
+            .asideH5Title();
+          }
+
+          ul {
+            .ulNoStyle();
+          }
+        }
+      }
     }
   }
 }
