@@ -5,3 +5,7 @@
 .bf-container .public-DraftEditor-content pre {
   background-color: #000 !important;
 }
+
+.bf-container h1 {
+  font-size: 2rem;
+}

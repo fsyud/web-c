@@ -2,7 +2,9 @@ import marked from 'marked';
 import Prism from 'prismjs';
 import moment from 'moment';
 
-export function rendererLink(href: string, title: string, text: string) {
+export const rendererLink = (href: string, title: string, text: string) => {
+  console.log(href, title, text);
+
   let url = href;
   let target: boolean | string = false;
   if (url.slice(0, 1) !== '#') {
@@ -23,15 +25,54 @@ export function rendererLink(href: string, title: string, text: string) {
   out += `>${text}</a>`;
 
   return out;
-}
+};
 
-export function rendererParagraph(text: string) {
+export const rendererParagraph = (text: string) => {
+  console.log(text, 'text');
   // replaceUserMention
   const regExp = /(^| +)@(?!_)(?!.*?_$)(?<username>[a-zA-Z0-9_\u4e00-\u9fa5]{1,10})( +|$)/g;
   return `<p>${text.replace(regExp, '$1<a href="/$2">@$2</a>$3')}</p>`;
+};
+
+class DefaultMarkedOptions {
+  constructor() {
+    const renderer = new marked.Renderer();
+
+    renderer.link = rendererLink;
+    renderer.paragraph = rendererParagraph;
+
+    marked.setOptions({
+      renderer,
+      headerIds: false,
+      gfm: true,
+      breaks: true,
+      highlight(code: string, lang: string) {
+        console.log(code, lang);
+        if (lang) {
+          const language = lang.toLowerCase();
+          const grammar = Prism.languages[language];
+          if (grammar) {
+            return Prism.highlight(code, grammar, language);
+          }
+        }
+        return code;
+      },
+    });
+  }
+
+  async marked(data: any) {
+    if (data) {
+      let content = await marked(data);
+      return { content: content };
+    } else {
+      return null;
+    }
+  }
 }
 
-export function getDefaultMarkedOptions() {
+export const markdown = new DefaultMarkedOptions();
+
+export const getDefaultMarkedOptions = (): any => {
   const renderer = new marked.Renderer();
   renderer.link = rendererLink;
   renderer.paragraph = rendererParagraph;
@@ -42,6 +83,7 @@ export function getDefaultMarkedOptions() {
     gfm: true,
     breaks: true,
     highlight(code: string, lang: string) {
+      console.log(code, lang);
       if (lang) {
         const language = lang.toLowerCase();
         const grammar = Prism.languages[language];
@@ -52,7 +94,7 @@ export function getDefaultMarkedOptions() {
       return code;
     },
   };
-}
+};
 
 export function resetMarkedOptions() {
   marked.setOptions(getDefaultMarkedOptions());

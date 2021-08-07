@@ -17,7 +17,7 @@
       display: flex;
       flex-direction: row;
       border-bottom: 1px solid rgba(0, 0, 0, 0.0625);
-      padding: 3px 0 8px 0;
+      padding: 12px 0 12px 0;
 
       .lsi_main {
         .flexCloumn();
@@ -54,12 +54,19 @@
           font-size: 16px;
           line-height: 24px;
           color: #1d2129;
-          margin-bottom: 10px;
+          width: 100%;
+          display: -webkit-box;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 1;
+          margin-bottom: 8px;
         }
 
         .art_footer {
           display: flex;
           flex-direction: row;
+
           .f_one {
             margin-right: 32px;
             display: flex;
@@ -74,6 +81,14 @@
               color: #4e5969;
             }
           }
+        }
+      }
+
+      .photo {
+        img {
+          width: 120px;
+          height: 80px;
+          border-radius: 2px;
         }
       }
     }

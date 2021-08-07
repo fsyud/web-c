@@ -3,6 +3,7 @@ import { Skeleton } from 'antd';
 import eye from '@/assets/svg/eye.svg';
 import great from '@/assets/svg/great.svg';
 import commit from '@/assets/svg/commit.svg';
+import ReactCover from '@/assets/ReactCover.jpeg';
 import { DiffDay } from '@/utils/utils';
 
 import styles from './index.less';
@@ -44,6 +45,9 @@ const ArtList: React.FC<ArtListProps> = ({ item }) => {
                       <strong>2</strong>
                     </div>
                   </div>
+                </div>
+                <div className={styles.photo}>
+                  <img src={ReactCover} alt="error" />
                 </div>
               </li>
             );

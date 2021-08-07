@@ -6,6 +6,7 @@ import { getArticleList } from '@/service/home';
 import TagSelect from '@/components/Article/TagSelect';
 import ArtList from '@/components/Article/ArtList';
 import SkeletonPrivite from '@/components/SkeletonPrivite';
+import BackTop from '@/components/Article/BackTop';
 import data_img from '@/assets/svg/data.svg';
 
 import styles from './index.less';
@@ -104,38 +105,41 @@ const About: React.FC<{}> = () => {
   };
 
   return (
-    <div className={`${styles.home} home_contain`}>
-      <div className={styles.h_tags}>
-        <TagSelect list={[1, 2, 3]} />
-      </div>
-      <Divider />
-      <div className={styles.h_header__link}>
-        {btnConf.map((s: any, index: number) => {
-          return (
-            <Button
-              className={btnStyle(index)}
-              onClick={() => TypeClick(index)}
-              type="link"
-              key={index}
-            >
-              {s}
-            </Button>
-          );
-        })}
-      </div>
-      <Divider />
+    <>
+      <div className={`${styles.home} home_contain`}>
+        <div className={styles.h_tags}>
+          <TagSelect list={[1, 2, 3]} />
+        </div>
+        <Divider />
+        <div className={styles.h_header__link}>
+          {btnConf.map((s: any, index: number) => {
+            return (
+              <Button
+                className={btnStyle(index)}
+                onClick={() => TypeClick(index)}
+                type="link"
+                key={index}
+              >
+                {s}
+              </Button>
+            );
+          })}
+        </div>
+        <Divider />
 
-      <div className={styles.h_main}>
-        <ArtList item={curList} />
-        {!curNull && curList.length !== 0 && <SkeletonPrivite />}
-        {curNull && (
-          <div className={styles.h_main__end}>
-            <img src={data_img} alt="error" />
-            <strong>没有更多...</strong>
-          </div>
-        )}
+        <div className={styles.h_main}>
+          <ArtList item={curList} />
+          {!curNull && curList.length !== 0 && <SkeletonPrivite />}
+          {curNull && (
+            <div className={styles.h_main__end}>
+              <img src={data_img} alt="error" />
+              <strong>没有更多...</strong>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+      <BackTop />
+    </>
   );
 };
 

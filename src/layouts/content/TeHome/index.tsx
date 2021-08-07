@@ -1,5 +1,6 @@
 import React from 'react';
 import { Row, Col, Skeleton, Affix } from 'antd';
+import { history } from 'umi';
 import communicate from '@/assets/svg/communicate.svg';
 import questionnaire from '@/assets/svg/questionnaire.svg';
 import study from '@/assets/svg/study.svg';
@@ -22,17 +23,19 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
               <h5>写下你想说的</h5>
               <ul>
                 <li>
-                  <div>
+                  <div
+                    onClick={() => {
+                      history.push('/writeArt');
+                    }}
+                  >
                     <img src={questionnaire} alt="error" />
                   </div>
-
                   <span>写文章</span>
                 </li>
                 <li>
                   <div>
                     <img src={communicate} alt="error" />
                   </div>
-
                   <span>发片刻</span>
                 </li>
                 <li>
@@ -43,13 +46,31 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
                 </li>
               </ul>
             </div>
-            <Skeleton />
           </aside>
 
           <Affix offsetTop={80}>
-            <div>
+            <div className={styles.tehome_fix}>
               <aside>
-                <Skeleton />
+                <div className={styles.tehome_one}>
+                  <h5>最新片刻</h5>
+                  <ul className={styles.tehome_moment}>
+                    <li>sadsad</li>
+                    <li>sadsad</li>
+                    <li>sadsad</li>
+                    <li>sadsad</li>
+                  </ul>
+                </div>
+              </aside>
+              <aside>
+                <div className={styles.tehome_one}>
+                  <h5>热门</h5>
+                  <ul className={styles.tehome_moment}>
+                    <li>sadsad</li>
+                    <li>sadsad</li>
+                    <li>sadsad</li>
+                    <li>sadsad</li>
+                  </ul>
+                </div>
               </aside>
               <aside>
                 <p>

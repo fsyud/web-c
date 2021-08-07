@@ -1,35 +1,63 @@
+@import './../../..//style/common.less';
 .art_detail {
   min-height: 300px;
 
-  .art_main {
-    display: flex;
-    flex-direction: column;
+  .teart_left {
+    padding-right: 16px;
 
-    .art_head {
+    .art_main {
       display: flex;
-      flex-direction: row;
-      align-items: center;
+      flex-direction: column;
+      background-color: #fff;
+      padding: 16px;
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
 
-      a {
-        img {
-          width: 32px;
-          height: 32px;
+      .art_head {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        a {
+          img {
+            width: 32px;
+            height: 32px;
+          }
+        }
+
+        .art_h__right {
+          display: flex;
+          flex-direction: column;
+          margin-left: 16px;
+
+          .name {
+            color: #333;
+            font-size: 17px;
+            font-weight: 500;
+          }
+
+          .meta {
+            color: #909090;
+          }
         }
       }
+    }
+  }
 
-      .art_h__right {
-        display: flex;
-        flex-direction: column;
-        margin-left: 16px;
+  .init_aside {
+    width: 100%;
+    height: 100%;
 
-        .name {
-          color: #333;
-          font-size: 17px;
-          font-weight: 500;
-        }
+    aside {
+      background-color: #fff;
+      padding: 16px;
+      margin-bottom: 16px;
 
-        .meta {
-          color: #909090;
+      .teart_one {
+        h5 {
+          .asideH5Title();
+          border-left: 3px solid rgb(24, 144, 255);
         }
       }
     }

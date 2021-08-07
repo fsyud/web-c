@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button, Card, Drawer, Input, message } from 'antd';
+import classnames from 'classnames';
 import BraftEditor from 'braft-editor';
-import { useDispatch, useSelector } from 'dva';
+import { useDispatch } from 'dva';
 import 'braft-editor/dist/index.css';
 import 'braft-editor/dist/output.css';
+import PublishForm from '@/components/Article/PublishForm';
 import styles from './index.less';
 import './index.css';
 
@@ -14,6 +16,9 @@ const WriteArt: React.FC<{}> = () => {
   );
   const [curtitle, setCurtitle] = useState<string>('');
   const [visible, setVisible] = useState<boolean>(false);
+  const [pubVis, setPubVis] = useState<boolean>(false);
+
+  useEffect(() => {}, []);
 
   // 预览
   const preview = () => {
@@ -48,13 +53,42 @@ const WriteArt: React.FC<{}> = () => {
     });
   };
 
+  const pannelStyle = (): string => {
+    return classnames({
+      [styles.panel]: true,
+    });
+  };
+
   return (
     <div className={styles.write_art}>
       <Card>
         <div className={styles.header}>
-          <Button type="primary" size="middle" onClick={submit}>
+          <Button type="primary" size="middle" onClick={() => setPubVis(true)}>
             发布
           </Button>
+
+          {pubVis && (
+            <div className={pannelStyle()}>
+              <div className={styles.panel_title}>发布文章</div>
+              <div className={styles.panel_main}>
+                <PublishForm />
+              </div>
+              <div className={styles.panel_footer}>
+                <Button type="primary" size="middle" onClick={submit}>
+                  确定并发布
+                </Button>
+                <Button
+                  type="default"
+                  size="middle"
+                  onClick={(e: any) => {
+                    setPubVis(false);
+                  }}
+                >
+                  取消
+                </Button>
+              </div>
+            </div>
+          )}
 
           <Input
             placeholder="请输入标题"
