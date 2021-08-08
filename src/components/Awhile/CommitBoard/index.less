@@ -1,0 +1,101 @@
+.commit_board {
+  .header {
+    .art_head {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      a {
+        img {
+          width: 32px;
+          height: 32px;
+          border-radius: 16px;
+        }
+      }
+
+      .art_h__right {
+        display: flex;
+        flex-direction: column;
+        margin-left: 16px;
+
+        .name {
+          color: #333;
+          font-size: 17px;
+          font-weight: 500;
+        }
+
+        .meta {
+          color: #909090;
+        }
+      }
+    }
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: row-reverse;
+
+    .f_one {
+      margin-right: 32px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      color: #4e5969;
+
+      img {
+        width: 16px;
+        height: 16px;
+        margin-right: 6px;
+        color: #4e5969;
+      }
+    }
+  }
+
+  .commit {
+    display: flex;
+    flex-direction: column;
+    background: #f8f8f8;
+    margin-top: 12px;
+    padding: 8px 8px;
+    border-radius: 3px;
+
+    .tool {
+      display: flex;
+      flex-direction: row;
+      margin-top: 8px;
+
+      .card__tool {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        width: 100%;
+
+        ul {
+          display: flex;
+          flex-direction: row;
+          list-style: none;
+          padding-left: 0;
+          height: 100%;
+          width: 100%;
+
+          li {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            color: #007fff;
+
+            span {
+              margin-right: 4px;
+            }
+
+            margin-right: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  .commi_dis {
+    display: none;
+  }
+}

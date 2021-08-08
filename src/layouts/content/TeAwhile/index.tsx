@@ -25,7 +25,11 @@ const TeAwhile: React.FC<TeAwhileProps> = ({ children }) => {
           </aside>
         </Col>
         <Col span={15} className={styles.teawhile_main}>
-          <section className={styles.init_section}>{children}</section>
+          <section className={styles.init_section}>
+            <Skeleton active loading={false}>
+              {children}
+            </Skeleton>
+          </section>
         </Col>
         <Col span={6} className={styles.teawhile_aside}>
           <aside>

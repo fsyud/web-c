@@ -1,15 +1,10 @@
-interface tyoeArrType {
-  v: number;
-  n: string;
-}
-
 const Menus = [
   { key: '1', label: '首页', path: '/home' },
   { key: '2', label: '时刻', path: '/awhile' },
   { key: '3', label: '小书', path: '/book' },
 ];
 
-const tyoeArr: tyoeArrType[] = [
+const tyoeArr: GLOBAL.tyoeArrType[] = [
   { v: 1, n: '全部' },
   { v: 2, n: 'java' },
   { v: 3, n: '前端' },
@@ -23,10 +18,7 @@ const tyoeArr: tyoeArrType[] = [
 ];
 
 // tag-column
-const typeDefine: {
-  type: number;
-  name: string;
-}[] = [
+const typeDefine: GLOBAL.tagType[] = [
   { type: 1, name: '生活' },
   { type: 2, name: '旅行' },
   { type: 3, name: '娱乐休闲' },

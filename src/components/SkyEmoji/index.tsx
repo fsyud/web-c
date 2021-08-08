@@ -7,10 +7,11 @@ import './index.css';
 
 interface SkyEmojiProps {
   onClickEmoji: (emoji: any, event: any) => void;
+  visible: boolean;
 }
 
 const SkyEmoji: React.FC<SkyEmojiProps> = (props) => {
-  const { onClickEmoji } = props;
+  const { onClickEmoji, visible } = props;
 
   return (
     <div className={styles.skyemoji}>
@@ -20,11 +21,12 @@ const SkyEmoji: React.FC<SkyEmojiProps> = (props) => {
           style={{
             width: '440px',
             position: 'absolute',
-            height: '320px',
+            height: '300px',
             left: '-2px',
+            zIndex: 98,
             top: '35px',
             overflow: 'hidden',
-            display: `${'block'}`,
+            display: `${visible ? 'block' : 'none'}`,
           }}
           onClick={(emoji, event) => onClickEmoji(emoji, event)}
         />

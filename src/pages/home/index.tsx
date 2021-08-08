@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useReducer } from 'react';
-import { Divider, Button } from 'antd';
+import { Divider, Radio } from 'antd';
 import classnames from 'classnames';
 import throttle from 'lodash/throttle';
 import { getArticleList } from '@/service/home';
@@ -7,6 +7,7 @@ import TagSelect from '@/components/Article/TagSelect';
 import ArtList from '@/components/Article/ArtList';
 import SkeletonPrivite from '@/components/SkeletonPrivite';
 import BackTop from '@/components/Article/BackTop';
+import { typeDefine } from '@/constant';
 import data_img from '@/assets/svg/data.svg';
 
 import styles from './index.less';
@@ -108,22 +109,17 @@ const About: React.FC<{}> = () => {
     <>
       <div className={`${styles.home} home_contain`}>
         <div className={styles.h_tags}>
-          <TagSelect list={[1, 2, 3]} />
+          <TagSelect list={typeDefine} />
         </div>
         <Divider />
         <div className={styles.h_header__link}>
-          {btnConf.map((s: any, index: number) => {
-            return (
-              <Button
-                className={btnStyle(index)}
-                onClick={() => TypeClick(index)}
-                type="link"
-                key={index}
-              >
+          <Radio.Group size="small" buttonStyle="solid">
+            {btnConf.map((s: string, index: number) => (
+              <Radio.Button key={index} value={index}>
                 {s}
-              </Button>
-            );
-          })}
+              </Radio.Button>
+            ))}
+          </Radio.Group>
         </div>
         <Divider />
 

@@ -12,4 +12,6 @@ body .emoji-mart-category-label {
   display: none;
 }
 
-body .emoji-mart-scroll {}
+body .emoji-mart-scroll {
+  height: 251px;
+}

@@ -1,5 +1,6 @@
 .home {
   min-height: 300px;
+
   :global {
     .ant-divider-horizontal {
       margin: 5px 0;
@@ -9,10 +10,26 @@
   .h_header__link {
     display: flex;
     flex-direction: row-reverse;
+    align-items: center;
 
-    .active {
-      color: rgba(0, 0, 0, 0.85);
-      font-weight: 500;
+    :global {
+      .ant-radio-group {
+        display: flex;
+        flex-direction: row-reverse;
+
+        .ant-radio-button-wrapper {
+          display: flex;
+          margin-left: 16px;
+          border: none;
+          border-radius: 4px;
+          align-items: center;
+          justify-content: center;
+
+          &::before {
+            content: none;
+          }
+        }
+      }
     }
   }
 

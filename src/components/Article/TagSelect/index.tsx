@@ -27,14 +27,14 @@ const TagSelect: React.FC<TagSelectProps> = (props) => {
 
   return (
     <div className={styles.tag_select}>
-      {list.map((s: any, index: number) => {
+      {list.map((s: GLOBAL.tagType) => {
         return (
           <Tag
-            className={tagStyle(index)}
-            onClick={() => TagClick(index)}
-            key={index}
+            className={tagStyle(s.type)}
+            onClick={() => TagClick(s.type)}
+            key={s.type}
           >
-            前端框架
+            {s.name}
           </Tag>
         );
       })}
