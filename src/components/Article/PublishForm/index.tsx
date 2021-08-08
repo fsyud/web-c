@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Input, Upload } from 'antd';
 import SkyTagRadio from '@/components/SkyForm/SkyTagRadio';
+import { typeDefine } from '@/constant';
 import ImgCrop from 'antd-img-crop';
 import styles from './index.less';
 
@@ -11,23 +12,24 @@ type PublishFormProps = {};
 const PublishForm: React.FC<PublishFormProps> = (props) => {
   const [form] = Form.useForm();
 
-  const [fileList, setFileList] = useState<any[]>([
-    {
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url:
-        'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-  ]);
+  const [fileList, setFileList] = useState<any[]>([]);
 
   const formItemLayout = {
     labelCol: { span: 4 },
     wrapperCol: { span: 18 },
   };
 
-  const onChange = (fileList: any) => {
+  const onChange = ({ file, fileList }: any) => {
     console.log(fileList);
+
+    fileList = fileList.map((file: any) => {
+      console.log(file);
+      if (file.response) {
+        console.log(file.response.data.key, 'file.response.data.key');
+      }
+      return file;
+    });
+
     // setFileList(fileList);
   };
 
@@ -51,13 +53,14 @@ const PublishForm: React.FC<PublishFormProps> = (props) => {
       <Form form={form} {...formItemLayout}>
         <SkyTagRadio
           label="分类"
+          item={typeDefine}
           name="type"
           rules={[{ required: true, message: '清选择标签' }]}
         />
         <Form.Item label="封面图片">
           <ImgCrop rotate>
             <Upload
-              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+              action="http://localhost:8000/api/common/upload"
               listType="picture-card"
               fileList={fileList}
               onChange={onChange}

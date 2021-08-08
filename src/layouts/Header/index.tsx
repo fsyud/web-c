@@ -6,6 +6,7 @@ import enUS from 'antd/lib/locale/en_US';
 import { Link, SelectLang, history } from 'umi';
 import { DownOutlined } from '@ant-design/icons';
 import LoginModal from '@/components/LoginModal';
+import dream from '@/assets/icon/dream.svg';
 
 import styles from './index.less';
 
@@ -71,7 +72,7 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
         <Col span={10}>
           <Link to={Menus[0].path} style={{ color: 'black' }}>
             <div className={styles.logo}>
-              <img src={require('@/assets/icon/pencil.png')} alt="error" />
+              <img src={dream} alt="error" />
               <strong>星空</strong>
             </div>
           </Link>

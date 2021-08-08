@@ -31,6 +31,7 @@ const ArtList: React.FC<ArtListProps> = ({ item }) => {
                     <div className={styles.h6_r}>{DiffDay(s.create_times)}</div>
                   </h6>
                   <h5 className={styles.lsi_title}>{s.title}</h5>
+                  <h3>{s.digest}sadasda</h3>
                   <div className={styles.art_footer}>
                     <div className={styles.f_one}>
                       <img src={eye} alt="" />

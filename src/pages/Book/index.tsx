@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Card } from 'antd';
+import { Form, Card, Tag } from 'antd';
 import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';
 import { tyoeArr } from '@/constant';
@@ -33,7 +33,7 @@ const Article: React.FC<ArticleProps> = (props) => {
             setFormData(changedValues);
           }}
         >
-          <StandardFormRow title="所属标签" block style={{ paddingBottom: 11 }}>
+          <StandardFormRow title="标签" block style={{ paddingBottom: 11 }}>
             <FormItem name="category">
               <TagSelect expandable>
                 {tyoeArr?.map((tag) => (
@@ -47,7 +47,49 @@ const Article: React.FC<ArticleProps> = (props) => {
           </StandardFormRow>
         </Form>
       </Card>
-      <Card bordered={false}>暂无数据！</Card>
+
+      <div className={styles.content}>
+        <div className={styles.one_book}>
+          <img src={require('@/assets/book.jpg')} alt="" />
+          <div>
+            <h3>Node + React 实战：从 0 到 1 实现记账本</h3>
+            <div>
+              <Tag color="geekblue">前端</Tag>
+              <Tag color="purple">算法</Tag>
+            </div>
+          </div>
+        </div>
+        <div className={styles.one_book}>
+          <img src={require('@/assets/book.jpg')} alt="" />
+          <div>
+            <h3>Node + React 实战：从 0 到 1 实现记账本</h3>
+            <div>
+              <Tag color="magenta">前端</Tag>
+              <Tag color="red">算法</Tag>
+            </div>
+          </div>
+        </div>
+        <div className={styles.one_book}>
+          <img src={require('@/assets/book.jpg')} alt="" />
+          <div>
+            <h3>Node + React 实战：从 0 到 1 实现记账本</h3>
+            <div>
+              <Tag color="magenta">前端</Tag>
+              <Tag color="red">算法</Tag>
+            </div>
+          </div>
+        </div>
+        <div className={styles.one_book}>
+          <img src={require('@/assets/book.jpg')} alt="" />
+          <div>
+            <h3>Node + React 实战：从 0 到 1 实现记账本</h3>
+            <div>
+              <Tag color="magenta">前端</Tag>
+              <Tag color="red">算法</Tag>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

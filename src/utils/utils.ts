@@ -108,7 +108,8 @@ export const DiffDay = (params: any): string => {
   let m2 = moment(params);
   //计算相差多少天 day可以是second minute
   const day = m2.diff(m1, 'day');
-  isDay = day === 0 ? '今天' : day + '天前';
+
+  isDay = day === 0 ? '今天' : Math.abs(day) + '天前';
   return isDay;
 };
 
