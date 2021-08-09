@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Layout, Menu, Row, Col, Button, Dropdown, message, Input } from 'antd';
+import { Layout, Menu, Row, Col, Button, Dropdown, Input, Avatar } from 'antd';
 import { Menus } from '@/constant';
-import enUS from 'antd/lib/locale/en_US';
-// import zh_CN from 'antd/es/locale/zh_CN';
+// import enUS from 'antd/lib/locale/en_US';
+import zh_CN from 'antd/es/locale/zh_CN';
 import { Link, SelectLang, history } from 'umi';
 import { DownOutlined } from '@ant-design/icons';
 import LoginModal from '@/components/LoginModal';
-import exboal from '@/assets/exboal.svg';
 
 import styles from './index.less';
 
@@ -19,8 +18,11 @@ interface HeadersProps {
 
 const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
   const curPath = history.location.pathname;
-  const [languages, setLanguages] = useState<any>(enUS);
+  const [languages, setLanguages] = useState<any>(zh_CN);
+  const [modalVisable, setModalVisable] = useState<boolean>(false);
+  const [loginsta, setLoginsta] = useState<boolean>(false);
 
+  // 去除nav样式
   const curActiveKey = (): string => {
     if (
       curPath.includes('detail') ||
@@ -33,7 +35,6 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
     }
   };
   const [cur, setCur] = useState<string>(curActiveKey());
-  const [modalVisable, setModalVisable] = useState<boolean>(false);
 
   const changeLocale = (e: any) => {
     const localeValue = e.target.value;
@@ -45,10 +46,13 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
     setCur(curActiveKey);
   }, [curPath]);
 
-  const onSelect = (e: any): void => {
-    setCur(e.key);
-  };
+  useEffect(() => {
+    if (localStorage.STARRY_STAR_SKY) {
+      setLoginsta(true);
+    }
+  }, []);
 
+  // 写文章
   const handleButtonClick = (e: any): void => {
     history.push('/writeArt');
   };
@@ -57,6 +61,15 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
 
   const onSearch = (value: any): void => {
     console.log(value);
+  };
+
+  // 登录成功
+  const onSuccessLogin = (params: boolean): void => {
+    if (params) {
+      setModalVisable(false);
+      setLoginsta(true);
+      console.log(curPath);
+    }
   };
 
   const menu: React.ReactElement = (
@@ -81,7 +94,7 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
             theme="light"
             mode="horizontal"
             className={styles.menu}
-            onSelect={onSelect}
+            onSelect={(e: any) => setCur(e.key)}
             selectedKeys={[`${cur}`]}
           >
             {Menus.map((s: { key: string; label: string; path: string }) => (
@@ -94,12 +107,15 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
         <Col span={14} className={styles.header_r__main}>
           <div className={styles.header_right}>
             {/* <Button type="link">注册</Button> */}
-            <Button
-              className={styles.register}
-              onClick={() => setModalVisable(true)}
-            >
-              登录
-            </Button>
+            {!loginsta && (
+              <Button
+                className={styles.register}
+                onClick={() => setModalVisable(true)}
+              >
+                登录
+              </Button>
+            )}
+            {loginsta && <Avatar src={require('@/assets/avator.jpeg')} />}
           </div>
           <div className={styles.header_tool}>
             <Search placeholder="探索" onSearch={onSearch} enterButton />
@@ -126,6 +142,7 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
       </Row>
       <LoginModal
         visible={modalVisable}
+        onSuccessLogin={onSuccessLogin}
         maskClosable
         closable
         title="登录"

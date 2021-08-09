@@ -17,10 +17,12 @@ import { registerUser, userLogin } from '@/service/user';
 
 import styles from './index.less';
 
-interface LoginModalProps extends ModalProps {}
+interface LoginModalProps extends ModalProps {
+  onSuccessLogin: (params: boolean) => void;
+}
 
 const LoginModal: React.FC<LoginModalProps> = (props) => {
-  const { ...otherProps } = props;
+  const { onSuccessLogin, ...otherProps } = props;
 
   const [form] = Form.useForm();
 
@@ -39,11 +41,13 @@ const LoginModal: React.FC<LoginModalProps> = (props) => {
       notification.success({
         message: data.msg,
       });
+      onSuccessLogin(true);
       localStorage.setItem('STARRY_STAR_SKY', data.access_token);
     } else {
       notification.error({
         message: data.msg,
       });
+      onSuccessLogin(false);
     }
   };
 
