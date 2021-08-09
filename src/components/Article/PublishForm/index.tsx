@@ -60,7 +60,7 @@ const PublishForm: React.FC<PublishFormProps> = (props) => {
         <Form.Item label="封面图片">
           <ImgCrop rotate>
             <Upload
-              action="http://localhost:8000/api/common/upload"
+              action="http://localhost:8001/api/common/upload"
               listType="picture-card"
               fileList={fileList}
               onChange={onChange}

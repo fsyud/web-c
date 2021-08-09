@@ -1,18 +1,22 @@
-import { Button, Result } from 'antd';
+import { Button } from 'antd';
 import React from 'react';
 import { history } from 'umi';
+import styles from './404.less';
 
-const NoFoundPage: React.FC<{}> = () => (
-  <Result
-    status="404"
-    title="404"
-    subTitle="对不起，您访问的页面不存在!"
-    extra={
-      <Button type="primary" onClick={() => history.push('/')}>
+const NoFoundPage: React.FC<{}> = () => {
+  return (
+    <div className={styles.falut_page}>
+      <h3>页面好像丢了呢！</h3>
+      <img src={require('@/assets/not_found.png')} />
+      <Button
+        style={{ marginTop: 20 }}
+        type="primary"
+        onClick={() => history.push('./home')}
+      >
         返回首页
       </Button>
-    }
-  />
-);
+    </div>
+  );
+};
 
 export default NoFoundPage;
