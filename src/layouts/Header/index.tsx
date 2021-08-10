@@ -67,8 +67,7 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
   const onSuccessLogin = (params: boolean): void => {
     if (params) {
       setModalVisable(false);
-      setLoginsta(true);
-      console.log(curPath);
+      window.location.reload();
     }
   };
 
@@ -76,6 +75,21 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
     <Menu onClick={handleMenuClick} style={{ width: 103 }}>
       <Menu.Item key="1">发片刻</Menu.Item>
       <Menu.Item key="2">写小书</Menu.Item>
+    </Menu>
+  );
+
+  const menuAvator = (
+    <Menu>
+      <Menu.Item>设置</Menu.Item>
+      <Menu.Item>我的主页</Menu.Item>
+      <Menu.Item
+        onClick={() => {
+          localStorage.removeItem('STARRY_STAR_SKY');
+          window.location.reload();
+        }}
+      >
+        退出
+      </Menu.Item>
     </Menu>
   );
 
@@ -115,7 +129,19 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
                 登录
               </Button>
             )}
-            {loginsta && <Avatar src={require('@/assets/avator.jpeg')} />}
+            {loginsta && (
+              <Dropdown
+                overlay={menuAvator}
+                placement="bottomLeft"
+                trigger={['click']}
+                overlayStyle={{
+                  width: 110,
+                  borderRadius: 4,
+                }}
+              >
+                <Avatar src={require('@/assets/avator.jpeg')} />
+              </Dropdown>
+            )}
           </div>
           <div className={styles.header_tool}>
             <Search placeholder="探索" onSearch={onSearch} enterButton />
@@ -123,7 +149,6 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
               onClick={handleButtonClick}
               overlay={menu}
               icon={<DownOutlined />}
-              trigger={['click']}
             >
               写文章
             </Dropdown.Button>

@@ -77,12 +77,13 @@ export const getDefaultMarkedOptions = (): any => {
   renderer.link = rendererLink;
   renderer.paragraph = rendererParagraph;
 
-  return {
+  const objs = {
     renderer,
     headerIds: false,
     gfm: true,
     breaks: true,
     highlight: (code: string, lang: string) => {
+      console.log(lang, 'lang');
       if (lang) {
         const language = lang.toLowerCase();
         const grammar = Prism.languages[language];
@@ -93,6 +94,8 @@ export const getDefaultMarkedOptions = (): any => {
       return code;
     },
   };
+
+  return objs;
 };
 
 export function resetMarkedOptions() {
