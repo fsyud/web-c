@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
+
 import { useHistory } from 'umi';
 import { Tag } from 'antd';
 import styles from './index.less';
 
 interface TagSelectProps {
   list: any[];
+  changeTag: (pmrams: number) => void;
 }
 
 const TagSelect: React.FC<TagSelectProps> = (props) => {
   const history = useHistory();
 
-  const { list } = props;
+  const { list, changeTag } = props;
 
-  const [curIndex, setCurIndex] = useState<number>();
+  const [curIndex, setCurIndex] = useState<number>(100);
 
   const TagClick = (pm: number): void => {
     setCurIndex(pm);
+    changeTag(pm);
   };
 
   const tagStyle = (pm: number): string => {

@@ -27,7 +27,7 @@ const CommitBoard: React.FC<{}> = () => {
 
   const onClickEmoji = (emoji: any, event: any): void => {
     event.nativeEvent.stopImmediatePropagation();
-    const content = chatContent + ` ${emoji.native} `;
+    const content = chatContent + `${emoji.native}`;
     setChatContent(content);
   };
 

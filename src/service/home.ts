@@ -3,6 +3,7 @@ import request from '@/utils/request';
 export type homeListParamsType = {
   page?: number;
   pageSize?: number;
+  where?: any;
 };
 
 export type createArtParamsType = {};

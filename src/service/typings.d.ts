@@ -8,6 +8,8 @@ declare namespace API {
     content: string;
     type: number;
     author: string;
+    img_url: any;
+    desc: string;
   };
   type reponseData = {
     code: number;

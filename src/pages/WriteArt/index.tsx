@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Button, Card, Drawer, Input, message } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Button, Card, Drawer, Input, message, Form } from 'antd';
 import classnames from 'classnames';
 import BraftEditor from 'braft-editor';
 import { useDispatch } from 'dva';
@@ -10,6 +10,7 @@ import styles from './index.less';
 import './index.css';
 
 const WriteArt: React.FC<{}> = () => {
+  const [form] = Form.useForm();
   const dispatch = useDispatch();
   const [value, setValue] = useState<any>(
     BraftEditor.createEditorState('<p>nice <b>day!</b></p><br>'),
@@ -17,6 +18,7 @@ const WriteArt: React.FC<{}> = () => {
   const [curtitle, setCurtitle] = useState<string>('');
   const [visible, setVisible] = useState<boolean>(false);
   const [pubVis, setPubVis] = useState<boolean>(true);
+  const [img_url, setImg_url] = useState<any>();
 
   useEffect(() => {
     document.addEventListener('click', (e: any) => {
@@ -46,18 +48,29 @@ const WriteArt: React.FC<{}> = () => {
       return;
     }
 
-    setPubVis(false);
+    form.validateFields().then((data: any) => {
+      if (!img_url) {
+        message.error('请上传封面图片！');
+        return;
+      }
 
-    const params: API.artParams = {
-      title: curtitle,
-      content: value.toHTML(),
-      type: 1,
-      author: 'naze',
-    };
+      const { desc, type } = data;
 
-    dispatch({
-      type: 'article/createArticle',
-      payload: params,
+      const params: API.artParams = {
+        title: curtitle,
+        content: value.toHTML(),
+        type,
+        author: 'naze',
+        img_url,
+        desc,
+      };
+
+      dispatch({
+        type: 'article/createArticle',
+        payload: params,
+      });
+
+      setPubVis(false);
     });
   };
 
@@ -91,7 +104,10 @@ const WriteArt: React.FC<{}> = () => {
           >
             <div className={styles.panel_title}>发布文章</div>
             <div className={styles.panel_main}>
-              <PublishForm />
+              <PublishForm
+                handleUploadImg={(params: any) => setImg_url(params)}
+                form={form}
+              />
             </div>
             <div className={styles.panel_footer}>
               <Button

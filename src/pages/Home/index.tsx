@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import { Divider, Radio } from 'antd';
-import classnames from 'classnames';
 import throttle from 'lodash/throttle';
 import { getArticleList } from '@/service/home';
 import TagSelect from '@/components/Article/TagSelect';
@@ -17,10 +16,12 @@ const btnConf: string[] = ['本月最热', '全部热门', '最新'];
 const About: React.FC<{}> = () => {
   const pageSize = 15;
 
-  const reducer = (state: any[], action: { type: string; data: any[] }) => {
+  const reducer = (state: any[], action: { type: string; data?: any[] }) => {
     switch (action.type) {
       case 'add':
-        return [...state, ...action.data];
+        return [...state, ...(action.data || [])];
+      case 'default':
+        return [...(action.data || [])];
       case 'init':
         return [];
       default:
@@ -28,7 +29,6 @@ const About: React.FC<{}> = () => {
     }
   };
 
-  const [btnType, setBtnType] = useState<number>();
   const [curList, setCurList] = useReducer(reducer, []);
   const [curPage, setCurPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -36,29 +36,47 @@ const About: React.FC<{}> = () => {
 
   useEffect(() => {
     if (!isLoading) {
-      getArtList(curPage);
+      getArtList({ curPage, where: {}, type: 'add' });
     }
   }, [curPage]);
 
-  const getArtList = async (params: number): Promise<any> => {
+  const getArtList = async (conf: {
+    curPage?: number;
+    where?: { type?: number };
+    type: string;
+  }): Promise<any> => {
     setIsLoading(true);
-    const res: API.reponseData = await getArticleList({
-      page: params,
+    const { curPage, where, type } = conf;
+    let params: any = {
+      page: curPage || 1,
       pageSize,
-    });
+    };
+
+    if (where?.type === 100) {
+      params.where = {};
+    } else {
+      params.where = where;
+    }
+    const res: API.reponseData = await getArticleList(params);
     if (res && Array.isArray(res.data)) {
       if (res.data.length < 15) {
         if (res.data.length === 0) {
           setIsLoading(true);
+          setCurList({ type: 'init' });
         } else {
-          setCurList({ type: 'add', data: res.data });
+          setCurList({ type: type, data: res.data });
         }
         setCurNull(true);
       } else {
         setIsLoading(false);
-        setCurList({ type: 'add', data: res.data });
+        setCurList({ type: type, data: res.data });
       }
     }
+  };
+
+  // 标签搜索
+  const changeTag = (pm: number): void => {
+    getArtList({ curPage: 1, where: { type: pm }, type: 'default' });
   };
 
   useEffect(() => {
@@ -95,21 +113,14 @@ const About: React.FC<{}> = () => {
     }
   };
 
-  const TypeClick = (pm: number): void => {
-    setBtnType(pm);
-  };
-
-  const btnStyle = (pm: number): string => {
-    return classnames({
-      [styles.active]: btnType === pm,
-    });
-  };
-
   return (
     <>
       <div className={`${styles.home} home_contain`}>
         <div className={styles.h_tags}>
-          <TagSelect list={typeDefine} />
+          <TagSelect
+            changeTag={changeTag}
+            list={[...[{ type: 100, name: '推荐' }, ...typeDefine]]}
+          />
         </div>
         <Divider />
         <div className={styles.h_header__link}>

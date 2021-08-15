@@ -50,7 +50,7 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
     if (localStorage.STARRY_STAR_SKY) {
       setLoginsta(true);
     }
-  }, []);
+  });
 
   // 写文章
   const handleButtonClick = (e: any): void => {
