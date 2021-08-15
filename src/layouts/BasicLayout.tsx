@@ -33,9 +33,9 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
         console.log(errorEvent);
         console.log(errorEvent.message);
 
-        if (errorEvent.type === 'error') {
-          history.push('./404');
-        }
+        // if (errorEvent.type === 'error') {
+        //   history.push('./404');
+        // }
       },
       true,
     );
