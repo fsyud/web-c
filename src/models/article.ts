@@ -30,6 +30,7 @@ const ArticleModel: ArticleModelType = {
       if (data) {
         message.info(data.msg);
       }
+      return data;
     },
     *getArticleDetail({ payload }, { call, put }) {
       const response = yield call(getArtDeatil, payload);

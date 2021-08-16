@@ -79,7 +79,7 @@ const MarkdownBody: React.FC<MarkdownBodyProps> = (props) => {
       const { renderer, ...otherOptions } = getDefaultMarkedOptions();
       renderer.heading = (text: any, level: any) => {
         console.log(text, level);
-        const anchor = tocify.add('text', 1);
+        const anchor = tocify.add(text, level);
         return `<a id="${anchor}" href="#${anchor}" class="anchor-fix"><h${level}>${text}</h${level}></a>\n`;
       };
       marked.setOptions({ renderer, ...otherOptions });

@@ -86,7 +86,11 @@ const PublishForm: React.FC<PublishFormProps> = (props) => {
           rules={[{ required: true, message: '清选择标签' }]}
         />
         <Form.Item label="封面图片">
-          <ImgCrop rotate>
+          <ImgCrop
+            rotate
+            aspect={3 / 2}
+            modalTitle="裁剪图片，建议上传3/2比例的图片"
+          >
             <Upload
               action="/api/common/upload"
               listType="picture-card"

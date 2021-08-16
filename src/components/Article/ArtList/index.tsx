@@ -55,7 +55,7 @@ const ArtList: React.FC<ArtListProps> = ({ item }) => {
                   </div>
                 </div>
                 <div className={styles.photo}>
-                  <img src={s.img_url || ''} alt="error" />
+                  {s.img_url && <img src={s.img_url || ''} />}
                 </div>
               </li>
             );

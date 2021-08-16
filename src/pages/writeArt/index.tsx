@@ -12,9 +12,7 @@ import './index.css';
 const WriteArt: React.FC<{}> = () => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
-  const [value, setValue] = useState<any>(
-    BraftEditor.createEditorState('<p>nice <b>day!</b></p><br>'),
-  );
+  const [value, setValue] = useState<any>(BraftEditor.createEditorState(''));
   const [curtitle, setCurtitle] = useState<string>('');
   const [visible, setVisible] = useState<boolean>(false);
   const [pubVis, setPubVis] = useState<boolean>(true);
@@ -48,7 +46,7 @@ const WriteArt: React.FC<{}> = () => {
       return;
     }
 
-    form.validateFields().then((data: any) => {
+    form.validateFields().then(async (data: any) => {
       if (!img_url) {
         message.error('请上传封面图片！');
         return;
@@ -65,12 +63,18 @@ const WriteArt: React.FC<{}> = () => {
         desc,
       };
 
-      dispatch({
+      const response: any = await dispatch({
         type: 'article/createArticle',
         payload: params,
       });
 
-      setPubVis(false);
+      if (response?.success) {
+        setPubVis(true);
+        form.resetFields();
+        setImg_url('');
+        setCurtitle('');
+        setValue(BraftEditor.createEditorState(''));
+      }
     });
   };
 
@@ -134,6 +138,7 @@ const WriteArt: React.FC<{}> = () => {
 
           <Input
             placeholder="请输入标题"
+            value={curtitle}
             onChange={(e: any) => setCurtitle(e.target.value)}
           />
         </div>

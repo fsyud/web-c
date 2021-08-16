@@ -33,10 +33,11 @@ const About: React.FC<{}> = () => {
   const [curPage, setCurPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [curNull, setCurNull] = useState<boolean>(false);
+  const [curType, setCurType] = useState<number>(100);
 
   useEffect(() => {
     if (!isLoading) {
-      getArtList({ curPage, where: {}, type: 'add' });
+      getArtList({ curPage, where: { type: curType }, type: 'add' });
     }
   }, [curPage]);
 
@@ -76,7 +77,10 @@ const About: React.FC<{}> = () => {
 
   // 标签搜索
   const changeTag = (pm: number): void => {
-    getArtList({ curPage: 1, where: { type: pm }, type: 'default' });
+    setCurType(pm);
+    setTimeout(() => {
+      getArtList({ curPage: 1, where: { type: pm }, type: 'default' });
+    });
   };
 
   useEffect(() => {
