@@ -42,9 +42,9 @@ const About: React.FC<{}> = () => {
   }, [curPage]);
 
   const getArtList = async (conf: {
-    curPage?: number;
-    where?: { type?: number };
-    type: string;
+    curPage?: number; // 当前页数
+    where?: { type?: number }; // 查询条件
+    type: string; // 类型
   }): Promise<any> => {
     setIsLoading(true);
     const { curPage, where, type } = conf;

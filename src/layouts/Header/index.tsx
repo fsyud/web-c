@@ -4,6 +4,7 @@ import { Menus } from '@/constant';
 // import enUS from 'antd/lib/locale/en_US';
 import zh_CN from 'antd/es/locale/zh_CN';
 import { Link, SelectLang, history } from 'umi';
+import { useMediaQuery } from 'react-responsive';
 import { DownOutlined } from '@ant-design/icons';
 import LoginModal from '@/components/LoginModal';
 
@@ -21,6 +22,8 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
   const [languages, setLanguages] = useState<any>(zh_CN);
   const [modalVisable, setModalVisable] = useState<boolean>(false);
   const [loginsta, setLoginsta] = useState<boolean>(false);
+
+  const isTabletOrMobile = useMediaQuery({ query: '(min-width: 1024px)' });
 
   // 去除nav样式
   const curActiveKey = (): string => {
@@ -118,44 +121,45 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
             ))}
           </Menu>
         </Col>
-        <Col span={14} className={styles.header_r__main}>
-          <div className={styles.header_right}>
-            {/* <Button type="link">注册</Button> */}
-            {!loginsta && (
-              <Button
-                className={styles.register}
-                onClick={() => setModalVisable(true)}
+        {isTabletOrMobile && (
+          <Col span={14} className={styles.header_r__main}>
+            <div className={styles.header_right}>
+              {/* <Button type="link">注册</Button> */}
+              {!loginsta && (
+                <Button
+                  className={styles.register}
+                  onClick={() => setModalVisable(true)}
+                >
+                  登录
+                </Button>
+              )}
+              {loginsta && (
+                <Dropdown
+                  overlay={menuAvator}
+                  placement="bottomLeft"
+                  trigger={['click']}
+                  overlayStyle={{
+                    width: 110,
+                    borderRadius: 4,
+                  }}
+                >
+                  <Avatar src={require('@/assets/avator.jpeg')} />
+                </Dropdown>
+              )}
+            </div>
+            <div className={styles.header_tool}>
+              <Search placeholder="探索" onSearch={onSearch} enterButton />
+              <Dropdown.Button
+                onClick={handleButtonClick}
+                overlay={menu}
+                icon={<DownOutlined />}
               >
-                登录
-              </Button>
-            )}
-            {loginsta && (
-              <Dropdown
-                overlay={menuAvator}
-                placement="bottomLeft"
-                trigger={['click']}
-                overlayStyle={{
-                  width: 110,
-                  borderRadius: 4,
-                }}
-              >
-                <Avatar src={require('@/assets/avator.jpeg')} />
-              </Dropdown>
-            )}
-          </div>
-          <div className={styles.header_tool}>
-            <Search placeholder="探索" onSearch={onSearch} enterButton />
-            <Dropdown.Button
-              onClick={handleButtonClick}
-              overlay={menu}
-              icon={<DownOutlined />}
-            >
-              写文章
-            </Dropdown.Button>
-            <SelectLang className={styles.action} />
-          </div>
+                写文章
+              </Dropdown.Button>
+              <SelectLang className={styles.action} />
+            </div>
 
-          {/* <Radio.Group size="small" value={languages} onChange={changeLocale}>
+            {/* <Radio.Group size="small" value={languages} onChange={changeLocale}>
             <Radio.Button key="en" value={enUS}>
               English
             </Radio.Button>
@@ -163,7 +167,8 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
               中文
             </Radio.Button>
           </Radio.Group> */}
-        </Col>
+          </Col>
+        )}
       </Row>
       <LoginModal
         visible={modalVisable}

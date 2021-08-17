@@ -1,4 +1,5 @@
 @import './../../..//style/common.less';
+
 .art_detail {
   min-height: 300px;
   position: relative;
@@ -6,41 +7,46 @@
   .teart_left {
     padding-right: 16px;
 
-    .art_main {
-      display: flex;
-      flex-direction: column;
+    .art_containt {
       background-color: #fff;
-      padding: 16px;
-      width: 100%;
-      height: 100%;
-      background-color: #fff;
+      min-height: 300px;
 
-      .art_head {
+      .art_main {
         display: flex;
-        flex-direction: row;
-        align-items: center;
+        flex-direction: column;
+        background-color: #fff;
+        padding: 16px;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
 
-        a {
-          img {
-            width: 32px;
-            height: 32px;
-            border-radius: 16px;
-          }
-        }
-
-        .art_h__right {
+        .art_head {
           display: flex;
-          flex-direction: column;
-          margin-left: 16px;
+          flex-direction: row;
+          align-items: center;
 
-          .name {
-            color: #333;
-            font-size: 17px;
-            font-weight: 500;
+          a {
+            img {
+              width: 32px;
+              height: 32px;
+              border-radius: 16px;
+            }
           }
 
-          .meta {
-            color: #909090;
+          .art_h__right {
+            display: flex;
+            flex-direction: column;
+            margin-left: 16px;
+
+            .name {
+              color: #333;
+              font-size: 17px;
+              font-weight: 500;
+            }
+
+            .meta {
+              color: #909090;
+            }
           }
         }
       }
