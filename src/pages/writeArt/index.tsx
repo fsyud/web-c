@@ -1,22 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Card, Drawer, Input, message, Form } from 'antd';
 import classnames from 'classnames';
-import BraftEditor from 'braft-editor';
 import { useDispatch } from 'dva';
-import 'braft-editor/dist/index.css';
-import 'braft-editor/dist/output.css';
+import { Editor, Viewer } from '@bytemd/react';
+import gfm from '@bytemd/plugin-gfm';
+import gemoji from '@bytemd/plugin-gemoji';
+import 'bytemd/dist/index.min.css';
+
 import PublishForm from '@/components/Article/PublishForm';
 import styles from './index.less';
-import './index.css';
+
+const plugins = [
+  gfm(),
+  gemoji(),
+  // Add more plugins here
+];
 
 const WriteArt: React.FC<{}> = () => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
-  const [value, setValue] = useState<any>(BraftEditor.createEditorState(''));
   const [curtitle, setCurtitle] = useState<string>('');
   const [visible, setVisible] = useState<boolean>(false);
   const [pubVis, setPubVis] = useState<boolean>(true);
   const [img_url, setImg_url] = useState<any>();
+
+  const [value, setValue] = useState('');
 
   useEffect(() => {
     document.addEventListener('click', (e: any) => {
@@ -26,20 +34,6 @@ const WriteArt: React.FC<{}> = () => {
     });
   }, []);
 
-  // 预览
-  const preview = () => {
-    setVisible(true);
-  };
-
-  const extendControls: any = [
-    {
-      key: 'custom-button',
-      type: 'button',
-      text: '预览',
-      onClick: preview,
-    },
-  ];
-
   const submit = async (): Promise<any> => {
     if (!curtitle) {
       message.error('请填写标题！');
@@ -47,6 +41,8 @@ const WriteArt: React.FC<{}> = () => {
     }
 
     form.validateFields().then(async (data: any) => {
+      console.log(data);
+
       if (!img_url) {
         message.error('请上传封面图片！');
         return;
@@ -56,12 +52,14 @@ const WriteArt: React.FC<{}> = () => {
 
       const params: API.artParams = {
         title: curtitle,
-        content: value.toHTML(),
+        content: value,
         type,
         author: 'naze',
         img_url,
         desc,
       };
+
+      console.log(params);
 
       const response: any = await dispatch({
         type: 'article/createArticle',
@@ -73,7 +71,6 @@ const WriteArt: React.FC<{}> = () => {
         form.resetFields();
         setImg_url('');
         setCurtitle('');
-        setValue(BraftEditor.createEditorState(''));
       }
     });
   };
@@ -142,13 +139,15 @@ const WriteArt: React.FC<{}> = () => {
             onChange={(e: any) => setCurtitle(e.target.value)}
           />
         </div>
-        <BraftEditor
-          value={value}
-          onChange={(val: any) => {
-            setValue(val);
-          }}
-          extendControls={extendControls}
-        />
+        <div className={styles.edit_mark}>
+          <Editor
+            value={value}
+            plugins={plugins}
+            onChange={(v) => {
+              setValue(v);
+            }}
+          />
+        </div>
       </Card>
       <Drawer
         title="预览"
@@ -165,14 +164,7 @@ const WriteArt: React.FC<{}> = () => {
             margin: '0 auto',
             paddingBottom: 100,
           }}
-        >
-          <div
-            className="braft-output-content"
-            dangerouslySetInnerHTML={{
-              __html: value.toHTML(),
-            }}
-          />
-        </div>
+        ></div>
       </Drawer>
     </div>
   );

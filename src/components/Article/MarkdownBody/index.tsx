@@ -22,7 +22,6 @@ const MarkdownBody: React.FC<MarkdownBodyProps> = (props) => {
   const markdownRef = useRef<HTMLDivElement | null>(null);
 
   const runPlugin = async () => {
-    // https://webpack.docschina.org/guides/code-splitting/#%E5%8A%A8%E6%80%81%E5%AF%BC%E5%85%A5-dynamic-imports-
     const [
       { default: jQuery },
       { debounce, throttle },
@@ -93,11 +92,13 @@ const MarkdownBody: React.FC<MarkdownBodyProps> = (props) => {
   };
 
   return (
-    <div
-      ref={markdownRef}
-      className="markdown-body"
-      dangerouslySetInnerHTML={createMarkup()}
-    />
+    <>
+      <div
+        ref={markdownRef}
+        className="markdown-body"
+        dangerouslySetInnerHTML={createMarkup()}
+      />
+    </>
   );
 };
 

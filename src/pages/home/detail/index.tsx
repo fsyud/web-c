@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useDispatch, useSelector } from 'umi';
 import { getStringDay } from '@/utils/utils';
-import { Skeleton, Card, Row, Col } from 'antd';
+import { Skeleton, Card, Row, Col, Affix } from 'antd';
 import { useMediaQuery } from 'react-responsive';
 import Tocify from '@/components/Article/MarkdownBody/tocify';
 import ArtTool from '@/components/Article/ArtTool';
@@ -89,13 +89,15 @@ const Detail: React.FC<DetailProps> = (props) => {
                 </div>
               </aside>
 
-              <aside>
-                <div className={styles.teart_one}>
-                  <Skeleton active loading={!content} paragraph={{ rows: 4 }}>
-                    {tocify?.render()}
-                  </Skeleton>
-                </div>
-              </aside>
+              <Affix offsetTop={80}>
+                <aside className={styles.init_topic}>
+                  <div className={styles.teart_one}>
+                    <Skeleton active loading={!content} paragraph={{ rows: 4 }}>
+                      {tocify?.render()}
+                    </Skeleton>
+                  </div>
+                </aside>
+              </Affix>
             </section>
           </Col>
         )}

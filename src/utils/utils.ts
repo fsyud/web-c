@@ -1,6 +1,7 @@
 import marked from 'marked';
 import Prism from 'prismjs';
 import moment from 'moment';
+import hljs from 'highlight.js';
 
 export const rendererLink = (href: string, title: string, text: string) => {
   console.log(href, title, text);
@@ -28,63 +29,19 @@ export const rendererLink = (href: string, title: string, text: string) => {
 };
 
 export const rendererParagraph = (text: string) => {
-  console.log(text, 'text');
   // replaceUserMention
   const regExp = /(^| +)@(?!_)(?!.*?_$)(?<username>[a-zA-Z0-9_\u4e00-\u9fa5]{1,10})( +|$)/g;
   return `<p>${text.replace(regExp, '$1<a href="/$2">@$2</a>$3')}</p>`;
 };
 
-class DefaultMarkedOptions {
-  constructor() {
-    const renderer = new marked.Renderer();
-
-    renderer.link = rendererLink;
-    renderer.paragraph = rendererParagraph;
-
-    marked.setOptions({
-      renderer,
-      headerIds: false,
-      gfm: true,
-      breaks: true,
-      highlight(code: string, lang: string) {
-        console.log(code, lang);
-        if (lang) {
-          const language = lang.toLowerCase();
-          const grammar = Prism.languages[language];
-          if (grammar) {
-            return Prism.highlight(code, grammar, language);
-          }
-        }
-        return code;
-      },
-    });
-  }
-
-  async marked(data: any) {
-    if (data) {
-      let content = await marked(data);
-      return { content: content };
-    } else {
-      return null;
-    }
-  }
-}
-
-export const markdown = new DefaultMarkedOptions();
-
 export const getDefaultMarkedOptions = (): any => {
-  const renderer = new marked.Renderer();
+  const renderer: any = new marked.Renderer();
+
   renderer.link = rendererLink;
   renderer.paragraph = rendererParagraph;
 
-  // console.log(renderer, 'renderer');
-
-  const objs = {
-    renderer,
-    headerIds: false,
-    gfm: true,
-    breaks: true,
-    highlight: (code: string, lang: string) => {
+  marked.use({
+    highlight(code: string, lang: string) {
       if (lang) {
         const language = lang.toLowerCase();
         const grammar = Prism.languages[language];
@@ -92,8 +49,15 @@ export const getDefaultMarkedOptions = (): any => {
           return Prism.highlight(code, grammar, language);
         }
       }
-      return code;
+      return hljs.highlightAuto(code).value;
     },
+  });
+
+  const objs = {
+    renderer,
+    headerIds: false,
+    gfm: true,
+    breaks: true,
   };
 
   return objs;

@@ -9,7 +9,9 @@ const { REACT_APP_ENV } = process.env;
 export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
+    exclude: [],
   },
+  webpack5: {},
   hash: true,
   // 浏览器兼容版本
   targets: {

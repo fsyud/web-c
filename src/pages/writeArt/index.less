@@ -5,6 +5,7 @@
     height: 63px;
     align-items: center;
     position: relative;
+    padding-bottom: 20px;
 
     .panel {
       display: block;
@@ -84,6 +85,15 @@
         &:focus {
           border: none;
         }
+      }
+    }
+  }
+
+  .edit_mark {
+    :global {
+      .bytemd {
+        z-index: 1000;
+        min-height: 600px;
       }
     }
   }
