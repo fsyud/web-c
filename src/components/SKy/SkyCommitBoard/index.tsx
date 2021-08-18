@@ -4,7 +4,7 @@ import commit from '@/assets/svg/commit.svg';
 import Comment from './Comment';
 import styles from './index.less';
 
-const CommitBoard: React.FC<{}> = () => {
+const SkyCommitBoard: React.FC<{}> = () => {
   const [commitSta, setCommitSta] = useState<boolean>(true);
 
   useEffect(() => {
@@ -49,4 +49,4 @@ const CommitBoard: React.FC<{}> = () => {
   );
 };
 
-export default CommitBoard;
+export default SkyCommitBoard;

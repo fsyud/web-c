@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Skeleton, Card, Input, Button } from 'antd';
-import SkyEmoji from '@/components/SkyEmoji';
-import CommitBoard from '@/components/Awhile/CommitBoard';
+import SkyEmoji from '@/components/SKy/SkyEmoji';
+import CommitBoard from '@/components/SKy/SkyCommitBoard';
 import smile1 from '@/assets/svg/smile1.svg';
 import photo from '@/assets/svg/photo.svg';
 import link from '@/assets/svg/link.svg';

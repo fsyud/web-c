@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useDispatch, useSelector } from 'umi';
 import { getStringDay } from '@/utils/utils';
-import { Skeleton, Card, Row, Col, Affix } from 'antd';
+import throttle from 'lodash/throttle';
+import { Skeleton, Card, Row, Col, Affix, message } from 'antd';
 import { useMediaQuery } from 'react-responsive';
 import Tocify from '@/components/Article/MarkdownBody/tocify';
 import ArtTool from '@/components/Article/ArtTool';
 import BackTop from '@/components/Article/BackTop';
 import MarkdownBody from '@/components/Article/MarkdownBody';
-import Comment from '@/components/Awhile/CommitBoard/Comment';
+import SkyComment from '@/components/SKy/SkyComment';
+
+import { addOneComment } from '@/service/comment';
 
 import styles from './index.less';
 
@@ -15,9 +18,14 @@ interface DetailProps {}
 
 const Detail: React.FC<DetailProps> = (props) => {
   const params: any = useParams();
-  const [tocify, setTocify] = useState<Tocify>();
-  const [commitSta, setCommitSta] = useState<boolean>(false);
   const dispatch = useDispatch();
+  const [tocify, setTocify] = useState<Tocify>();
+  const { detail } = useSelector(({ article }: any) => {
+    return { ...article };
+  });
+
+  const { content, create_times, _id } = detail;
+  const [commentValue, setCommentValue] = useState<string>('');
 
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1024px)' });
 
@@ -30,13 +38,54 @@ const Detail: React.FC<DetailProps> = (props) => {
     });
   }, []);
 
+  useEffect(() => {
+    // 监听滚动
+    window.addEventListener('scroll', throttle(onScroll, 500));
+  }, []);
+
+  const onScroll = () => {
+    // scrollTop在页面为滚动时为0，开始滚动后，慢慢增加，滚动到页面底部时
+    // 出现innerHeight < (outerHeight + scrollTop)的情况，严格来讲，是接近底部。
+    let scrollTop =
+      window.pageYOffset ||
+      window.document.documentElement?.scrollTop ||
+      window.document.body?.scrollTop ||
+      0;
+
+    if (scrollTop > 110) {
+      dispatch({
+        type: 'global/getScroller',
+        payload: {
+          scroller: true,
+        },
+      });
+    } else {
+      dispatch({
+        type: 'global/getScroller',
+        payload: {
+          scroller: false,
+        },
+      });
+    }
+  };
+
   useEffect(() => {}, []);
 
-  const { detail } = useSelector(({ article }: any) => {
-    return { ...article };
-  });
+  const onCommitChange = (value: string) => {
+    setCommentValue(value);
+  };
 
-  const { content, create_times } = detail;
+  const sumbitComment = async (): Promise<any> => {
+    const res = await addOneComment({
+      article_id: _id,
+      user_id: '610c01ea6968080f8c845e1f',
+      content: commentValue,
+    });
+
+    if (res.code === 0) {
+      message.success(res.data.msg);
+    }
+  };
 
   return (
     <div className={styles.art_detail}>
@@ -71,9 +120,18 @@ const Detail: React.FC<DetailProps> = (props) => {
                 </Card>
                 {/* 评论 */}
                 <Card bordered={false} className={styles.comment_card}>
-                  <Comment commitSta={commitSta} />
+                  <SkyComment
+                    onCommitChange={onCommitChange}
+                    sumbitComment={sumbitComment}
+                  />
                 </Card>
               </div>
+            </Skeleton>
+          </div>
+
+          <div className={styles.footer_list}>
+            <Skeleton active avatar loading={!content} paragraph={{ rows: 4 }}>
+              <Card bordered={false}>列表</Card>
             </Skeleton>
           </div>
         </Col>
@@ -87,7 +145,7 @@ const Detail: React.FC<DetailProps> = (props) => {
                 </div>
               </aside>
 
-              <Affix offsetTop={80}>
+              <Affix offsetTop={16}>
                 <aside className={styles.init_topic}>
                   <div className={styles.teart_one}>
                     <Skeleton active loading={!content} paragraph={{ rows: 4 }}>

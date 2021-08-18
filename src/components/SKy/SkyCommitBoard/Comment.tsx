@@ -3,7 +3,7 @@ import { Input, Button } from 'antd';
 import classnames from 'classnames';
 import smile1 from '@/assets/svg/smile1.svg';
 import photo from '@/assets/svg/photo.svg';
-import SkyEmoji from '@/components/SkyEmoji';
+import SkyEmoji from '@/components/SKy/SkyEmoji';
 
 import styles from './Comment.less';
 

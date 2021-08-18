@@ -1,10 +1,7 @@
 // highlight
-body .markdown-body,
-body .editor-preview,
-body .editor-preview-active,
-body .editor-preview-side,
-body .editor-preview-active-side {
+.markdown-body {
   background-color: transparent;
+  overflow: hidden;
 
   ul {
     padding-left: 24px;
@@ -23,20 +20,14 @@ body .editor-preview-active-side {
     margin-bottom: 30px;
   }
 
-  p {
-    display: flex;
-    align-items: center;
-  }
-
   code {
     word-wrap: break-word;
   }
 
-  .media-wrap,
-  .image-wrap,
   .fluidbox__wrap {
     img {
-      width: 100% !important;
+      // width: 100%;
+      max-width: 654px;
     }
   }
 
@@ -54,6 +45,7 @@ body .editor-preview-active-side {
     padding-top: 8px;
     padding-bottom: 8px;
     background-color: rgb(243, 243, 243);
+
     p {
       display: contents;
     }

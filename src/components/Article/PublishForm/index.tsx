@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Input, Upload, message } from 'antd';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import SkyTagRadio from '@/components/SkyForm/SkyTagRadio';
+import SkyTagRadio from '@/components/SKy/SkyForm/SkyTagRadio';
 import { FormInstance } from 'antd/lib/form';
 import { typeDefine } from '@/constant';
 import ImgCrop from 'antd-img-crop';

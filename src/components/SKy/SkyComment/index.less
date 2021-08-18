@@ -1,0 +1,68 @@
+.sky_comment {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(226, 230, 235, 0.2);
+  margin-top: 12px;
+  padding: 8px 8px;
+  border-radius: 3px;
+
+  .header {
+    display: flex;
+    flex-direction: row;
+
+    :global {
+      .ant-avatar {
+        margin-right: 16px;
+        width: 35px;
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  .tool {
+    display: flex;
+    flex-direction: row;
+    margin-top: 8px;
+    padding-left: 50px;
+
+    .card__tool {
+      display: flex;
+      flex-direction: row;
+      position: relative;
+      width: 100%;
+
+      ul {
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        padding-left: 0;
+        height: 100%;
+        width: 100%;
+
+        li {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          color: #007fff;
+          margin-right: 24px;
+
+          span {
+            margin-right: 4px;
+          }
+
+          img {
+            width: 18px;
+            margin-right: 2px;
+          }
+        }
+      }
+    }
+  }
+
+  .curemoji_dis {
+    display: none;
+  }
+}
