@@ -108,6 +108,7 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
                             searchHot(s._id);
                           }}
                           key={i}
+                          title={s.title}
                         >
                           {s.title}
                         </li>

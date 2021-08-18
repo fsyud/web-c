@@ -42,7 +42,7 @@ const Detail: React.FC<DetailProps> = (props) => {
     <div className={styles.art_detail}>
       <Row>
         <Col span={isTabletOrMobile ? 24 : 18} className={styles.teart_left}>
-          <div id="archol-contain-scroller" className={styles.art_containt}>
+          <div className={styles.art_containt}>
             <Skeleton active avatar loading={!content} paragraph={{ rows: 4 }}>
               <div className={styles.art_main}>
                 <div className={styles.art_head}>

@@ -33,7 +33,7 @@ const Article: React.FC<ArticleProps> = (props) => {
             setFormData(changedValues);
           }}
         >
-          <StandardFormRow title="标签" block style={{ paddingBottom: 11 }}>
+          <StandardFormRow title="" block style={{ paddingBottom: 11 }}>
             <FormItem name="category">
               <TagSelect expandable>
                 {tyoeArr?.map((tag) => (
