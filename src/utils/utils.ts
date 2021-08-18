@@ -2,6 +2,7 @@ import marked from 'marked';
 import Prism from 'prismjs';
 import moment from 'moment';
 import hljs from 'highlight.js';
+import 'highlight.js/styles/github.css';
 
 export const rendererLink = (href: string, title: string, text: string) => {
   console.log(href, title, text);

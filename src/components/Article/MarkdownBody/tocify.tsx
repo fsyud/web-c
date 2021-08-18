@@ -77,7 +77,14 @@ export default class Tocify {
 
   render() {
     return (
-      <Anchor style={{ padding: 24 }} affix showInkInFixed>
+      <Anchor
+        getContainer={() =>
+          document.querySelector('#archol-contain-scroller') as any
+        }
+        style={{ padding: 24 }}
+        affix
+        showInkInFixed
+      >
         {this.renderToc(this.tocItems)}
       </Anchor>
     );

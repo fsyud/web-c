@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Skeleton, Card, Input, Button } from 'antd';
-import {
-  SmileTwoTone,
-  FileImageTwoTone,
-  HeartTwoTone,
-} from '@ant-design/icons';
 import SkyEmoji from '@/components/SkyEmoji';
 import CommitBoard from '@/components/Awhile/CommitBoard';
+import smile1 from '@/assets/svg/smile1.svg';
+import photo from '@/assets/svg/photo.svg';
+import link from '@/assets/svg/link.svg';
 
 import styles from './index.less';
 
@@ -38,12 +36,16 @@ const Regard: React.FC<RegardProps> = (props) => {
   return (
     <div className={styles.ahile}>
       <Card bordered={false} style={styles.header_card}>
-        <TextArea
-          placeholder="发布动态、输入留言～"
-          allowClear
-          onChange={onChange}
-          value={chatContent}
-        />
+        <div className={styles.head_input}>
+          <TextArea
+            placeholder="发布动态、输入留言～"
+            allowClear
+            autoSize={{ minRows: 3, maxRows: 6 }}
+            onChange={onChange}
+            value={chatContent}
+          />
+        </div>
+
         <div className={styles.header_card__footer}>
           <div className={styles.header_card__tool}>
             <ul>
@@ -53,15 +55,15 @@ const Regard: React.FC<RegardProps> = (props) => {
                   setEmojivis(!emojivis);
                 }}
               >
-                <SmileTwoTone />
+                <img src={smile1} />
                 表情
               </li>
               <li>
-                <FileImageTwoTone />
+                <img src={photo} />
                 图片
               </li>
               <li>
-                <HeartTwoTone />
+                <img src={link} />
                 链接
               </li>
               <li></li>

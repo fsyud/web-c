@@ -4,6 +4,7 @@ const Menus = [
   { key: '3', label: '小书', path: '/book' },
 ];
 
+// 类型
 const tyoeArr: GLOBAL.tyoeArrType[] = [
   { v: 1, n: '全部' },
   { v: 2, n: 'java' },
@@ -27,4 +28,11 @@ const typeDefine: GLOBAL.tagType[] = [
   { type: 6, name: '科技' },
 ];
 
-export { Menus, tyoeArr, typeDefine };
+// 筛选类型
+const btnConf: GLOBAL.tagType[] = [
+  { type: 3, name: '热榜' },
+  { type: 2, name: '最新' },
+  { type: 1, name: '热门' },
+];
+
+export { Menus, tyoeArr, typeDefine, btnConf };

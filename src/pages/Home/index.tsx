@@ -6,12 +6,10 @@ import TagSelect from '@/components/Article/TagSelect';
 import ArtList from '@/components/Article/ArtList';
 import SkeletonPrivite from '@/components/SkeletonPrivite';
 import BackTop from '@/components/Article/BackTop';
-import { typeDefine } from '@/constant';
+import { typeDefine, btnConf } from '@/constant';
 import data_img from '@/assets/svg/data.svg';
 
 import styles from './index.less';
-
-const btnConf: string[] = ['本月最热', '全部热门', '最新'];
 
 const About: React.FC<{}> = () => {
   const pageSize = 15;
@@ -30,10 +28,11 @@ const About: React.FC<{}> = () => {
   };
 
   const [curList, setCurList] = useReducer(reducer, []);
-  const [curPage, setCurPage] = useState<number>(1);
+  const [curPage, setCurPage] = useState<number>(1); // 当前页
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [curNull, setCurNull] = useState<boolean>(false);
-  const [curType, setCurType] = useState<number>(100);
+  const [curNull, setCurNull] = useState<boolean>(false); // 是否有数据
+  const [curType, setCurType] = useState<number>(100); // 类型
+  const [radioType, setRadioType] = useState<any>(btnConf[2].type);
 
   useEffect(() => {
     if (!isLoading) {
@@ -128,10 +127,15 @@ const About: React.FC<{}> = () => {
         </div>
         <Divider />
         <div className={styles.h_header__link}>
-          <Radio.Group size="small" buttonStyle="solid">
-            {btnConf.map((s: string, index: number) => (
-              <Radio.Button key={index} value={index}>
-                {s}
+          <Radio.Group
+            value={radioType}
+            onChange={(e: any) => setRadioType(e.target.value)}
+            size="small"
+            buttonStyle="solid"
+          >
+            {btnConf.map((s: GLOBAL.tagType, index: number) => (
+              <Radio.Button key={index} value={s.type}>
+                {s.name}
               </Radio.Button>
             ))}
           </Radio.Group>

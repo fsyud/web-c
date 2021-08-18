@@ -18,7 +18,7 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
   return (
     <div className={styles.tehome}>
       <Row>
-        <Col span={isTabletOrMobile ? 24 : 18} className={styles.tehome_left}>
+        <Col span={18} className={styles.tehome_left}>
           <section className={styles.init_section}>{children}</section>
         </Col>
 
@@ -39,13 +39,21 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
                     <span>写文章</span>
                   </li>
                   <li>
-                    <div>
+                    <div
+                      onClick={() => {
+                        history.push('/awhile');
+                      }}
+                    >
                       <img src={communicate} alt="error" />
                     </div>
                     <span>发片刻</span>
                   </li>
                   <li>
-                    <div>
+                    <div
+                      onClick={() => {
+                        history.push('/book');
+                      }}
+                    >
                       <img src={study} alt="error" />
                     </div>
                     <span>撰小书</span>

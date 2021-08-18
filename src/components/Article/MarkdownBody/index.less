@@ -12,6 +12,15 @@ body .editor-preview-active-side {
 
   h1 {
     font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 30px;
   }
 
   code {
@@ -25,27 +34,42 @@ body .editor-preview-active-side {
     }
   }
 
+  blockquote {
+    border-left: 3px solid rgb(24, 144, 255);
+    padding-left: 8px;
+    font-size: 17px;
+    font-weight: 600;
+    color: rgb(43, 41, 41);
+    margin: 30px 0;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: rgb(243, 243, 243);
+    p {
+      display: contents;
+    }
+  }
+
   .line-numbers {
-    code {
-      font-size: 12px;
-      padding: 15px 12px;
-      margin: 0;
-      word-break: normal;
-      display: block;
-      overflow-x: auto;
-      color: #333;
-      background: #f8f8f8;
-    }
+    // code {
+    //   font-size: 13px;
+    //   padding: 15px 12px;
+    //   margin: 0;
+    //   word-break: normal;
+    //   display: block;
+    //   overflow-x: auto;
+    //   color: #333;
+    //   background: #f8f8f8;
+    // }
 
-    .line-numbers-rows {
-      top: -16px;
-      bottom: -16px;
-      padding: 15px 0;
-      border-right: 1px solid rgba(0, 0, 0, 0.66);
+    // .line-numbers-rows {
+    //   top: -16px;
+    //   bottom: -16px;
+    //   padding: 15px 0;
+    //   border-right: 1px solid rgba(0, 0, 0, 0.66);
 
-      > span::before {
-        color: hsla(0, 0%, 100%, 0.3);
-      }
-    }
+    //   > span::before {
+    //     color: hsla(0, 0%, 100%, 0.3);
+    //   }
+    // }
   }
 }

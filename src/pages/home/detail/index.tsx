@@ -7,7 +7,7 @@ import Tocify from '@/components/Article/MarkdownBody/tocify';
 import ArtTool from '@/components/Article/ArtTool';
 import BackTop from '@/components/Article/BackTop';
 import MarkdownBody from '@/components/Article/MarkdownBody';
-import ArticleComments from '@/components/Article/ArticleComments';
+import Comment from '@/components/Awhile/CommitBoard/Comment';
 
 import styles from './index.less';
 
@@ -16,6 +16,7 @@ interface DetailProps {}
 const Detail: React.FC<DetailProps> = (props) => {
   const params: any = useParams();
   const [tocify, setTocify] = useState<Tocify>();
+  const [commitSta, setCommitSta] = useState<boolean>(false);
   const dispatch = useDispatch();
 
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1024px)' });
@@ -29,6 +30,8 @@ const Detail: React.FC<DetailProps> = (props) => {
     });
   }, []);
 
+  useEffect(() => {}, []);
+
   const { detail } = useSelector(({ article }: any) => {
     return { ...article };
   });
@@ -39,7 +42,7 @@ const Detail: React.FC<DetailProps> = (props) => {
     <div className={styles.art_detail}>
       <Row>
         <Col span={isTabletOrMobile ? 24 : 18} className={styles.teart_left}>
-          <div className={styles.art_containt}>
+          <div id="archol-contain-scroller" className={styles.art_containt}>
             <Skeleton active avatar loading={!content} paragraph={{ rows: 4 }}>
               <div className={styles.art_main}>
                 <div className={styles.art_head}>
@@ -53,12 +56,11 @@ const Detail: React.FC<DetailProps> = (props) => {
                     </div>
                   </div>
                 </div>
-
+                {/* 文章内容 */}
                 <Card bordered={false}>
                   {content && (
                     <MarkdownBody
                       getTocify={(tocInstance) => {
-                        // console.log(tocInstance, 'tocInstance');
                         setTocify(tocInstance);
                       }}
                       markdown={content}
@@ -67,13 +69,9 @@ const Detail: React.FC<DetailProps> = (props) => {
                     />
                   )}
                 </Card>
-
-                <Card
-                  bordered={false}
-                  style={{ marginTop: 24 }}
-                  id="commentsCard"
-                >
-                  <ArticleComments />
+                {/* 评论 */}
+                <Card bordered={false} className={styles.comment_card}>
+                  <Comment commitSta={commitSta} />
                 </Card>
               </div>
             </Skeleton>
