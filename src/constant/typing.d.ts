@@ -6,5 +6,11 @@ declare namespace GLOBAL {
   type tagType = {
     type: number;
     name: string;
+    children?: {
+      type: number;
+      name: string;
+      parents: number;
+      icon?: any;
+    }[];
   };
 }

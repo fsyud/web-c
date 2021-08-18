@@ -5,6 +5,7 @@
 
   .tehome_left {
     padding-right: 16px;
+
     .init_section {
       padding: 16px 16px 0 16px;
       width: 100%;
@@ -75,32 +76,44 @@
     }
 
     .tehome_fix {
+      .advertis {
+        padding: 0;
+        overflow: hidden;
+        position: relative;
+
+        .about_author {
+          position: absolute;
+          border: 1px #fff solid;
+          right: 4px;
+          bottom: 4px;
+          color: #fff;
+          font-size: 12px;
+          font-weight: 300;
+          padding: 0 8px;
+
+          &:hover {
+            font-weight: 600;
+          }
+        }
+
+        img {
+          width: 100%;
+          border-radius: 2px;
+        }
+      }
+
       aside {
-        &:nth-of-type(1) {
-          .tehome_one {
-            h5 {
-              .asideH5Title();
-            }
+        .tehome_one {
+          h5 {
+            .asideH5Title();
+          }
 
-            ul {
-              .ulNoStyle();
-            }
+          ul {
+            .ulNoStyle();
           }
         }
 
-        &:nth-of-type(2) {
-          .tehome_one {
-            h5 {
-              .asideH5Title();
-            }
-
-            ul {
-              .ulNoStyle();
-            }
-          }
-        }
-
-        &:nth-of-type(3) {
+        &:last-of-type {
           background-color: #f8f8f8;
           font-size: 12px;
 
@@ -110,6 +123,23 @@
 
             a {
               color: #6c757d;
+            }
+          }
+        }
+
+        .tehome_hot {
+          ul {
+            li {
+              border-top: 1px solid rgba(0, 0, 0, 0.0625);
+              padding: 8px 0;
+
+              &:nth-of-type(1) {
+                border-top: none;
+              }
+
+              &:hover {
+                font-weight: 600;
+              }
             }
           }
         }

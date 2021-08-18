@@ -31,8 +31,8 @@ const About: React.FC<{}> = () => {
   const [curPage, setCurPage] = useState<number>(1); // 当前页
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [curNull, setCurNull] = useState<boolean>(false); // 是否有数据
-  const [curType, setCurType] = useState<number>(100); // 类型
-  const [radioType, setRadioType] = useState<any>(btnConf[2].type);
+  const [curType, setCurType] = useState<number>(100); // 类型 一级查询
+  const [radioType, setRadioType] = useState<any>(btnConf[2].type); // 二级查询
 
   useEffect(() => {
     if (!isLoading) {
@@ -44,12 +44,21 @@ const About: React.FC<{}> = () => {
     curPage?: number; // 当前页数
     where?: { type?: number }; // 查询条件
     type: string; // 类型
+    sort?: any; // 排序
   }): Promise<any> => {
     setIsLoading(true);
-    const { curPage, where, type } = conf;
+    const {
+      curPage,
+      where,
+      type,
+      sort = {
+        create_times: -1,
+      },
+    } = conf;
     let params: any = {
       page: curPage || 1,
       pageSize,
+      sort,
     };
 
     if (where?.type === 100) {
@@ -92,6 +101,34 @@ const About: React.FC<{}> = () => {
     };
   }, []);
 
+  const secondTypesChange = (e: any) => {
+    const { value } = e.target;
+    setRadioType(value);
+
+    let sort = {};
+
+    if (value === 1) {
+      sort = {
+        create_times: -1,
+      };
+    }
+
+    if (value === 2) {
+      sort = {
+        views: 1,
+      };
+    }
+
+    console.log(sort);
+
+    getArtList({
+      curPage: 1,
+      where: { type: curType },
+      sort,
+      type: 'default',
+    });
+  };
+
   const onScroll = () => {
     const scrollElement: any = window.document.querySelector('.home_contain');
     let innerHeight = scrollElement?.clientHeight || 0; //屏幕尺寸高度
@@ -129,7 +166,7 @@ const About: React.FC<{}> = () => {
         <div className={styles.h_header__link}>
           <Radio.Group
             value={radioType}
-            onChange={(e: any) => setRadioType(e.target.value)}
+            onChange={(e: any) => secondTypesChange(e)}
             size="small"
             buttonStyle="solid"
           >

@@ -8,14 +8,21 @@ const TagColumn: React.FC<{}> = () => {
     <div className={styles.tag_column}>
       <Card bordered={false}>
         <div className={styles.tag_main}>
-          {typeDefine.map((s: any, index: number) => {
+          {typeDefine.map((s: GLOBAL.tagType, index: number) => {
             return (
               <div className={styles.tag_one}>
                 <h5>{s.name}</h5>
-                <ul>
-                  <li>测试</li>
-                  <li>测试</li>
-                </ul>
+                {s.children && (
+                  <ul>
+                    {s.children.map((item: any) => {
+                      return (
+                        <li>
+                          {item.icon && <img src={item.icon} />} {item.name}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
               </div>
             );
           })}

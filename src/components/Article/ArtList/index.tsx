@@ -42,15 +42,15 @@ const ArtList: React.FC<ArtListProps> = ({ item }) => {
                   <div className={styles.art_footer}>
                     <div className={styles.f_one}>
                       <img src={eye} alt="" />
-                      <strong>{s.meta.views}</strong>
+                      <strong>{s?.meta?.views || 0}</strong>
                     </div>
                     <div className={styles.f_one}>
                       <img src={great} alt="" />
-                      <strong>{s.meta.likes}</strong>
+                      <strong>{s?.meta?.likes || 0}</strong>
                     </div>
                     <div className={styles.f_one}>
                       <img src={commit} alt="" />
-                      <strong>{s.meta.comments}</strong>
+                      <strong>{s?.meta?.comments || 0}</strong>
                     </div>
                   </div>
                 </div>

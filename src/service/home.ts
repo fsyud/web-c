@@ -38,3 +38,10 @@ export async function getArtDeatil(params: getArtDeatilParamsType) {
     },
   });
 }
+
+// 获取文章列表
+export async function getHotArticle() {
+  return request('/api/home/hot', {
+    method: 'POST',
+  });
+}
