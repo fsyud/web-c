@@ -22,7 +22,9 @@ const RightSide: React.FC<RightSideProps> = (props) => {
   const { content, type } = detail;
 
   useEffect(() => {
-    getSameArt(type);
+    if (type) {
+      getSameArt(type);
+    }
   }, [type]);
 
   const getSameArt = async (pmrams: any): Promise<any> => {
@@ -73,21 +75,27 @@ const RightSide: React.FC<RightSideProps> = (props) => {
 
         <aside>
           <div className={`${styles.teart_one} ${styles.tehome_hot}`}>
-            <h5>相关文章</h5>
-            <ul>
-              {aboutart.map((s: any, i: number) => (
-                <li
-                  onClick={() => {
-                    const w: any = window.open('about:blank');
-                    w.location.href = `/detail/${s._id}`;
-                  }}
-                  key={i}
-                  title={s.title}
-                >
-                  {s.title}
-                </li>
-              ))}
-            </ul>
+            <Skeleton
+              active
+              loading={aboutart && aboutart.length === 0}
+              paragraph={{ rows: 1 }}
+            >
+              <h5>相关文章</h5>
+              <ul>
+                {aboutart.map((s: any, i: number) => (
+                  <li
+                    onClick={() => {
+                      const w: any = window.open('about:blank');
+                      w.location.href = `/detail/${s._id}`;
+                    }}
+                    key={i}
+                    title={s.title}
+                  >
+                    {s.title}
+                  </li>
+                ))}
+              </ul>
+            </Skeleton>
           </div>
         </aside>
 

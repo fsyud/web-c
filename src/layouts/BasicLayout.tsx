@@ -11,7 +11,7 @@ import TeBook from './content/TeBook';
 import Header from './Header';
 import TeArt from './content/TeArt';
 import { Menus } from '@/constant';
-import githubs from '@/assets/svg/github1.svg';
+import githubs from '@/assets/svg/GitHub.svg';
 import styles from './index.less';
 
 const { Content } = Layout;

@@ -4,7 +4,7 @@ import { Menus } from '@/constant';
 // import enUS from 'antd/lib/locale/en_US';
 import zh_CN from 'antd/es/locale/zh_CN';
 import { Link, SelectLang, history } from 'umi';
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from 'beautiful-react-hooks';
 import { DownOutlined } from '@ant-design/icons';
 import LoginModal from '@/components/LoginModal';
 
@@ -23,7 +23,7 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
   const [modalVisable, setModalVisable] = useState<boolean>(false);
   const [loginsta, setLoginsta] = useState<boolean>(false);
 
-  const isTabletOrMobile = useMediaQuery({ query: '(min-width: 1024px)' });
+  const isTabletOrMobile = useMediaQuery('(min-width: 1024px)');
 
   // 去除nav样式
   const curActiveKey = (): string => {

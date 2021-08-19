@@ -3,13 +3,15 @@ import { useParams, useDispatch, useSelector } from 'umi';
 import { getStringDay } from '@/utils/utils';
 import throttle from 'lodash/throttle';
 import { Skeleton, Card, Row, Col, message, Tag, Space, Divider } from 'antd';
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery, useWindowScroll } from 'beautiful-react-hooks';
 import Tocify from '@/components/Article/MarkdownBody/tocify';
 import ArtTool from '@/components/Article/ArtTool';
 import BackTop from '@/components/Article/BackTop';
 import MarkdownBody from '@/components/Article/MarkdownBody';
 import SkyComment from '@/components/SKy/SkyComment';
 import { addOneComment } from '@/service/comment';
+import CommentsList from '@/components/Article/CommentsList';
+import fire from '@/assets/svg/fire.svg';
 import RightSide from './RightSide';
 
 import { typeDefine } from '@/constant';
@@ -22,14 +24,15 @@ const Detail: React.FC<DetailProps> = (props) => {
   const params: any = useParams();
   const dispatch = useDispatch();
   const [tocify, setTocify] = useState<Tocify>();
-  const { detail } = useSelector(({ article }: any) => {
+  const { detail, commentsList } = useSelector(({ article }: any) => {
     return { ...article };
   });
 
   const { content, create_times, _id, meta, type } = detail;
   const [commentValue, setCommentValue] = useState<string>('');
+  const [clearSta, setClearSta] = useState<boolean>(false);
 
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1024px)' });
+  const isTabletOrMobile = useMediaQuery('(max-width: 1024px)');
 
   useEffect(() => {
     dispatch({
@@ -38,38 +41,34 @@ const Detail: React.FC<DetailProps> = (props) => {
         id: params.id || 1,
       },
     });
+
+    dispatch({
+      type: 'article/getComments',
+      payload: {
+        article_id: params.id || 1,
+      },
+    });
   }, []);
 
-  useEffect(() => {
-    // 监听滚动
-    window.addEventListener('scroll', throttle(onScroll, 100));
-  }, []);
-
-  const onScroll = () => {
-    // scrollTop在页面为滚动时为0，开始滚动后，慢慢增加，滚动到页面底部时
-    // 出现innerHeight < (outerHeight + scrollTop)的情况，严格来讲，是接近底部。
-    let scrollTop =
-      window.pageYOffset ||
-      window.document.documentElement?.scrollTop ||
-      window.document.body?.scrollTop ||
-      0;
-
-    if (scrollTop > 10) {
-      dispatch({
-        type: 'global/getScroller',
-        payload: {
-          scroller: true,
-        },
-      });
-    } else {
-      dispatch({
-        type: 'global/getScroller',
-        payload: {
-          scroller: false,
-        },
-      });
-    }
-  };
+  useWindowScroll(
+    throttle(() => {
+      if (window.scrollY > 10) {
+        dispatch({
+          type: 'global/getScroller',
+          payload: {
+            scroller: true,
+          },
+        });
+      } else {
+        dispatch({
+          type: 'global/getScroller',
+          payload: {
+            scroller: false,
+          },
+        });
+      }
+    }, 100),
+  );
 
   const onCommitChange = (value: string) => {
     setCommentValue(value);
@@ -80,10 +79,21 @@ const Detail: React.FC<DetailProps> = (props) => {
       article_id: _id,
       user_id: '610c01ea6968080f8c845e1f',
       content: commentValue,
+      name: '纳兹',
     });
 
     if (res.code === 0) {
       message.success(res.data.msg);
+      setClearSta(true);
+      setTimeout(() => {
+        setClearSta(false);
+      }, 200);
+      dispatch({
+        type: 'article/getComments',
+        payload: {
+          article_id: params.id || 1,
+        },
+      });
     }
   };
 
@@ -99,7 +109,7 @@ const Detail: React.FC<DetailProps> = (props) => {
                     <img src={require('@/assets/avator.jpeg')} alt="error" />
                   </a>
                   <div className={styles.art_h__right}>
-                    <div className={styles.name}>月下</div>
+                    <div className={styles.name}>纳兹</div>
                     <div className={styles.meta}>
                       <time>{getStringDay(create_times)}</time>
                       <span>阅读 {meta?.views}</span>
@@ -123,21 +133,29 @@ const Detail: React.FC<DetailProps> = (props) => {
                 </Card>
                 {/* 评论 */}
                 <Divider />
-                <Space>
-                  文章分类
-                  <Tag color="#f2f4f5">
-                    {
-                      typeDefine.find(
-                        (s: GLOBAL.tagType) => Number(type) === s.type,
-                      )?.name
-                    }
-                  </Tag>
-                </Space>
-                <Card bordered={false} className={styles.comment_card}>
+                <Space direction="vertical">
+                  <div className={styles.footer}>
+                    文章分类
+                    <Tag color="#f2f4f5">
+                      {
+                        typeDefine.find(
+                          (s: GLOBAL.tagType) => Number(type) === s.type,
+                        )?.name
+                      }
+                    </Tag>
+                  </div>
                   <SkyComment
                     onCommitChange={onCommitChange}
                     sumbitComment={sumbitComment}
+                    clear={clearSta}
                   />
+                </Space>
+                <Card bordered={false} className={styles.comment_card}>
+                  <div className={styles.comment_head}>
+                    热门评论
+                    <img src={fire} />
+                  </div>
+                  <CommentsList commentList={commentsList} />
                 </Card>
               </div>
             </Skeleton>

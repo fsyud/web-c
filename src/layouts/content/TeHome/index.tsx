@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Affix } from 'antd';
 import { history } from 'umi';
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from 'beautiful-react-hooks';
 import { Sparklines, SparklinesBars, SparklinesLine } from 'react-sparklines';
 import { getHotArticle } from '@/service/home';
 import communicate from '@/assets/svg/communicate.svg';
@@ -14,7 +14,7 @@ interface TeHomeProps {
 }
 
 const TeHome: React.FC<TeHomeProps> = ({ children }) => {
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1024px)' });
+  const isTabletOrMobile = useMediaQuery('(max-width: 1024px)');
   const [hots, setHots] = useState<any[]>([]);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
   return (
     <div className={styles.tehome}>
       <Row>
-        <Col span={18} className={styles.tehome_left}>
+        <Col span={isTabletOrMobile ? 24 : 18} className={styles.tehome_left}>
           <section className={styles.init_section}>{children}</section>
         </Col>
 

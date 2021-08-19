@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Skeleton, Radio, Space } from 'antd';
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from 'beautiful-react-hooks';
 import styles from './index.less';
 
 interface TeAwhileProps {
@@ -8,7 +8,7 @@ interface TeAwhileProps {
 }
 
 const TeAwhile: React.FC<TeAwhileProps> = ({ children }) => {
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1024px)' });
+  const isTabletOrMobile = useMediaQuery('(max-width: 1024px)');
 
   return (
     <div className={styles.teawhile}>

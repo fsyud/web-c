@@ -1,7 +1,7 @@
 @import './../../../style/common.less';
 
 .art_detail {
-  min-height: 306px;
+  min-height: 243px;
   position: relative;
 
   .teart_left {
@@ -9,7 +9,7 @@
 
     .art_containt {
       background-color: #fff;
-      min-height: 306px;
+      min-height: 243px;
       padding: 16px;
 
       .art_main {
@@ -55,8 +55,37 @@
         }
 
         .comment_card {
+          width: 100%;
           border-top: 1px solid #e5e6eb;
-          margin-top: 24px;
+          margin-top: 36px;
+          display: flex;
+          flex-direction: column;
+
+          :global {
+            .ant-card-body {
+              width: 100%;
+              padding: 28px 0;
+            }
+          }
+
+          .comment_head {
+            display: flex;
+            flex-direction: row;
+            font-size: 16px;
+            font-weight: 500;
+            align-items: center;
+            margin-bottom: 12px;
+
+            img {
+              width: 16px;
+              height: 16px;
+              margin-left: 4px;
+            }
+          }
+        }
+
+        .footer {
+          margin-bottom: 50px;
         }
 
         :global {

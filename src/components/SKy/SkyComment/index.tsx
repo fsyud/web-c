@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Button, Avatar } from 'antd';
 import classnames from 'classnames';
+import { useTimeout } from 'beautiful-react-hooks';
 import { UserOutlined } from '@ant-design/icons';
 import SkyEmoji from '@/components/SKy/SkyEmoji';
 import smile1 from '@/assets/svg/smile1.svg';
@@ -13,10 +14,11 @@ const { TextArea } = Input;
 interface SkyCommentProps {
   onCommitChange: (value: string) => void;
   sumbitComment: () => void;
+  clear: boolean;
 }
 
 const SkyComment: React.FC<SkyCommentProps> = (props) => {
-  const { onCommitChange, sumbitComment } = props;
+  const { onCommitChange, sumbitComment, clear = false } = props;
 
   const [chatContent, setChatContent] = useState<any>('');
   const [emojivis, setEmojivis] = useState<boolean>(false);
@@ -28,6 +30,12 @@ const SkyComment: React.FC<SkyCommentProps> = (props) => {
       setCuremojista(true);
     });
   }, []);
+
+  useEffect(() => {
+    if (clear) {
+      setChatContent('');
+    }
+  }, [clear]);
 
   const onClickEmoji = (emoji: any, event: any): void => {
     event.nativeEvent.stopImmediatePropagation();
