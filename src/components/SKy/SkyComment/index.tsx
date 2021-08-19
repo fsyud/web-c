@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Button, Avatar } from 'antd';
 import classnames from 'classnames';
-import { useTimeout } from 'beautiful-react-hooks';
 import { UserOutlined } from '@ant-design/icons';
 import SkyEmoji from '@/components/SKy/SkyEmoji';
 import smile1 from '@/assets/svg/smile1.svg';
