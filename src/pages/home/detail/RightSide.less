@@ -1,0 +1,126 @@
+@import './../../../style/common.less';
+
+@keyframes mylogo {
+  0% {
+    transform: rotate(0deg) scale(0.8, 0.8);
+    opacity: 1;
+  }
+
+  25% {
+    transform: rotate(0deg) scale(1, 1);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: rotate(0deg) scale(0.8, 0.8);
+    opacity: 1;
+  }
+}
+
+.init_aside {
+  width: 100%;
+  height: 100%;
+
+  aside {
+    background-color: #fff;
+    padding: 16px;
+    margin-bottom: 16px;
+
+    .teart_one {
+      h5 {
+        .asideH5Title();
+        border-left: 3px solid rgb(24, 144, 255);
+      }
+
+      .userInfo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .avatar_animate {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          margin-right: 20px;
+          animation: mylogo 3s;
+          -moz-animation: mylogo 3s;
+          /* Firefox */
+          -webkit-animation: mylogo 3s;
+          /* Safari and Chrome */
+          -o-animation: mylogo 3s;
+          /* Opera */
+          animation-iteration-count: infinite;
+        }
+
+        h6 {
+          font-weight: 300;
+          color: #88888b;
+        }
+      }
+
+      .extra_item {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+
+        .item {
+          display: flex;
+          align-items: center;
+          height: 32px;
+          font-size: 16px;
+
+          img {
+            width: 22px;
+            margin-right: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  .init_topic {
+    background: none;
+
+    .teart_one {
+      .tehome_hot {
+        .tehome_hot();
+      }
+
+      :global {
+        .ant-anchor-wrapper {
+          padding: 8px 16px !important;
+          background: none !important;
+
+          .ant-anchor {
+            font-size: 15px !important;
+
+            .ant-anchor-link {
+              padding-top: 5px;
+              padding-bottom: 5px;
+            }
+
+            .link1 {
+              a {
+                font-weight: 500;
+              }
+            }
+
+            .link2,
+            .link3,
+            .link4,
+            .link5,
+            .link6 {
+              a {
+                font-weight: 300;
+              }
+            }
+
+            .ant-anchor-link-title-active {
+              font-weight: 800;
+            }
+          }
+        }
+      }
+    }
+  }
+}

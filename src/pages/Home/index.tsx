@@ -104,23 +104,17 @@ const About: React.FC<{}> = () => {
   const secondTypesChange = (e: any) => {
     const { value } = e.target;
     setRadioType(value);
-
     let sort = {};
-
     if (value === 1) {
       sort = {
         create_times: -1,
       };
     }
-
     if (value === 2) {
       sort = {
         views: 1,
       };
     }
-
-    console.log(sort);
-
     getArtList({
       curPage: 1,
       where: { type: curType },

@@ -24,7 +24,7 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
   const getHotArt = async (): Promise<any> => {
     const { data } = await getHotArticle();
     if (data) {
-      setHots(data.splice(0, 3));
+      setHots(data.splice(0, 4));
     }
   };
 

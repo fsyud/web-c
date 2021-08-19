@@ -68,11 +68,18 @@ export default class Tocify {
   };
 
   renderToc(items: TocItem[]) {
-    return items.map((item) => (
-      <Link key={item.anchor} href={`#${item.anchor}`} title={item.text}>
-        {item.children && this.renderToc(item.children)}
-      </Link>
-    ));
+    return items.map((item) => {
+      return (
+        <Link
+          className={`link${item.level}`}
+          key={item.anchor}
+          href={`#${item.anchor}`}
+          title={item.text}
+        >
+          {item.children && this.renderToc(item.children)}
+        </Link>
+      );
+    });
   }
 
   render() {

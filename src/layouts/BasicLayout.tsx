@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { ConfigProvider, Layout, Row, Col } from 'antd';
+import { ConfigProvider, Layout } from 'antd';
 // @ts-ignore
-import ForkMeOnGithub from 'fork-me-on-github';
 import { useHistory, useSelector } from 'umi';
 // import enUS from 'antd/lib/locale/en_US';
 import zh_CN from 'antd/es/locale/zh_CN';
@@ -12,9 +11,10 @@ import TeBook from './content/TeBook';
 import Header from './Header';
 import TeArt from './content/TeArt';
 import { Menus } from '@/constant';
+import githubs from '@/assets/svg/github1.svg';
 import styles from './index.less';
 
-const { Content, Footer } = Layout;
+const { Content } = Layout;
 
 export interface BasicLayoutType {
   dispatch?: Dispatch;
@@ -75,11 +75,9 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
     return (
       <div className={styles.init_page}>
         <div className={styles.github}>
-          <ForkMeOnGithub
-            repo="https://github.com/starryskystar"
-            colorBackground="black"
-            colorOctocat="white"
-          />
+          <a href="https://github.com/starryskystar">
+            <img src={githubs} />
+          </a>
         </div>
         <ConfigProvider locale={languages}>
           <Layout>

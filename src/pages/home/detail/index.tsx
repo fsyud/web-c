@@ -2,15 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useDispatch, useSelector } from 'umi';
 import { getStringDay } from '@/utils/utils';
 import throttle from 'lodash/throttle';
-import { Skeleton, Card, Row, Col, Affix, message } from 'antd';
+import { Skeleton, Card, Row, Col, message, Tag, Space, Divider } from 'antd';
 import { useMediaQuery } from 'react-responsive';
 import Tocify from '@/components/Article/MarkdownBody/tocify';
 import ArtTool from '@/components/Article/ArtTool';
 import BackTop from '@/components/Article/BackTop';
 import MarkdownBody from '@/components/Article/MarkdownBody';
 import SkyComment from '@/components/SKy/SkyComment';
-
 import { addOneComment } from '@/service/comment';
+import RightSide from './RightSide';
+
+import { typeDefine } from '@/constant';
 
 import styles from './index.less';
 
@@ -24,7 +26,7 @@ const Detail: React.FC<DetailProps> = (props) => {
     return { ...article };
   });
 
-  const { content, create_times, _id } = detail;
+  const { content, create_times, _id, meta, type } = detail;
   const [commentValue, setCommentValue] = useState<string>('');
 
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1024px)' });
@@ -40,7 +42,7 @@ const Detail: React.FC<DetailProps> = (props) => {
 
   useEffect(() => {
     // 监听滚动
-    window.addEventListener('scroll', throttle(onScroll, 500));
+    window.addEventListener('scroll', throttle(onScroll, 100));
   }, []);
 
   const onScroll = () => {
@@ -52,7 +54,7 @@ const Detail: React.FC<DetailProps> = (props) => {
       window.document.body?.scrollTop ||
       0;
 
-    if (scrollTop > 110) {
+    if (scrollTop > 10) {
       dispatch({
         type: 'global/getScroller',
         payload: {
@@ -68,8 +70,6 @@ const Detail: React.FC<DetailProps> = (props) => {
       });
     }
   };
-
-  useEffect(() => {}, []);
 
   const onCommitChange = (value: string) => {
     setCommentValue(value);
@@ -102,23 +102,37 @@ const Detail: React.FC<DetailProps> = (props) => {
                     <div className={styles.name}>月下</div>
                     <div className={styles.meta}>
                       <time>{getStringDay(create_times)}</time>
+                      <span>阅读 {meta?.views}</span>
                     </div>
                   </div>
                 </div>
                 {/* 文章内容 */}
                 <Card bordered={false}>
                   {content && (
-                    <MarkdownBody
-                      getTocify={(tocInstance) => {
-                        setTocify(tocInstance);
-                      }}
-                      markdown={content}
-                      prismPlugin
-                      toc
-                    />
+                    <div className={styles.marks}>
+                      <MarkdownBody
+                        getTocify={(tocInstance) => {
+                          setTocify(tocInstance);
+                        }}
+                        markdown={content}
+                        prismPlugin
+                        toc
+                      />
+                    </div>
                   )}
                 </Card>
                 {/* 评论 */}
+                <Divider />
+                <Space>
+                  文章分类
+                  <Tag color="#f2f4f5">
+                    {
+                      typeDefine.find(
+                        (s: GLOBAL.tagType) => Number(type) === s.type,
+                      )?.name
+                    }
+                  </Tag>
+                </Space>
                 <Card bordered={false} className={styles.comment_card}>
                   <SkyComment
                     onCommitChange={onCommitChange}
@@ -130,31 +144,15 @@ const Detail: React.FC<DetailProps> = (props) => {
           </div>
 
           <div className={styles.footer_list}>
-            <Skeleton active avatar loading={!content} paragraph={{ rows: 4 }}>
+            <Skeleton active loading={!content} paragraph={{ rows: 1 }}>
               <Card bordered={false}>列表</Card>
             </Skeleton>
           </div>
         </Col>
 
         {!isTabletOrMobile && (
-          <Col span={6} className={styles.init_aside}>
-            <section className={styles.init_section}>
-              <aside>
-                <div className={styles.teart_one}>
-                  <h5>相关推荐</h5>
-                </div>
-              </aside>
-
-              <Affix offsetTop={16}>
-                <aside className={styles.init_topic}>
-                  <div className={styles.teart_one}>
-                    <Skeleton active loading={!content} paragraph={{ rows: 4 }}>
-                      {tocify?.render()}
-                    </Skeleton>
-                  </div>
-                </aside>
-              </Affix>
-            </section>
+          <Col span={6}>
+            <RightSide detail={detail} tocify={tocify} />
           </Col>
         )}
       </Row>
