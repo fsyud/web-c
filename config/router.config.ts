@@ -32,11 +32,15 @@ export default [
         name: 'book',
         component: '@/pages/book',
       },
-
       {
         path: '/writeArt',
         name: 'writeArt',
         component: '@/pages/writeArt',
+      },
+      {
+        path: '/user',
+        name: 'user',
+        component: '@/pages/user',
       },
       {
         component: '@/pages/404',

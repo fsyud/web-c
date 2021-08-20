@@ -5,6 +5,7 @@
   margin-top: 12px;
   padding: 8px 8px;
   border-radius: 3px;
+  min-height: 136px;
 
   .header {
     display: flex;
@@ -18,6 +19,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
+      }
+      textarea.ant-input {
+        background-color: rgba(226, 230, 235, 0.2);
+
+        &:focus {
+          background-color: #fff;
+        }
       }
     }
   }
@@ -60,9 +68,16 @@
         }
       }
     }
-  }
 
-  .curemoji_dis {
-    display: none;
+    .card__tool__dis {
+      display: none;
+    }
+
+    :global {
+      .ant-btn {
+        position: absolute;
+        right: 40px;
+      }
+    }
   }
 }

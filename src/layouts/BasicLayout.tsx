@@ -24,7 +24,6 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
   const { scroller } = useSelector(({ global }: any) => {
     return { ...global };
   });
-
   const history = useHistory();
   const { dispatch, children } = props;
   const [languages, setLanguages] = useState<any>(zh_CN);
@@ -58,15 +57,14 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
     if (
       curPath.includes(Menus[2].path) ||
       curPath.includes('404') ||
-      curPath.includes('tag-column')
+      curPath.includes('tag-column') ||
+      curPath.includes('writeArt') ||
+      curPath.includes('user')
     ) {
       return <TeBook children={ELE} />;
     }
     if (curPath.includes('detail')) {
       return <TeArt children={ELE} />;
-    }
-    if (curPath.includes('writeArt')) {
-      return <TeBook children={ELE} />;
     }
   };
 

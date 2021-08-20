@@ -19,14 +19,13 @@
     flex-direction: row;
 
     img {
-      width: 64px;
-      height: 64px;
+      width: 36px;
+      height: 36px;
       margin-right: 4px;
-      margin-bottom: 8px;
     }
 
     strong {
-      font-size: 22px;
+      font-size: 26px;
       font-weight: 500;
       font-family: arial, 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
     }
@@ -127,6 +126,32 @@
       :global {
         .ant-btn-link:hover {
           color: #06f;
+        }
+      }
+
+      .user_menu {
+        position: relative;
+
+        .menu {
+          position: absolute;
+          width: 152px;
+          border: 1px solid rgba(177, 180, 185, 0.45);
+          right: 0px;
+          top: 63px;
+
+          :global {
+            .ant-menu-item {
+              img {
+                width: 14px;
+                height: 14px;
+                margin-right: 4px;
+              }
+            }
+          }
+        }
+
+        .menu_dis {
+          display: none;
         }
       }
     }

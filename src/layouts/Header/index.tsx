@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Layout, Menu, Row, Col, Button, Dropdown, Input, Avatar } from 'antd';
+import { Link, SelectLang, history } from 'umi';
+import { DownOutlined } from '@ant-design/icons';
 import { Menus } from '@/constant';
+import classnames from 'classnames';
 // import enUS from 'antd/lib/locale/en_US';
 import zh_CN from 'antd/es/locale/zh_CN';
-import { Link, SelectLang, history } from 'umi';
 import { useMediaQuery } from 'beautiful-react-hooks';
-import { DownOutlined } from '@ant-design/icons';
 import LoginModal from '@/components/LoginModal';
+import setting from '@/assets/svg/setting.svg';
+import ownner from '@/assets/svg/ownner.svg';
+import loginouts from '@/assets/svg/loginout.svg';
 
 import styles from './index.less';
 
@@ -22,6 +26,8 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
   const [languages, setLanguages] = useState<any>(zh_CN);
   const [modalVisable, setModalVisable] = useState<boolean>(false);
   const [loginsta, setLoginsta] = useState<boolean>(false);
+  const [itemSta, setItemSta] = useState<boolean>(true);
+  const [menuKey, setMenuKey] = useState<string>('');
 
   const isTabletOrMobile = useMediaQuery('(min-width: 1024px)');
 
@@ -30,7 +36,8 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
     if (
       curPath.includes('detail') ||
       curPath.includes('writeArt') ||
-      curPath.includes('tag-column')
+      curPath.includes('tag-column') ||
+      curPath.includes('user')
     ) {
       return 'clear';
     } else {
@@ -45,15 +52,32 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
     curLanguages(localeValue);
   };
 
+  const avatorStyle = (): string => {
+    return classnames({
+      [styles.menu]: true,
+      [styles.menu_dis]: itemSta,
+    });
+  };
+
+  // 重置menu菜单选项
   useEffect(() => {
     setCur(curActiveKey);
   }, [curPath]);
 
+  // 监听是否登录状态
   useEffect(() => {
     if (localStorage.STARRY_STAR_SKY) {
       setLoginsta(true);
     }
   });
+
+  useEffect(() => {
+    // 菜单全局监听事件
+    document.addEventListener('click', (e) => {
+      setItemSta(true);
+      setMenuKey('');
+    });
+  }, []);
 
   // 写文章
   const handleButtonClick = (e: any): void => {
@@ -74,6 +98,20 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
     }
   };
 
+  // 下拉菜单点击
+  const menuClick = (item: { key: any }): void => {
+    const { key } = item;
+    setMenuKey(key);
+
+    if (key === 'loginout') {
+      localStorage.removeItem('STARRY_STAR_SKY');
+      window.location.reload();
+    }
+    if (key === 'setting') {
+      history.push('/user');
+    }
+  };
+
   const menu: React.ReactElement = (
     <Menu onClick={handleMenuClick} style={{ width: 103 }}>
       <Menu.Item key="1">发片刻</Menu.Item>
@@ -82,15 +120,21 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
   );
 
   const menuAvator = (
-    <Menu>
-      <Menu.Item>设置</Menu.Item>
-      <Menu.Item>我的主页</Menu.Item>
-      <Menu.Item
-        onClick={() => {
-          localStorage.removeItem('STARRY_STAR_SKY');
-          window.location.reload();
-        }}
-      >
+    <Menu
+      onClick={menuClick}
+      className={avatorStyle()}
+      selectedKeys={[menuKey]}
+    >
+      <Menu.Item key="setting">
+        <img src={setting} />
+        设置
+      </Menu.Item>
+      <Menu.Item key="myhome">
+        <img src={ownner} />
+        我的主页
+      </Menu.Item>
+      <Menu.Item key="loginout">
+        <img src={loginouts} />
         退出
       </Menu.Item>
     </Menu>
@@ -134,17 +178,17 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
                 </Button>
               )}
               {loginsta && (
-                <Dropdown
-                  overlay={menuAvator}
-                  placement="bottomLeft"
-                  trigger={['click']}
-                  overlayStyle={{
-                    width: 110,
-                    borderRadius: 4,
-                  }}
-                >
-                  <Avatar src={require('@/assets/avator.jpeg')} />
-                </Dropdown>
+                <div className={styles.user_menu}>
+                  <div
+                    onClick={(e: any) => {
+                      setItemSta(false);
+                      e.nativeEvent.stopImmediatePropagation();
+                    }}
+                  >
+                    <Avatar src={require('@/assets/avator.jpeg')} />
+                  </div>
+                  {menuAvator}
+                </div>
               )}
             </div>
             <div className={styles.header_tool}>

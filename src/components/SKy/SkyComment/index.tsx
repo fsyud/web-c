@@ -18,17 +18,12 @@ interface SkyCommentProps {
 
 const SkyComment: React.FC<SkyCommentProps> = (props) => {
   const { onCommitChange, sumbitComment, clear = false } = props;
-
   const [chatContent, setChatContent] = useState<any>('');
   const [emojivis, setEmojivis] = useState<boolean>(false);
-  const [curemojista, setCuremojista] = useState<boolean>(true);
 
-  useEffect(() => {
-    document.addEventListener('click', (e) => {
-      //   setEmojivis(false);
-      setCuremojista(true);
-    });
-  }, []);
+  const [inputState, setInputState] = useState<boolean>(true);
+
+  useEffect(() => {}, []);
 
   useEffect(() => {
     if (clear) {
@@ -42,17 +37,17 @@ const SkyComment: React.FC<SkyCommentProps> = (props) => {
     setChatContent(content);
   };
 
-  const commitStyle = (): string => {
-    return classnames({
-      [styles.tool]: true,
-      [styles.curemoji_dis]: curemojista,
-    });
-  };
-
   const onChange = (event: any): void => {
     const { value } = event.target;
     setChatContent(value);
     onCommitChange(value);
+  };
+
+  const commitToolStyle = (): string => {
+    return classnames({
+      [styles.card__tool]: true,
+      [styles.card__tool__dis]: inputState,
+    });
   };
 
   return (
@@ -67,19 +62,20 @@ const SkyComment: React.FC<SkyCommentProps> = (props) => {
         <TextArea
           onChange={onChange}
           value={chatContent}
-          autoSize={{ minRows: 1, maxRows: 6 }}
+          autoSize={{ minRows: 3, maxRows: 6 }}
           placeholder="输入评论..."
           onFocus={() => {
-            setCuremojista(false);
+            setInputState(false);
             if (emojivis) {
               setEmojivis(false);
             }
           }}
+          onBlur={() => setInputState(true)}
         />
       </div>
 
-      <div className={commitStyle()}>
-        <div className={styles.card__tool}>
+      <div className={styles.tool}>
+        <div className={commitToolStyle()}>
           <ul
             onClick={() => {
               if (emojivis) {
@@ -102,7 +98,11 @@ const SkyComment: React.FC<SkyCommentProps> = (props) => {
           </ul>
           <SkyEmoji visible={emojivis} onClickEmoji={onClickEmoji} />
         </div>
-        <Button type="primary" onClick={sumbitComment}>
+        <Button
+          disabled={chatContent.length > 0 ? false : true}
+          type="primary"
+          onClick={sumbitComment}
+        >
           评论
         </Button>
       </div>

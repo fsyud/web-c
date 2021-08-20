@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Card, Drawer, Input, message, Form } from 'antd';
+import { Button, Card, Input, message, Form } from 'antd';
 import classnames from 'classnames';
 import { useDispatch } from 'dva';
 import { Editor, Viewer } from '@bytemd/react';
@@ -20,7 +20,6 @@ const WriteArt: React.FC<{}> = () => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const [curtitle, setCurtitle] = useState<string>('');
-  const [visible, setVisible] = useState<boolean>(false);
   const [pubVis, setPubVis] = useState<boolean>(true);
   const [img_url, setImg_url] = useState<any>();
 
@@ -41,8 +40,6 @@ const WriteArt: React.FC<{}> = () => {
     }
 
     form.validateFields().then(async (data: any) => {
-      console.log(data);
-
       if (!img_url) {
         message.error('请上传封面图片！');
         return;
@@ -59,18 +56,16 @@ const WriteArt: React.FC<{}> = () => {
         desc,
       };
 
-      console.log(params);
-
       const response: any = await dispatch({
         type: 'article/createArticle',
         payload: params,
       });
 
       if (response?.success) {
-        setPubVis(true);
-        form.resetFields();
-        setImg_url('');
-        setCurtitle('');
+        // setPubVis(true);
+        // form.resetFields();
+        // setImg_url('');
+        // setCurtitle('');
       }
     });
   };
@@ -149,23 +144,6 @@ const WriteArt: React.FC<{}> = () => {
           />
         </div>
       </Card>
-      <Drawer
-        title="预览"
-        placement="top"
-        closable={true}
-        height={1000}
-        onClose={() => setVisible(false)}
-        className={styles.curDrawer}
-        visible={visible}
-      >
-        <div
-          style={{
-            width: 1000,
-            margin: '0 auto',
-            paddingBottom: 100,
-          }}
-        ></div>
-      </Drawer>
     </div>
   );
 };
