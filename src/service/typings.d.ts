@@ -15,7 +15,8 @@ declare namespace API {
     title: string;
     content: string;
     type: number;
-    author: string;
+    author?: string;
+    user_id: string;
     img_url: any;
     desc: string;
   };

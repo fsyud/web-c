@@ -28,7 +28,7 @@ const Detail: React.FC<DetailProps> = (props) => {
     return { ...article };
   });
 
-  const { content, create_times, _id, meta, type } = detail;
+  const { content, create_times, _id, meta, type, author_user_info } = detail;
   const [commentValue, setCommentValue] = useState<string>('');
   const [clearSta, setClearSta] = useState<boolean>(false);
 
@@ -106,10 +106,12 @@ const Detail: React.FC<DetailProps> = (props) => {
               <div className={styles.art_main}>
                 <div className={styles.art_head}>
                   <a href="">
-                    <img src={require('@/assets/avator.jpeg')} alt="error" />
+                    <img src={author_user_info?.avator_url} alt="avator" />
                   </a>
                   <div className={styles.art_h__right}>
-                    <div className={styles.name}>纳兹</div>
+                    <div className={styles.name}>
+                      {author_user_info?.username}
+                    </div>
                     <div className={styles.meta}>
                       <time>{getStringDay(create_times)}</time>
                       <span>阅读 {meta?.views}</span>

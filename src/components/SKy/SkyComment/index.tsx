@@ -102,6 +102,7 @@ const SkyComment: React.FC<SkyCommentProps> = (props) => {
           <SkyEmoji visible={emojivis} onClickEmoji={onClickEmoji} />
         </div>
         <Button
+          className={`${!inputState && !chatContent && styles.focus_btn}`}
           disabled={chatContent.length > 0 ? false : true}
           type="primary"
           onClick={sumbitComment}

@@ -34,6 +34,11 @@ const WriteArt: React.FC<{}> = () => {
   }, []);
 
   const submit = async (): Promise<any> => {
+    if (!localStorage.STARRY_STAR_SKY_ID) {
+      message.error('请先登录！');
+      return;
+    }
+
     if (!curtitle) {
       message.error('请填写标题！');
       return;
@@ -51,7 +56,7 @@ const WriteArt: React.FC<{}> = () => {
         title: curtitle,
         content: value,
         type,
-        author: 'naze',
+        user_id: localStorage.STARRY_STAR_SKY_ID || 0,
         img_url,
         desc,
       };

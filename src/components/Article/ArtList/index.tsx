@@ -26,7 +26,9 @@ const ArtList: React.FC<ArtListProps> = ({ item }) => {
               <li key={index} onClick={() => ScanArticle(s._id)}>
                 <div className={styles.lsi_main}>
                   <h6>
-                    <div className={styles.h6_l}>{s.author}</div>
+                    <div className={styles.h6_l}>
+                      {s?.author_user_info?.username}
+                    </div>
                     <div className={styles.h6_line}></div>
                     <div className={styles.h6_r}>{DiffDay(s.create_times)}</div>
                     <div className={styles.h6_line}></div>
