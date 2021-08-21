@@ -31,13 +31,14 @@ const PublishForm: React.FC<PublishFormProps> = (props) => {
   };
 
   const onChange = ({ file, fileList, event }: any) => {
-    console.log(file);
     if (file?.response?.code === 0) {
       const { path } = file.response.data;
-
       getBase64(file.originFileObj, (imageUrl: any) => {
         setLoading(false);
         setImgurl(imageUrl);
+
+        console.log(path);
+
         handleUploadImg(path);
       });
     }
