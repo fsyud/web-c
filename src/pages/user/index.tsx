@@ -88,7 +88,7 @@ const User: React.FC<{}> = () => {
       ...values,
       ...{
         avator_url: imgPath,
-        id: localStorage.getItem('STARRY_STAR_SKY_id'),
+        id: localStorage.getItem('STARRY_STAR_SKY_ID'),
       },
     };
     const data = await userUpdate(userObj);
