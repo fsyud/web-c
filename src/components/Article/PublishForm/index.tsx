@@ -36,9 +36,6 @@ const PublishForm: React.FC<PublishFormProps> = (props) => {
       getBase64(file.originFileObj, (imageUrl: any) => {
         setLoading(false);
         setImgurl(imageUrl);
-
-        console.log(path);
-
         handleUploadImg(path);
       });
     }

@@ -4,6 +4,7 @@ import { Link, SelectLang, history } from 'umi';
 import { DownOutlined } from '@ant-design/icons';
 import { Menus } from '@/constant';
 import classnames from 'classnames';
+import { getUser } from '@/service/user';
 // import enUS from 'antd/lib/locale/en_US';
 import zh_CN from 'antd/es/locale/zh_CN';
 import { useMediaQuery } from 'beautiful-react-hooks';
@@ -28,6 +29,7 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
   const [loginsta, setLoginsta] = useState<boolean>(false);
   const [itemSta, setItemSta] = useState<boolean>(true);
   const [menuKey, setMenuKey] = useState<string>('');
+  const [avators, setAvators] = useState<string>('');
 
   const isTabletOrMobile = useMediaQuery('(min-width: 1024px)');
 
@@ -66,8 +68,13 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
 
   // 监听是否登录状态
   useEffect(() => {
-    if (localStorage.STARRY_STAR_SKY) {
+    if (
+      localStorage.STARRY_STAR_SKY &&
+      localStorage.STARRY_STAR_SKY_USER_INFO
+    ) {
       setLoginsta(true);
+      const data = JSON.parse(localStorage.STARRY_STAR_SKY_USER_INFO);
+      setAvators(data?.avator_url || '');
     }
   });
 
@@ -94,7 +101,16 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
   const onSuccessLogin = (params: boolean): void => {
     if (params) {
       setModalVisable(false);
-      window.location.reload();
+      getUserInfo();
+      // window.location.reload();
+    }
+  };
+
+  const getUserInfo = async (): Promise<any> => {
+    const { data } = await getUser(localStorage.STARRY_STAR_SKY_ID);
+
+    if (data) {
+      localStorage.setItem('STARRY_STAR_SKY_USER_INFO', JSON.stringify(data));
     }
   };
 
@@ -105,6 +121,7 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
 
     if (key === 'loginout') {
       localStorage.removeItem('STARRY_STAR_SKY');
+      localStorage.removeItem('STARRY_STAR_SKY_ID');
       window.location.reload();
     }
     if (key === 'setting') {
@@ -185,7 +202,7 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
                       e.nativeEvent.stopImmediatePropagation();
                     }}
                   >
-                    <Avatar src={require('@/assets/avator.jpeg')} />
+                    <Avatar src={avators} />
                   </div>
                   {menuAvator}
                 </div>

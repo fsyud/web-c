@@ -16,14 +16,34 @@ import {
 } from 'antd';
 import ImgCrop from 'antd-img-crop';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import { userUpdate, getUser } from '@/service/user';
 
 import styles from './index.less';
 
 const User: React.FC<{}> = () => {
   const history = useHistory();
   const [form] = Form.useForm();
-  const [imgurl, setImgurl] = useState<string>('');
+  const [imgurl, setImgurl] = useState<string>(); // base64文件路径
+  const [imgPath, setImgPath] = useState<string>(''); // 接口返回文件路径
   const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+
+  const getUserInfo = async (): Promise<any> => {
+    const { data } = await getUser(localStorage.STARRY_STAR_SKY_ID);
+    if (data) {
+      setImgPath(data.avator_url);
+      setImgurl(data.avator_url);
+      form.setFieldsValue({
+        username: data.username,
+        job: data.job,
+        company: data.company,
+        introduce: data.introduce,
+      });
+    }
+  };
 
   const getBase64 = (img: any, callback: any) => {
     const reader = new FileReader();
@@ -32,10 +52,11 @@ const User: React.FC<{}> = () => {
   };
 
   const onChange = ({ file, fileList, event }: any) => {
-    console.log(file);
-    if (file.status === 'done') {
+    if (file?.response?.code === 0) {
+      const { path } = file.response.data;
       getBase64(file.originFileObj, (imageUrl: any) => {
         setLoading(false);
+        setImgPath(path);
         setImgurl(imageUrl);
       });
     }
@@ -59,6 +80,22 @@ const User: React.FC<{}> = () => {
       <div style={{ marginTop: 8 }}>上传头像</div>
     </div>
   );
+
+  // 提交
+  const onFinish = async (values: any): Promise<any> => {
+    console.log(imgPath);
+    const userObj = {
+      ...values,
+      ...{
+        avator_url: imgPath,
+        id: localStorage.getItem('STARRY_STAR_SKY_id'),
+      },
+    };
+    const data = await userUpdate(userObj);
+    if (data.code === 0) {
+      message.success('更新成功！');
+    }
+  };
 
   return (
     <div className={styles.user_bar}>
@@ -89,11 +126,12 @@ const User: React.FC<{}> = () => {
                   <Form
                     name="basic"
                     labelCol={{ span: 5 }}
+                    onFinish={onFinish}
                     wrapperCol={{ span: 20 }}
                     form={form}
                     initialValues={{ remember: true }}
                   >
-                    <Form.Item label="用户名" name="name">
+                    <Form.Item label="用户名" name="username">
                       <Input placeholder="填写你的用户名" />
                     </Form.Item>
                     <Divider />
@@ -105,7 +143,7 @@ const User: React.FC<{}> = () => {
                       <Input placeholder="填写你的公司" />
                     </Form.Item>
                     <Divider />
-                    <Form.Item label="个人介绍" name="user_info">
+                    <Form.Item label="个人介绍" name="introduce">
                       <Input.TextArea
                         placeholder="填写职业技能、擅长的事情、喜欢的事情等"
                         allowClear
@@ -134,22 +172,21 @@ const User: React.FC<{}> = () => {
                       beforeUpload={beforeUpload}
                     >
                       {imgurl ? (
-                        <img
-                          src={imgurl}
-                          alt="avatar"
-                          style={{ width: '100%' }}
-                        />
+                        <img src={imgurl} style={{ width: '100%' }} />
                       ) : (
                         uploadButton
                       )}
                     </Upload>
                   </ImgCrop>
-                  <div
-                    className={styles.back_upload}
-                    onClick={() => setImgurl('')}
-                  >
-                    撤销上传
-                  </div>
+
+                  {imgurl && (
+                    <div
+                      className={styles.back_upload}
+                      onClick={() => setImgurl('')}
+                    >
+                      撤销上传
+                    </div>
+                  )}
                 </div>
               </Card>
             </div>

@@ -3,6 +3,14 @@ declare namespace API {
     name: string;
     password: string;
   };
+  type updateUser = {
+    username?: string;
+    avator_url?: string;
+    job?: string;
+    company?: string;
+    introduce?: string;
+    id?: string;
+  };
   type artParams = {
     title: string;
     content: string;

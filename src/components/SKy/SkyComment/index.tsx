@@ -23,7 +23,11 @@ const SkyComment: React.FC<SkyCommentProps> = (props) => {
 
   const [inputState, setInputState] = useState<boolean>(true);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    document.addEventListener('click', (e) => {
+      setInputState(true);
+    });
+  }, []);
 
   useEffect(() => {
     if (clear) {
@@ -70,7 +74,6 @@ const SkyComment: React.FC<SkyCommentProps> = (props) => {
               setEmojivis(false);
             }
           }}
-          onBlur={() => setInputState(true)}
         />
       </div>
 
