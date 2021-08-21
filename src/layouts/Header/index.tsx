@@ -74,6 +74,9 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
     ) {
       setLoginsta(true);
       const data = JSON.parse(localStorage.STARRY_STAR_SKY_USER_INFO);
+
+      console.log(data?.avator_url);
+
       setAvators(data?.avator_url || '');
     }
   });
@@ -201,8 +204,9 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
                       setItemSta(false);
                       e.nativeEvent.stopImmediatePropagation();
                     }}
+                    className={styles.avtors_img}
                   >
-                    <Avatar src={avators} />
+                    <img src={avators} />
                   </div>
                   {menuAvator}
                 </div>
