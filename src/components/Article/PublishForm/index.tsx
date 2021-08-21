@@ -24,19 +24,22 @@ const PublishForm: React.FC<PublishFormProps> = (props) => {
     labelCol: { span: 4 },
     wrapperCol: { span: 18 },
   };
-  // const getBase64 = (img: any, callback: any) => {
-  //   const reader = new FileReader();
-  //   reader.addEventListener('load', () => callback(reader.result));
-  //   reader.readAsDataURL(img);
-  // };
+  const getBase64 = (img: any, callback: any) => {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => callback(reader.result));
+    reader.readAsDataURL(img);
+  };
 
   const onChange = ({ file, fileList, event }: any) => {
     console.log(file);
     if (file?.response?.code === 0) {
       const { path } = file.response.data;
-      setLoading(false);
-      setImgurl(path);
-      handleUploadImg(path);
+
+      getBase64(file.originFileObj, (imageUrl: any) => {
+        setLoading(false);
+        setImgurl(imageUrl);
+        handleUploadImg(path);
+      });
     }
   };
 
