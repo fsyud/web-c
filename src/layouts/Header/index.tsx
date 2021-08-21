@@ -74,9 +74,6 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
     ) {
       setLoginsta(true);
       const data = JSON.parse(localStorage.STARRY_STAR_SKY_USER_INFO);
-
-      console.log(data?.avator_url);
-
       setAvators(data?.avator_url || '');
     }
   });
@@ -105,7 +102,7 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
     if (params) {
       setModalVisable(false);
       getUserInfo();
-      // window.location.reload();
+      window.location.reload();
     }
   };
 

@@ -94,6 +94,11 @@ const User: React.FC<{}> = () => {
     const data = await userUpdate(userObj);
     if (data.code === 0) {
       message.success('更新成功！');
+      localStorage.setItem(
+        'STARRY_STAR_SKY_USER_INFO',
+        JSON.stringify(userObj),
+      );
+      window.location.reload();
     }
   };
 
