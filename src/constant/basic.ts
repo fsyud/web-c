@@ -1,3 +1,5 @@
 const homeTagColor: string = '#2db7f5';
 
-export { homeTagColor };
+const uploadBasic: string = 'https://www.starryskystar.space/api/common/upload';
+
+export { homeTagColor, uploadBasic };

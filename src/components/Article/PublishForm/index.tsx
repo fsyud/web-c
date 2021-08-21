@@ -24,37 +24,20 @@ const PublishForm: React.FC<PublishFormProps> = (props) => {
     labelCol: { span: 4 },
     wrapperCol: { span: 18 },
   };
-
-  const getBase64 = (img: any, callback: any) => {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => callback(reader.result));
-    reader.readAsDataURL(img);
-  };
+  // const getBase64 = (img: any, callback: any) => {
+  //   const reader = new FileReader();
+  //   reader.addEventListener('load', () => callback(reader.result));
+  //   reader.readAsDataURL(img);
+  // };
 
   const onChange = ({ file, fileList, event }: any) => {
-    // console.log(file);
-    if (file.status === 'done') {
-      getBase64(file.originFileObj, (imageUrl: any) => {
-        setLoading(false);
-        setImgurl(imageUrl);
-        handleUploadImg(imageUrl);
-      });
+    console.log(file);
+    if (file?.response?.code === 0) {
+      const { path } = file.response.data;
+      setLoading(false);
+      setImgurl(path);
+      handleUploadImg(path);
     }
-  };
-
-  const onPreview = async (file: any) => {
-    let src = file.url;
-    if (!src) {
-      src = await new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file.originFileObj);
-        reader.onload = () => resolve(reader.result);
-      });
-    }
-    const image = new Image();
-    image.src = src;
-    const imgWindow: any = window.open(src);
-    imgWindow.document.write(image.outerHTML);
   };
 
   const beforeUpload = (file: any) => {
@@ -96,7 +79,6 @@ const PublishForm: React.FC<PublishFormProps> = (props) => {
               listType="picture-card"
               showUploadList={false}
               onChange={onChange}
-              onPreview={onPreview}
               beforeUpload={beforeUpload}
             >
               {imgurl ? (
