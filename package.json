@@ -22,9 +22,11 @@
   },
   "dependencies": {
     "@ant-design/pro-layout": "^6.5.0",
+    "@bytemd/plugin-footnotes": "^1.10.13",
     "@bytemd/plugin-gemoji": "^1.10.13",
     "@bytemd/plugin-gfm": "^1.10.13",
     "@bytemd/plugin-highlight": "^1.10.13",
+    "@bytemd/plugin-math": "^1.10.13",
     "@bytemd/react": "^1.10.13",
     "@umijs/preset-react": "1.x",
     "antd": "^4.11.1",

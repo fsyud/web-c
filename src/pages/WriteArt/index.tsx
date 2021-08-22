@@ -3,8 +3,13 @@ import { Button, Card, Input, message, Form } from 'antd';
 import classnames from 'classnames';
 import { useDispatch } from 'dva';
 import { Editor, Viewer } from '@bytemd/react';
+import { Image } from 'mdast';
 import gfm from '@bytemd/plugin-gfm';
+import highlight from '@bytemd/plugin-highlight';
 import gemoji from '@bytemd/plugin-gemoji';
+import math from '@bytemd/plugin-math';
+import footnotes from '@bytemd/plugin-footnotes';
+import { upLoadFiles } from '@/service/common';
 import 'bytemd/dist/index.min.css';
 
 import PublishForm from '@/components/Article/PublishForm';
@@ -13,6 +18,9 @@ import styles from './index.less';
 const plugins = [
   gfm(),
   gemoji(),
+  highlight(),
+  math(),
+  footnotes(),
   // Add more plugins here
 ];
 
@@ -79,6 +87,12 @@ const WriteArt: React.FC<{}> = () => {
         setValue('');
       }
     });
+  };
+
+  const getBase64 = (img: any, callback: any) => {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => callback(reader.result));
+    reader.readAsDataURL(img);
   };
 
   const pannelStyle = (): string => {
@@ -149,6 +163,23 @@ const WriteArt: React.FC<{}> = () => {
           <Editor
             value={value}
             plugins={plugins}
+            placeholder="输入文章内容..."
+            uploadImages={(files: any): any => {
+              getBase64(files[0], (imageUrl: any) => {
+                // 继续使用上文的file
+                const formDate = new FormData();
+                formDate.append('file', files[0], files[0].name);
+                upLoadFiles(formDate).then((res) => {
+                  if (res.code === 0) {
+                    const { data } = res;
+                    const defineUrl =
+                      value +
+                      `<br />![${data.originalname}](${data.path})<br />`;
+                    setValue(defineUrl);
+                  }
+                });
+              });
+            }}
             onChange={(v) => {
               setValue(v);
             }}
