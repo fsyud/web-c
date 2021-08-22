@@ -73,7 +73,7 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
       localStorage.STARRY_STAR_SKY_USER_INFO
     ) {
       setLoginsta(true);
-      const data = JSON.parse(localStorage.STARRY_STAR_SKY_USER_INFO);
+      const data = JSON.parse(localStorage.STARRY_STAR_SKY_USER_INFO || '');
       setAvators(data?.avator_url || '');
     }
   });
@@ -101,16 +101,7 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
   const onSuccessLogin = (params: boolean): void => {
     if (params) {
       setModalVisable(false);
-      getUserInfo();
       window.location.reload();
-    }
-  };
-
-  const getUserInfo = async (): Promise<any> => {
-    const { data } = await getUser(localStorage.STARRY_STAR_SKY_ID);
-
-    if (data) {
-      localStorage.setItem('STARRY_STAR_SKY_USER_INFO', JSON.stringify(data));
     }
   };
 

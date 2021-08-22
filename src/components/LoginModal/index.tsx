@@ -41,8 +41,13 @@ const LoginModal: React.FC<LoginModalProps> = (props) => {
       notification.success({
         message: data.msg,
       });
+      console.log(data);
       localStorage.setItem('STARRY_STAR_SKY', data.access_token);
       localStorage.setItem('STARRY_STAR_SKY_ID', data.id);
+      localStorage.setItem(
+        'STARRY_STAR_SKY_USER_INFO',
+        JSON.stringify(data.user_info),
+      );
       onSuccessLogin(true);
     } else {
       notification.error({
