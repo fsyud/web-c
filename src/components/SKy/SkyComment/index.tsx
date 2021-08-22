@@ -63,7 +63,13 @@ const SkyComment: React.FC<SkyCommentProps> = (props) => {
       }}
     >
       <div className={styles.header}>
-        <Avatar icon={<UserOutlined />} />
+        {localStorage.STARRY_STAR_SKY_USER_INFO ? (
+          <img
+            src={JSON.parse(localStorage.STARRY_STAR_SKY_USER_INFO)?.avator_url}
+          />
+        ) : (
+          <Avatar icon={<UserOutlined />} />
+        )}
         <TextArea
           onChange={onChange}
           value={chatContent}

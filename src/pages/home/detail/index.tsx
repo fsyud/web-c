@@ -75,9 +75,14 @@ const Detail: React.FC<DetailProps> = (props) => {
   };
 
   const sumbitComment = async (): Promise<any> => {
+    if (!localStorage.STARRY_STAR_SKY_ID) {
+      message.error('请登录后评论！');
+      return;
+    }
+
     const res = await addOneComment({
       article_id: _id,
-      user_id: '610c01ea6968080f8c845e1f',
+      user_id: localStorage.STARRY_STAR_SKY_ID,
       content: commentValue,
       name: '纳兹',
     });
@@ -94,6 +99,8 @@ const Detail: React.FC<DetailProps> = (props) => {
           article_id: params.id || 1,
         },
       });
+    } else {
+      message.error('评论失败！');
     }
   };
 

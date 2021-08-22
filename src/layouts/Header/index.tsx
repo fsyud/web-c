@@ -122,6 +122,7 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
     if (key === 'loginout') {
       localStorage.removeItem('STARRY_STAR_SKY');
       localStorage.removeItem('STARRY_STAR_SKY_ID');
+      localStorage.removeItem('STARRY_STAR_SKY_USER_INFO');
       window.location.reload();
     }
     if (key === 'setting') {
