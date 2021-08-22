@@ -23,13 +23,17 @@ const CommentsList: React.FC<CommentsListProps> = (props) => {
         return (
           <div className={styles.one_item} key={index}>
             <div className={styles.item_left}>
-              <Avatar icon={<UserOutlined />} />
+              {item?.oneComment?.avatar ? (
+                <img src={item?.oneComment?.avatar} />
+              ) : (
+                <Avatar icon={<UserOutlined />} />
+              )}
             </div>
 
             <div className={styles.item_right}>
               <div className={styles.item_main}>
                 <div className={styles.user_box}>
-                  <a>{item.name}</a>
+                  <a>{item?.oneComment?.user_name}</a>
                   <span></span>
                   <time>{DiffDay(item.create_times)}</time>
                 </div>

@@ -89,6 +89,7 @@ const PublishForm: React.FC<PublishFormProps> = (props) => {
               )}
             </Upload>
           </ImgCrop>
+          <span className={styles.upload_tips}>建议尺寸：1303*734px</span>
         </Form.Item>
 
         <Form.Item

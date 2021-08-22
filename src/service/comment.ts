@@ -22,3 +22,11 @@ export async function addOneComment(params: commentParamsType) {
     data: params,
   });
 }
+
+// 发表二级评论
+export async function addTwoComment(params: commentParamsType) {
+  return request('/api/comment/addTwo', {
+    method: 'POST',
+    data: params,
+  });
+}

@@ -23,7 +23,7 @@ const WriteArt: React.FC<{}> = () => {
   const [pubVis, setPubVis] = useState<boolean>(true);
   const [img_url, setImg_url] = useState<any>();
 
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<string>('');
 
   useEffect(() => {
     document.addEventListener('click', (e: any) => {
@@ -41,6 +41,11 @@ const WriteArt: React.FC<{}> = () => {
 
     if (!curtitle) {
       message.error('请填写标题！');
+      return;
+    }
+
+    if (!value) {
+      message.error('内容不能为空！');
       return;
     }
 
@@ -67,10 +72,11 @@ const WriteArt: React.FC<{}> = () => {
       });
 
       if (response?.success) {
-        // setPubVis(true);
-        // form.resetFields();
-        // setImg_url('');
-        // setCurtitle('');
+        setPubVis(true);
+        form.resetFields();
+        setImg_url('');
+        setCurtitle('');
+        setValue('');
       }
     });
   };

@@ -11,8 +11,8 @@ import styles from './index.less';
 const { TextArea } = Input;
 
 interface SkyCommentProps {
-  onCommitChange: (value: string) => void;
-  sumbitComment: () => void;
+  onCommitChange: (value: string) => void; // 输入框value变化
+  sumbitComment: () => void; // 提交
   clear: boolean;
 }
 
@@ -39,6 +39,7 @@ const SkyComment: React.FC<SkyCommentProps> = (props) => {
     event.nativeEvent.stopImmediatePropagation();
     const content = chatContent + `${emoji.native}`;
     setChatContent(content);
+    onCommitChange(content);
   };
 
   const onChange = (event: any): void => {
