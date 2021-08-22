@@ -17,10 +17,10 @@ interface CommentsListProps {
 const CommentsList: React.FC<CommentsListProps> = (props) => {
   const { commentList } = props;
 
-  const [commitSta, setCommitSta] = useState<boolean>(true);
+  const [commitSta, setCommitSta] = useState<boolean>(false);
 
   document.addEventListener('click', (e) => {
-    // setCommitSta(false);
+    setCommitSta(false);
   });
 
   console.log(commentList, 'commentList');
@@ -73,7 +73,7 @@ const CommentsList: React.FC<CommentsListProps> = (props) => {
                       className={styles.one}
                       onClick={(e: any) => {
                         e.nativeEvent.stopImmediatePropagation();
-                        // setCommitSta(true);
+                        setCommitSta(true);
                       }}
                     >
                       <Comits />
