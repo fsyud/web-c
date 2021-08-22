@@ -11,7 +11,6 @@ export default defineConfig({
     type: 'none',
     exclude: [],
   },
-  webpack5: {},
   hash: true,
   // 浏览器兼容版本
   targets: {
