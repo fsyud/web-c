@@ -32,7 +32,7 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
     window.addEventListener(
       'error',
       (errorEvent) => {
-        console.log(errorEvent);
+        // console.log(errorEvent);
         // if (errorEvent.type === 'error') {
         //   history.push('./404');
         // }

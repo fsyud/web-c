@@ -11,10 +11,12 @@ const { TextArea } = Input;
 
 interface CommentProps {
   commitSta: boolean;
+  placeholder?: string;
+  sumbitForm: (value: string) => void;
 }
 
 const Comment: React.FC<CommentProps> = (props) => {
-  const { commitSta } = props;
+  const { commitSta, placeholder, sumbitForm } = props;
 
   const [emojivis, setEmojivis] = useState<boolean>(false);
   const [chatContent, setChatContent] = useState<any>('');
@@ -55,7 +57,7 @@ const Comment: React.FC<CommentProps> = (props) => {
           onChange={onChange}
           value={chatContent}
           autoSize={{ minRows: 1, maxRows: 6 }}
-          placeholder="输入评论..."
+          placeholder={placeholder}
           onFocus={() => {
             if (emojivis) {
               setEmojivis(false);
@@ -86,7 +88,13 @@ const Comment: React.FC<CommentProps> = (props) => {
             </ul>
             <SkyEmoji visible={emojivis} onClickEmoji={onClickEmoji} />
           </div>
-          <Button type="primary">评论</Button>
+          <Button
+            disabled={!chatContent}
+            type="primary"
+            onClick={() => sumbitForm(chatContent)}
+          >
+            评论
+          </Button>
         </div>
       </div>
     </div>

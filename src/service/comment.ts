@@ -5,6 +5,8 @@ export type commentParamsType = {
   user_id: string;
   content: string;
   name?: string;
+  reply_content?: string;
+  reply_to_user_id?: string;
 };
 
 // 获取评论列表

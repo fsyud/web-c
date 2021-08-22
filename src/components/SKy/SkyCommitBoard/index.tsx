@@ -13,6 +13,10 @@ const SkyCommitBoard: React.FC<{}> = () => {
     });
   }, []);
 
+  const sumbitForm = (values: string) => {
+    console.log(values);
+  };
+
   return (
     <div className={styles.commit_board}>
       <div className={styles.header}>
@@ -44,7 +48,7 @@ const SkyCommitBoard: React.FC<{}> = () => {
           <img src={great} alt="" />
         </div>
       </div>
-      <Comment commitSta={commitSta} />
+      <Comment sumbitForm={sumbitForm} commitSta={commitSta} />
     </div>
   );
 };

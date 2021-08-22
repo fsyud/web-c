@@ -173,8 +173,7 @@ const WriteArt: React.FC<{}> = () => {
                   if (res.code === 0) {
                     const { data } = res;
                     const defineUrl =
-                      value +
-                      `<br />![${data.originalname}](${data.path})<br />`;
+                      value + `![${data.originalname}](${data.path})`;
                     setValue(defineUrl);
                   }
                 });
