@@ -43,13 +43,13 @@ export const getDefaultMarkedOptions = (): any => {
 
   marked.use({
     highlight(code: string, lang: string) {
-      if (lang) {
-        const language = lang.toLowerCase();
-        const grammar = Prism.languages[language];
-        if (grammar) {
-          return Prism.highlight(code, grammar, language);
-        }
-      }
+      // if (lang) {
+      //   const language = lang.toLowerCase();
+      //   const grammar = Prism.languages[language];
+      //   if (grammar) {
+      //     return Prism.highlight(code, grammar, language);
+      //   }
+      // }
       return hljs.highlightAuto(code).value;
     },
   });

@@ -126,20 +126,18 @@ const Detail: React.FC<DetailProps> = (props) => {
                   </div>
                 </div>
                 {/* 文章内容 */}
-                <Card bordered={false}>
-                  {content && (
-                    <div className={styles.marks}>
-                      <MarkdownBody
-                        getTocify={(tocInstance) => {
-                          setTocify(tocInstance);
-                        }}
-                        markdown={content}
-                        prismPlugin
-                        toc
-                      />
-                    </div>
-                  )}
-                </Card>
+                {content && (
+                  <div className={styles.marks}>
+                    <MarkdownBody
+                      getTocify={(tocInstance) => {
+                        setTocify(tocInstance);
+                      }}
+                      markdown={content}
+                      prismPlugin
+                      toc
+                    />
+                  </div>
+                )}
                 {/* 评论 */}
                 <Divider />
                 <Space direction="vertical">

@@ -1,7 +1,6 @@
 // highlight
 .markdown-body {
   background-color: transparent;
-  overflow: hidden;
   font-size: 15px;
 
   ul {
@@ -52,9 +51,12 @@
     }
   }
 
-  .line-numbers {
+  pre.line-numbers {
+    overflow-x: auto;
+
     code {
       font-size: 12px;
+      display: inline-block;
     }
   }
 }
