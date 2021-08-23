@@ -4,7 +4,7 @@
 ## Getting Started
 
 bolg head
-![image](https://user-images.githubusercontent.com/26371465/125034756-8c2dfa00-e0c3-11eb-8ee1-6402b5fb89dd.png)
+<img width="1353" alt="iShot2021-08-23 20 57 50" src="https://user-images.githubusercontent.com/26371465/130451066-877778f7-cd0a-4b40-ad62-cea37023aee3.png">
 
 Install dependencies,
 
