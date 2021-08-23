@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Affix } from 'antd';
+import classnames from 'classnames';
 import { history } from 'umi';
 import { useMediaQuery } from 'beautiful-react-hooks';
 import { Sparklines, SparklinesBars, SparklinesLine } from 'react-sparklines';
@@ -33,8 +34,15 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
     w.location.href = `/detail/${pmrams}`;
   };
 
+  const commitStyle = (): string => {
+    return classnames({
+      [styles.tehome]: true,
+      [styles.tehome_isMobobile]: isTabletOrMobile,
+    });
+  };
+
   return (
-    <div className={styles.tehome}>
+    <div className={commitStyle()}>
       <Row>
         <Col span={isTabletOrMobile ? 24 : 18} className={styles.tehome_left}>
           <section className={styles.init_section}>{children}</section>

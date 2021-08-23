@@ -3,7 +3,7 @@ import request from '@/utils/request';
 export type commentParamsType = {
   article_id: string;
   user_id: string;
-  content: string;
+  content?: string;
   name?: string;
   reply_content?: string;
   reply_to_user_id?: string;
