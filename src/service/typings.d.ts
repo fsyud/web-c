@@ -5,7 +5,7 @@ declare namespace API {
   };
   type updateUser = {
     username?: string;
-    avator_url?: string;
+    avatar_url?: string;
     job?: string;
     company?: string;
     introduce?: string;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'umi';
 import { Avatar, message } from 'antd';
+import classnames from 'classnames';
 import { UserOutlined } from '@ant-design/icons';
 import Comment from '@/components/SKy/SkyCommitBoard/Comment';
 import { ReactComponent as Comits } from '@/assets/svg/commit.svg';
@@ -12,11 +13,12 @@ import styles from './SecondCommit.less';
 export interface SecondCommitProps {
   comItem: any;
   parentItem: any;
+  curIndex: number;
 }
 
 const SecondCommit: React.FC<SecondCommitProps> = (props) => {
   const dispatch = useDispatch();
-  const { comItem, parentItem } = props;
+  const { comItem, parentItem, curIndex } = props;
 
   document.addEventListener('click', (e) => {
     setSecondCommitSta(false);
@@ -51,6 +53,12 @@ const SecondCommit: React.FC<SecondCommitProps> = (props) => {
     }
   };
 
+  const oneSpan = () => {
+    return classnames({
+      [styles.one_span]: curIndex === 0,
+    });
+  };
+
   return (
     <div className={styles.sub_comment}>
       <div className={styles.sub_avator}>
@@ -65,9 +73,19 @@ const SecondCommit: React.FC<SecondCommitProps> = (props) => {
 
       <div className={styles.sub_main}>
         <div className={styles.user_box}>
-          <span>{comItem.user?.user_name}</span>
-          <span>回复</span>
-          <span>{comItem.to_user?.user_name}</span>
+          <span className={oneSpan()}>
+            {comItem.user?.user_name}{' '}
+            {comItem?.user?.type === 1 && (
+              <span className={styles.is_auth}>（博主）</span>
+            )}{' '}
+          </span>
+          {curIndex !== 0 && (
+            <>
+              <span>回复</span>
+              <span>{comItem.to_user?.user_name}</span>
+            </>
+          )}
+
           <span className={styles.line}></span>
           <span>{DiffDay(comItem.create_times)}</span>
         </div>

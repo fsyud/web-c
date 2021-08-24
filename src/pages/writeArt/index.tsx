@@ -80,11 +80,11 @@ const WriteArt: React.FC<{}> = () => {
       });
 
       if (response?.success) {
-        setPubVis(true);
-        form.resetFields();
-        setImg_url('');
-        setCurtitle('');
-        setValue('');
+        // setPubVis(true);
+        // form.resetFields();
+        // setImg_url('');
+        // setCurtitle('');
+        // setValue('');
       }
     });
   };

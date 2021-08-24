@@ -119,9 +119,47 @@
       margin-top: 16px;
       margin-bottom: 72px;
 
+      h1 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #909090;
+        border-bottom: 1px solid rgba(178, 186, 194, 0.15);
+        padding: 16px;
+      }
+
       :global {
         .ant-skeleton {
           padding: 16px;
+        }
+
+        .ant-card-body {
+          padding: 0 16px;
+        }
+      }
+
+      .h_main {
+        padding-bottom: 16px;
+
+        .h_main__end {
+          display: flex;
+          justify-content: center;
+          color: #999;
+          padding: 15px 0;
+          align-items: center;
+
+          img {
+            width: 26px;
+            height: 26px;
+            margin-right: 4px;
+          }
+        }
+      }
+    }
+
+    .footer_list__isMobobile {
+      :global {
+        .ant-card-body {
+          padding: 16px 0;
         }
       }
     }

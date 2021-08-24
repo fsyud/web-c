@@ -15,7 +15,12 @@ import {
   Divider,
 } from 'antd';
 import ImgCrop from 'antd-img-crop';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import {
+  LoadingOutlined,
+  PlusOutlined,
+  UserOutlined,
+  SettingOutlined,
+} from '@ant-design/icons';
 import { userUpdate, getUser } from '@/service/user';
 
 import styles from './index.less';
@@ -27,6 +32,8 @@ const User: React.FC<{}> = () => {
   const [imgPath, setImgPath] = useState<string>(''); // 接口返回文件路径
   const [loading, setLoading] = useState<boolean>(false);
 
+  const [selectVal, setSelectVal] = useState<string>('a');
+
   useEffect(() => {
     getUserInfo();
   }, []);
@@ -34,8 +41,8 @@ const User: React.FC<{}> = () => {
   const getUserInfo = async (): Promise<any> => {
     const { data } = await getUser(localStorage.STARRY_STAR_SKY_ID);
     if (data) {
-      setImgPath(data.avator_url);
-      setImgurl(data.avator_url);
+      setImgPath(data.avatar_url);
+      setImgurl(data.avatar_url);
       form.setFieldsValue({
         username: data.username,
         job: data.job,
@@ -87,7 +94,7 @@ const User: React.FC<{}> = () => {
     const userObj = {
       ...values,
       ...{
-        avator_url: imgPath,
+        avatar_url: imgPath,
         id: localStorage.getItem('STARRY_STAR_SKY_ID'),
       },
     };
@@ -117,83 +124,99 @@ const User: React.FC<{}> = () => {
           <Col span={6}>
             <aside className={styles.a_side}>
               <Space direction="vertical">
-                <Radio.Group defaultValue="a" buttonStyle="solid">
-                  <Radio.Button value="a">个人资料</Radio.Button>
-                  <Radio.Button value="b">账号设置</Radio.Button>
+                <Radio.Group
+                  onChange={(e: any) => {
+                    setSelectVal(e.target.value);
+                  }}
+                  value={selectVal}
+                  buttonStyle="solid"
+                >
+                  <Radio.Button value="a">
+                    <UserOutlined style={{ marginRight: 8 }} />
+                    个人资料
+                  </Radio.Button>
+                  <Radio.Button value="b">
+                    <SettingOutlined style={{ marginRight: 8 }} />
+                    账号设置
+                  </Radio.Button>
                 </Radio.Group>
               </Space>
             </aside>
           </Col>
           <Col span={18}>
             <div className={styles.a_right}>
-              <Card title="个人资料">
-                <div className={styles.left}>
-                  <Form
-                    name="basic"
-                    labelCol={{ span: 5 }}
-                    onFinish={onFinish}
-                    wrapperCol={{ span: 20 }}
-                    form={form}
-                    initialValues={{ remember: true }}
-                  >
-                    <Form.Item label="用户名" name="username">
-                      <Input placeholder="填写你的用户名" />
-                    </Form.Item>
-                    <Divider />
-                    <Form.Item label="职位" name="job">
-                      <Input placeholder="填写你的职位" />
-                    </Form.Item>
-                    <Divider />
-                    <Form.Item label="公司" name="company">
-                      <Input placeholder="填写你的公司" />
-                    </Form.Item>
-                    <Divider />
-                    <Form.Item label="个人介绍" name="introduce">
-                      <Input.TextArea
-                        placeholder="填写职业技能、擅长的事情、喜欢的事情等"
-                        allowClear
-                        autoSize={{ minRows: 3, maxRows: 6 }}
-                      />
-                    </Form.Item>
-                    <Divider />
-                    <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
-                      <Button type="primary" htmlType="submit">
-                        保存修改
-                      </Button>
-                    </Form.Item>
-                  </Form>
-                </div>
-                <div className={styles.right}>
-                  <ImgCrop
-                    rotate
-                    aspect={1 / 1}
-                    modalTitle="裁剪图片，建议上传1/1比例的图片"
-                  >
-                    <Upload
-                      action="/api/common/upload"
-                      listType="picture-card"
-                      showUploadList={false}
-                      onChange={onChange}
-                      beforeUpload={beforeUpload}
+              {selectVal === 'a' && (
+                <Card title="个人资料">
+                  <div className={styles.left}>
+                    <Form
+                      name="basic"
+                      labelCol={{ span: 5 }}
+                      onFinish={onFinish}
+                      wrapperCol={{ span: 20 }}
+                      form={form}
+                      initialValues={{ remember: true }}
                     >
-                      {imgurl ? (
-                        <img src={imgurl} style={{ width: '100%' }} />
-                      ) : (
-                        uploadButton
-                      )}
-                    </Upload>
-                  </ImgCrop>
+                      <Form.Item label="用户名" name="username">
+                        <Input placeholder="填写你的用户名" />
+                      </Form.Item>
+                      <Divider />
+                      <Form.Item label="职位" name="job">
+                        <Input placeholder="填写你的职位" />
+                      </Form.Item>
+                      <Divider />
+                      <Form.Item label="公司" name="company">
+                        <Input placeholder="填写你的公司" />
+                      </Form.Item>
+                      <Divider />
+                      <Form.Item label="个人介绍" name="introduce">
+                        <Input.TextArea
+                          placeholder="填写职业技能、擅长的事情、喜欢的事情等"
+                          allowClear
+                          autoSize={{ minRows: 3, maxRows: 6 }}
+                        />
+                      </Form.Item>
+                      <Divider />
+                      <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
+                        <Button type="primary" htmlType="submit">
+                          保存修改
+                        </Button>
+                      </Form.Item>
+                    </Form>
+                  </div>
+                  <div className={styles.right}>
+                    <ImgCrop
+                      rotate
+                      aspect={1 / 1}
+                      modalTitle="裁剪图片，建议上传1/1比例的图片"
+                    >
+                      <Upload
+                        action="/api/common/upload"
+                        listType="picture-card"
+                        showUploadList={false}
+                        onChange={onChange}
+                        beforeUpload={beforeUpload}
+                      >
+                        {imgurl ? (
+                          <img src={imgurl} style={{ width: '100%' }} />
+                        ) : (
+                          uploadButton
+                        )}
+                      </Upload>
+                    </ImgCrop>
 
-                  {imgurl && (
-                    <div
-                      className={styles.back_upload}
-                      onClick={() => setImgurl('')}
-                    >
-                      撤销上传
-                    </div>
-                  )}
-                </div>
-              </Card>
+                    {imgurl && (
+                      <div
+                        className={styles.back_upload}
+                        onClick={() => setImgurl('')}
+                      >
+                        撤销上传
+                      </div>
+                    )}
+                  </div>
+                </Card>
+              )}
+
+              {selectVal === 'b' && <Card title="账号设置"></Card>}
             </div>
           </Col>
         </Row>

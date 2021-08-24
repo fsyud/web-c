@@ -3,10 +3,11 @@ import { Row, Col, Affix } from 'antd';
 import classnames from 'classnames';
 import { history } from 'umi';
 import { useMediaQuery } from 'beautiful-react-hooks';
-import { Sparklines, SparklinesBars, SparklinesLine } from 'react-sparklines';
+// import { Sparklines, SparklinesBars, SparklinesLine } from 'react-sparklines';
 import { getHotArticle } from '@/service/home';
 import communicate from '@/assets/svg/communicate.svg';
 import questionnaire from '@/assets/svg/questionnaire.svg';
+import paywechat from '@/assets/svg/pay_wechat.svg';
 import study from '@/assets/svg/study.svg';
 import styles from './index.less';
 
@@ -17,6 +18,7 @@ interface TeHomeProps {
 const TeHome: React.FC<TeHomeProps> = ({ children }) => {
   const isTabletOrMobile = useMediaQuery('(max-width: 1024px)');
   const [hots, setHots] = useState<any[]>([]);
+  const [qrcode, setQrcode] = useState<boolean>(false);
 
   useEffect(() => {
     getHotArt();
@@ -135,8 +137,22 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
                     </a>
                   </p>
                   <p>版权所有 © 2021 starryskystar</p>
+                  <h6 className={styles.wechat}>
+                    <img
+                      src={paywechat}
+                      onMouseEnter={() => setQrcode(true)}
+                      onMouseOut={() => setQrcode(false)}
+                    />
 
-                  <Sparklines
+                    {qrcode && (
+                      <div className={styles.qrcode}>
+                        <h4>赞赏博主（开源不易）</h4>
+                        <img src={require('@/assets/pay.jpeg')} />
+                      </div>
+                    )}
+                  </h6>
+
+                  {/* <Sparklines
                     data={[
                       5,
                       10,
@@ -162,7 +178,7 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
                     <SparklinesLine
                       style={{ stroke: '#41c3f9', fill: 'none' }}
                     />
-                  </Sparklines>
+                  </Sparklines> */}
                 </aside>
               </div>
             </Affix>

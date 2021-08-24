@@ -23,6 +23,35 @@
       padding: 16px;
       margin-bottom: 16px;
 
+      .wechat {
+        position: relative;
+        display: flex;
+        margin-top: 8px;
+
+        img {
+          width: 32px;
+          height: 32px;
+        }
+
+        .qrcode {
+          position: absolute;
+          background-color: #fff;
+          left: 0;
+          top: 36px;
+
+          h4 {
+            border-bottom: 1px rgb(241, 239, 239) solid;
+            padding: 4px 10px;
+            color: rgb(156, 154, 154);
+          }
+
+          img {
+            width: 160px;
+            height: 160px;
+          }
+        }
+      }
+
       &:nth-of-type(1) {
         .tehome_one {
           h5 {

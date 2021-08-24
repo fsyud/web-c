@@ -65,7 +65,12 @@ const SingleComment: React.FC<SingleCommentProps> = (props) => {
         {/* 一级评论内容 */}
         <div className={styles.item_main}>
           <div className={styles.user_box}>
-            <a>{item?.oneComment?.user_name}</a>
+            <a>
+              {item?.oneComment?.user_name}{' '}
+              {item?.oneComment?.type === 1 && (
+                <span className={styles.is_auth}>（博主）</span>
+              )}
+            </a>
             <span className={styles.line}></span>
             <time>{DiffDay(item.create_times)}</time>
           </div>
@@ -108,6 +113,7 @@ const SingleComment: React.FC<SingleCommentProps> = (props) => {
                     parentItem={item}
                     comItem={comItem}
                     key={index}
+                    curIndex={index}
                   />
                 ))}
             </div>

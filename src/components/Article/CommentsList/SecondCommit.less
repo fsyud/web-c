@@ -4,6 +4,10 @@
   display: flex;
   flex-direction: row;
 
+  &:last-child {
+    border-bottom: none;
+  }
+
   .sub_avator {
     display: flex;
     width: 32px;
@@ -45,7 +49,6 @@
 
       span {
         margin-right: 12px;
-
         &:nth-of-type(1),
         &:nth-of-type(3) {
           font-weight: 500;
@@ -56,6 +59,16 @@
         &:nth-of-type(3) {
           margin-right: 0;
         }
+
+        .is_auth {
+          font-size: 12px;
+          color: #73777e;
+          margin-right: 0;
+        }
+      }
+
+      .one_span {
+        margin-right: 0;
       }
     }
 

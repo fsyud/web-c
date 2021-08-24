@@ -65,7 +65,7 @@ const SkyComment: React.FC<SkyCommentProps> = (props) => {
       <div className={styles.header}>
         {localStorage.STARRY_STAR_SKY_USER_INFO ? (
           <img
-            src={JSON.parse(localStorage.STARRY_STAR_SKY_USER_INFO)?.avator_url}
+            src={JSON.parse(localStorage.STARRY_STAR_SKY_USER_INFO)?.avatar_url}
           />
         ) : (
           <Avatar icon={<UserOutlined />} />
