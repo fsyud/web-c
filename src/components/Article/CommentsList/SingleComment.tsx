@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { Avatar } from 'antd';
+import { Avatar, message } from 'antd';
+import { useDispatch } from 'umi';
 import { UserOutlined } from '@ant-design/icons';
 import { ReactComponent as Comits } from '@/assets/svg/commit.svg';
 import { ReactComponent as Greats } from '@/assets/svg/great.svg';
 import Comment from '@/components/SKy/SkyCommitBoard/Comment';
 import { addTwoComment } from '@/service/comment';
+import SecondCommit from './SecondCommit';
 import { DiffDay } from '@/utils/utils';
-import styles from './index.less';
+import styles from './SingleComment.less';
 
 export interface SingleCommentProps {
   item: any;
 }
 
 const SingleComment: React.FC<SingleCommentProps> = (props) => {
+  const dispatch = useDispatch();
   const { item } = props;
-
   const [commitSta, setCommitSta] = useState<boolean>(false);
 
   document.addEventListener('click', (e) => {
@@ -23,18 +25,28 @@ const SingleComment: React.FC<SingleCommentProps> = (props) => {
 
   // 二级评论提交
   const sumbitForm = async (values: string, item: any): Promise<any> => {
-    console.log(values, item);
-
     const params = {
       article_id: item.article_id,
       reply_content: values,
       reply_to_user_id: item.oneComment?.user_id,
       user_id: localStorage.STARRY_STAR_SKY_ID,
+      commit_id: item._id,
     };
 
     const data = await addTwoComment(params);
 
-    console.log(data);
+    if (data.code === 0) {
+      message.success('回复留言成功！');
+      dispatch({
+        type: 'article/getComments',
+        payload: {
+          article_id: item.article_id || 1,
+        },
+      });
+      setCommitSta(false);
+    } else {
+      message.error('回复留言失败！');
+    }
   };
 
   return (
@@ -50,10 +62,11 @@ const SingleComment: React.FC<SingleCommentProps> = (props) => {
 
       {/* 右侧 */}
       <div className={styles.item_right}>
+        {/* 一级评论内容 */}
         <div className={styles.item_main}>
           <div className={styles.user_box}>
             <a>{item?.oneComment?.user_name}</a>
-            <span></span>
+            <span className={styles.line}></span>
             <time>{DiffDay(item.create_times)}</time>
           </div>
           <div className={styles.content}>{item.content}</div>
@@ -72,10 +85,10 @@ const SingleComment: React.FC<SingleCommentProps> = (props) => {
             </div>
           </div>
         </div>
+        {/* 回复模块 */}
         <div className={styles.comment_wrapper}>
           <div className={styles.wrapper_list}>
-            <div className={styles.wrapper_one}></div>
-
+            {/* 一级回复组件 */}
             <div className={styles.comment_form}>
               {commitSta && (
                 <Comment
@@ -86,6 +99,17 @@ const SingleComment: React.FC<SingleCommentProps> = (props) => {
                   commitSta={false}
                 />
               )}
+            </div>
+
+            <div className={styles.sub_comment_list}>
+              {Array.isArray(item?.secondCommit) &&
+                item.secondCommit.map((comItem: any, index: number) => (
+                  <SecondCommit
+                    parentItem={item}
+                    comItem={comItem}
+                    key={index}
+                  />
+                ))}
             </div>
           </div>
         </div>

@@ -1,0 +1,110 @@
+.sub_comment {
+  border-bottom: 1px solid #e5e6eb;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: row;
+
+  .sub_avator {
+    display: flex;
+    width: 32px;
+    // border: 1px red solid;
+    position: absolute;
+
+    img {
+      width: 32px;
+      height: 32px;
+      border-radius: 16px;
+    }
+  }
+
+  span.line {
+    display: block;
+    width: 1px;
+    height: 14px;
+    background: #e5e6eb;
+    margin: 0 12px;
+  }
+
+  .sub_main {
+    flex: 1 1 auto;
+    flex-direction: column;
+    margin-left: 44px;
+
+    .user_box {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      a {
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+        font-weight: 600;
+        color: #2e3135;
+      }
+
+      span {
+        margin-right: 12px;
+
+        &:nth-of-type(1),
+        &:nth-of-type(3) {
+          font-weight: 500;
+          font-size: 14px;
+          color: #1d2129;
+        }
+
+        &:nth-of-type(3) {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .sub_content {
+      margin-top: 8px;
+    }
+
+    .action_box {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 8px;
+
+      .one {
+        margin-right: 16px;
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        cursor: pointer;
+        color: #86909c;
+
+        &:hover {
+          color: #1e80ff;
+        }
+
+        svg {
+          width: 16px;
+          height: 16px;
+          margin-right: 6px;
+
+          &:hover {
+            fill: #1e80ff;
+          }
+        }
+
+        &:nth-of-type(1) {
+          svg {
+            margin-top: -2px;
+          }
+
+          &:hover {
+            fill: #1e80ff;
+          }
+        }
+      }
+    }
+
+    .sub_comment_form {
+      background-color: #fff;
+    }
+  }
+}

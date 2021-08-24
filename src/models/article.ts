@@ -48,9 +48,6 @@ const ArticleModel: ArticleModelType = {
     },
     *getComments({ payload }, { call, put }) {
       const response = yield call(getCommentList, payload);
-
-      console.log(response);
-
       if (response) {
         yield put({
           type: 'commentsList',

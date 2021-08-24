@@ -14,7 +14,7 @@
   </a>
 </p>
 
-> 基于react、umjs、antd开发的博客c端，功能实现了文章过滤筛选，评论、多角色权限、移动端适配、图片上传、在线文章书写等功能。后端服务基于nestjs。后续可能会升级ssr的版本，谢谢关注！
+> 基于react、umjs、antd开发的博客c端，功能实现了文章过滤筛选，评论、多角色权限、移动端适配、图片上传、在线markdown书写等功能。后端服务基于nestjs。后续可能会升级ssr的版本，谢谢关注！
 
 ### 🏠 [Homepage](https://www.starryskystar.space/)
 bolg head
@@ -61,6 +61,3 @@ Give a ⭐️ if this project helped you!
 
 Copyright © 2021 [naze](https://github.com/starryskystar).<br />
 This project is [MIT](https://github.com/starryskystar/blog-c/blob/master/LICENSE) licensed.
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

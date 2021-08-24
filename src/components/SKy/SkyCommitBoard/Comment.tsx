@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Input, Button } from 'antd';
 import classnames from 'classnames';
 import smile1 from '@/assets/svg/smile1.svg';
@@ -12,6 +12,7 @@ const { TextArea } = Input;
 interface CommentProps {
   commitSta: boolean;
   placeholder?: string;
+  style?: React.CSSProperties;
   sumbitForm: (value: string) => void;
 }
 
@@ -20,8 +21,11 @@ const Comment: React.FC<CommentProps> = (props) => {
 
   const [emojivis, setEmojivis] = useState<boolean>(false);
   const [chatContent, setChatContent] = useState<any>('');
+  const [focusSta, setFocusSta] = useState<boolean>(true);
 
   useEffect(() => {
+    // inpurtRef.current = true;
+
     document.addEventListener('click', (e) => {
       setEmojivis(false);
     });
@@ -45,57 +49,67 @@ const Comment: React.FC<CommentProps> = (props) => {
   };
 
   return (
-    <div>
+    <div
+      className={commitStyle()}
+      style={props.style}
+      id="asdas"
+      onClick={(e: any) => {
+        e.nativeEvent.stopImmediatePropagation();
+      }}
+    >
+      <TextArea
+        onChange={onChange}
+        value={chatContent}
+        autoFocus={focusSta}
+        autoSize={{ minRows: 1, maxRows: 6 }}
+        placeholder={placeholder}
+        onBlur={() => {
+          console.log('onBlur');
+        }}
+        onFocus={() => {
+          if (emojivis) {
+            setEmojivis(false);
+          }
+        }}
+      />
       <div
-        className={commitStyle()}
-        id="asdas"
+        className={styles.tool}
         onClick={(e: any) => {
-          e.nativeEvent.stopImmediatePropagation();
+          setFocusSta(true);
         }}
       >
-        <TextArea
-          onChange={onChange}
-          value={chatContent}
-          autoSize={{ minRows: 1, maxRows: 6 }}
-          placeholder={placeholder}
-          onFocus={() => {
-            if (emojivis) {
-              setEmojivis(false);
-            }
-          }}
-        />
-        <div className={styles.tool}>
-          <div className={styles.card__tool}>
-            <ul
-              onClick={() => {
-                if (emojivis) {
-                  setEmojivis(false);
-                }
+        <div className={styles.card__tool}>
+          <ul
+            onClick={() => {
+              if (emojivis) {
+                setEmojivis(false);
+              }
+            }}
+          >
+            <li
+              onClick={(e: any) => {
+                setEmojivis(!emojivis);
               }}
             >
-              <li
-                onClick={(e: any) => {
-                  setEmojivis(!emojivis);
-                }}
-              >
-                <img src={smile1} />
-                表情
-              </li>
-              <li>
-                <img src={photo} />
-                图片
-              </li>
-            </ul>
-            <SkyEmoji visible={emojivis} onClickEmoji={onClickEmoji} />
-          </div>
-          <Button
-            disabled={!chatContent}
-            type="primary"
-            onClick={() => sumbitForm(chatContent)}
-          >
-            评论
-          </Button>
+              <img src={smile1} />
+              表情
+            </li>
+            <li>
+              <img src={photo} />
+              图片
+            </li>
+          </ul>
+          <SkyEmoji visible={emojivis} onClickEmoji={onClickEmoji} />
         </div>
+        <Button
+          disabled={!chatContent}
+          type="primary"
+          onClick={() => {
+            sumbitForm(chatContent);
+          }}
+        >
+          评论
+        </Button>
       </div>
     </div>
   );

@@ -9,9 +9,6 @@ interface CommentsListProps {
 
 const CommentsList: React.FC<CommentsListProps> = (props) => {
   const { commentList } = props;
-
-  console.log(commentList, 'commentList');
-
   return (
     <div className={styles.comment_list}>
       {commentList.map((item: any, index: number) => {
