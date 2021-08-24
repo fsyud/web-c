@@ -1,4 +1,9 @@
 {
+  "name": "Blog-c",
+  "version": "1.0.0",
+  "description": "基于react、umjs、antd开发的博客c端，功能实现了文章过滤筛选，评论、多角色权限、移动端适配、图片上传、在线文章书写等功能。后端服务基于nestjs。后续可能会升级ssr的版本，谢谢关注！",
+  "author": "naze",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "start": "umi dev",
@@ -20,6 +25,18 @@
       "prettier --parser=typescript --write"
     ]
   },
+  "engines": {
+    "npm": ">=6.14.11",
+    "node": ">=14.16.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/starryskystar/blog-c"
+  },
+  "bugs": {
+    "url": "https://github.com/starryskystar/blog-c/issues"
+  },
+  "homepage": "https://www.starryskystar.space/",
   "dependencies": {
     "@ant-design/pro-layout": "^6.5.0",
     "@bytemd/plugin-footnotes": "^1.10.13",

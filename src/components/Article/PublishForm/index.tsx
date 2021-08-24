@@ -27,9 +27,6 @@ const PublishForm: React.FC<PublishFormProps> = (props) => {
   const getBase64 = (img: any, callback: any) => {
     const reader = new FileReader();
     reader.addEventListener('load', () => callback(reader.result));
-
-    console.log(img);
-
     reader.readAsDataURL(img);
   };
 
@@ -50,6 +47,7 @@ const PublishForm: React.FC<PublishFormProps> = (props) => {
       message.error('请上传 JPG/PNG 格式的文件!');
     }
     const isLt2M = file.size / 1024 / 1024 < 2;
+
     if (!isLt2M) {
       message.error('图片请小于2MB!');
     }
