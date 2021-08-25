@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Input, Upload, message } from 'antd';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import SkyTagRadio from '@/components/SKy/SkyForm/SkyTagRadio';
@@ -12,10 +12,11 @@ const { TextArea } = Input;
 type PublishFormProps = {
   form: FormInstance;
   handleUploadImg: (params: any) => void;
+  defaultImgUrl: string;
 };
 
 const PublishForm: React.FC<PublishFormProps> = (props) => {
-  const { form, handleUploadImg } = props;
+  const { form, handleUploadImg, defaultImgUrl } = props;
 
   const [imgurl, setImgurl] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -24,6 +25,11 @@ const PublishForm: React.FC<PublishFormProps> = (props) => {
     labelCol: { span: 4 },
     wrapperCol: { span: 18 },
   };
+
+  useEffect(() => {
+    setImgurl(defaultImgUrl);
+  }, [props]);
+
   const getBase64 = (img: any, callback: any) => {
     const reader = new FileReader();
     reader.addEventListener('load', () => callback(reader.result));

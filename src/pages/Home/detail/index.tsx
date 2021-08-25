@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useReducer } from 'react';
-import { useParams, useDispatch, useSelector } from 'umi';
+import React, { useEffect, useState, useReducer, useMemo } from 'react';
+import { useParams, useDispatch, useSelector, history } from 'umi';
 import { getStringDay } from '@/utils/utils';
 import throttle from 'lodash/throttle';
 import classnames from 'classnames';
@@ -33,6 +33,8 @@ const Detail: React.FC<DetailProps> = (props) => {
     switch (action.type) {
       case 'add':
         return [...state, ...(action.data || [])];
+      case 'init':
+        return [];
       default:
         throw new Error();
     }
@@ -44,6 +46,8 @@ const Detail: React.FC<DetailProps> = (props) => {
   const [curNull, setCurNull] = useState<boolean>(false); // 是否有数据
   const dispatch = useDispatch();
   const [tocify, setTocify] = useState<Tocify>();
+  const [isAdmin, setIsAdmin] = useState<boolean>(false); // 是否是管理员
+
   const { detail, commentsList } = useSelector(({ article }: any) => {
     return { ...article };
   });
@@ -78,14 +82,35 @@ const Detail: React.FC<DetailProps> = (props) => {
   }, [curPage, type]);
 
   useEffect(() => {
+    // 滚动事件
     window.addEventListener('scroll', throttle(onScroll, 1000));
+
+    // 角色判断是否可以编辑
+    const userInfo = localStorage.STARRY_STAR_SKY_USER_INFO;
+
+    console.log(JSON.parse(userInfo));
+
+    if (userInfo && JSON.parse(userInfo).type === 1 + '') {
+      setIsAdmin(true);
+    }
   }, []);
 
+  // 销毁滚动监听
   useEffect(() => {
     return () => {
       window.removeEventListener('scroll', throttle(onScroll, 1000));
     };
   }, []);
+
+  // 评论总条数
+  const commitNum = useMemo(() => {
+    let total = 0;
+    for (let i = 0; i < commentsList.length; i++) {
+      total += commentsList[i].secondCommit.length;
+    }
+    total = commentsList.length + total;
+    return total;
+  }, [commentsList]);
 
   const getArtList = async (conf: {
     curPage?: number; // 当前页数
@@ -113,6 +138,8 @@ const Detail: React.FC<DetailProps> = (props) => {
     } else {
       params.where = where;
     }
+
+    params.filter = { _id: { $ne: _id } };
 
     const res: API.reponseData = await getArticleList(params);
     if (res && Array.isArray(res.data)) {
@@ -153,6 +180,9 @@ const Detail: React.FC<DetailProps> = (props) => {
 
   const onScroll = () => {
     const scrollElement: any = window.document.querySelector('.home_contain');
+
+    if (!scrollElement) return;
+
     let innerHeight = scrollElement?.clientHeight || 0; //屏幕尺寸高度
     //可滚动容器超出当前窗口显示范围的高度
     let outerHeight =
@@ -209,6 +239,11 @@ const Detail: React.FC<DetailProps> = (props) => {
     }
   };
 
+  // 博主角色可直接编辑文章
+  const EditArticle = (): void => {
+    history.push('/writeArt?id=' + _id);
+  };
+
   const commitStyle = (): string => {
     return classnames({
       [styles.footer_list]: true,
@@ -234,6 +269,11 @@ const Detail: React.FC<DetailProps> = (props) => {
                     <div className={styles.meta}>
                       <time>{getStringDay(create_times)}</time>
                       <span>阅读 {meta?.views}</span>
+                      {isAdmin && (
+                        <span className={styles.edit} onClick={EditArticle}>
+                          . 编辑
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -271,7 +311,7 @@ const Detail: React.FC<DetailProps> = (props) => {
                 </Space>
                 <Card bordered={false} className={styles.comment_card}>
                   <div className={styles.comment_head}>
-                    全部评论（{meta?.comments}）
+                    全部评论（{commitNum}）
                     <img src={fire} />
                   </div>
                   <CommentsList commentList={commentsList} />

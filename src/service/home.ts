@@ -4,6 +4,7 @@ export type homeListParamsType = {
   page?: number;
   pageSize?: number;
   where?: any;
+  filter?: any;
 };
 
 export type createArtParamsType = {};

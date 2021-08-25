@@ -50,11 +50,9 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
     const curPath = history.location.pathname;
     if (curPath.includes(Menus[0].path) || curPath === '/') {
       return <TeHome children={ELE} />;
-    }
-    if (curPath.includes(Menus[1].path)) {
+    } else if (curPath.includes(Menus[1].path)) {
       return <TeAwhile children={ELE} />;
-    }
-    if (
+    } else if (
       curPath.includes(Menus[2].path) ||
       curPath.includes('404') ||
       curPath.includes('tag-column') ||
@@ -62,8 +60,7 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
       curPath.includes('user')
     ) {
       return <TeBook children={ELE} />;
-    }
-    if (curPath.includes('detail')) {
+    } else if (curPath.includes('detail')) {
       return <TeArt children={ELE} />;
     }
   };

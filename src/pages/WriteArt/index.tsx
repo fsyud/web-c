@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Button, Card, Input, message, Form } from 'antd';
 import classnames from 'classnames';
 import { useDispatch } from 'dva';
+import { getArtDeatil } from '@/service/home';
+import { history } from 'umi';
 import { Editor, Viewer } from '@bytemd/react';
-import { Image } from 'mdast';
 import gfm from '@bytemd/plugin-gfm';
 import highlight from '@bytemd/plugin-highlight';
 import gemoji from '@bytemd/plugin-gemoji';
@@ -30,8 +31,12 @@ const WriteArt: React.FC<{}> = () => {
   const [curtitle, setCurtitle] = useState<string>('');
   const [pubVis, setPubVis] = useState<boolean>(true);
   const [img_url, setImg_url] = useState<any>();
-
   const [value, setValue] = useState<string>('');
+  const [defImgUrl, setDefImgUrl] = useState<string>('');
+
+  const {
+    location: { query },
+  } = history;
 
   useEffect(() => {
     document.addEventListener('click', (e: any) => {
@@ -39,7 +44,25 @@ const WriteArt: React.FC<{}> = () => {
         setPubVis(true);
       }
     });
+
+    // 文章编辑
+    if (query?.id) {
+      getArtDetail(query.id);
+    }
   }, []);
+
+  const getArtDetail = async (pmrams: any): Promise<any> => {
+    const { data } = await getArtDeatil({ id: pmrams });
+    if (data) {
+      setCurtitle(data.title);
+      setValue(data.content);
+      form.setFieldsValue({
+        type: Number(data.type),
+        desc: data.desc,
+      });
+      setDefImgUrl(data.img_url);
+    }
+  };
 
   const submit = async (): Promise<any> => {
     if (!localStorage.STARRY_STAR_SKY_ID) {
@@ -128,6 +151,7 @@ const WriteArt: React.FC<{}> = () => {
               <PublishForm
                 handleUploadImg={(params: any) => setImg_url(params)}
                 form={form}
+                defaultImgUrl={defImgUrl}
               />
             </div>
             <div className={styles.panel_footer}>
