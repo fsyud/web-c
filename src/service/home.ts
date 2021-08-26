@@ -30,6 +30,14 @@ export async function createArticle(params: createArtParamsType) {
   });
 }
 
+// 写文章
+export async function updateArticle(params: createArtParamsType) {
+  return request('/api/home/updates', {
+    method: 'POST',
+    data: params,
+  });
+}
+
 // 获取文章详情
 export async function getArtDeatil(params: getArtDeatilParamsType) {
   return request('/api/home/detail', {

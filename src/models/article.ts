@@ -1,6 +1,6 @@
 import { Effect, Reducer } from 'umi';
 import { message } from 'antd';
-import { createArticle, getArtDeatil } from '@/service/home';
+import { createArticle, getArtDeatil, updateArticle } from '@/service/home';
 import { getCommentList } from '@/service/comment';
 
 export type CuurrentArt = {};
@@ -13,6 +13,7 @@ export interface ArticleModelType {
   };
   effects: {
     createArticle: Effect;
+    updateArticle: Effect;
     getArticleDetail: Effect;
     getComments: Effect;
   };
@@ -34,6 +35,14 @@ const ArticleModel: ArticleModelType = {
       const { data } = yield call(createArticle, payload);
       if (data) {
         message.info(data.msg);
+      }
+      return data;
+    },
+    *updateArticle({ payload }, { call, _ }) {
+      const { data } = yield call(updateArticle, payload);
+      console.log(data);
+      if (data.success) {
+        message.info('编辑成功！');
       }
       return data;
     },

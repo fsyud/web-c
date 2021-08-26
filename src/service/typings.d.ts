@@ -17,8 +17,9 @@ declare namespace API {
     type: number;
     author?: string;
     user_id: string;
-    img_url: any;
+    img_url?: any;
     desc: string;
+    _id?: string;
   };
   type reponseData = {
     code: number;

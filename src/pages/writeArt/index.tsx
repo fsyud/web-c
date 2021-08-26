@@ -63,6 +63,7 @@ const WriteArt: React.FC<{}> = () => {
   const [img_url, setImg_url] = useState<any>();
   const [value, setValue] = useState<string>('');
   const [defImgUrl, setDefImgUrl] = useState<string>('');
+  const [detailInfo, setDetailInfo] = useState<any>();
 
   const {
     location: { query },
@@ -83,6 +84,7 @@ const WriteArt: React.FC<{}> = () => {
   const getArtDetail = async (pmrams: any): Promise<any> => {
     const { data } = await getArtDeatil({ id: pmrams });
     if (data) {
+      setDetailInfo(data);
       setCurtitle(data.title);
       setValue(data.content);
       form.setFieldsValue({
@@ -105,24 +107,44 @@ const WriteArt: React.FC<{}> = () => {
     }
 
     form.validateFields().then(async (data: any) => {
-      if (!img_url) {
-        message.error('请上传封面图片！');
-        return;
+      if (query?.id) {
+        if (!img_url && !defImgUrl) {
+          message.error('请上传封面图片！');
+        }
+      } else {
+        if (!img_url) {
+          message.error('请上传封面图片！');
+          return;
+        }
       }
 
       const { desc, type } = data;
 
-      const params: API.artParams = {
+      let params: API.artParams = {
         title: curtitle,
         content: value,
         type,
         user_id: StorageStore.getUserId() || 0,
-        img_url,
         desc,
       };
 
+      let typeReaquestUrl: string = '';
+
+      if (img_url) {
+        params.img_url = img_url;
+      } else {
+        params.img_url = defImgUrl;
+      }
+
+      if (query?.id) {
+        params._id = detailInfo._id;
+        typeReaquestUrl = 'article/updateArticle';
+      } else {
+        typeReaquestUrl = 'article/createArticle';
+      }
+
       const response: any = await dispatch({
-        type: 'article/createArticle',
+        type: typeReaquestUrl,
         payload: params,
       });
 
