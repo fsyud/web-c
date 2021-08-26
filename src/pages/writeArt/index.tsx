@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button, Card, Input, message, Form } from 'antd';
 import classnames from 'classnames';
 import { useDispatch } from 'dva';
@@ -11,10 +11,12 @@ import gemoji from '@bytemd/plugin-gemoji';
 import math from '@bytemd/plugin-math';
 import footnotes from '@bytemd/plugin-footnotes';
 import { upLoadFiles } from '@/service/common';
-import 'bytemd/dist/index.min.css';
-
 import PublishForm from '@/components/Article/PublishForm';
+import { insertText } from '@/utils/utils';
+import { StorageStore } from '@/utils/authority';
+import 'bytemd/dist/index.min.css';
 import styles from './index.less';
+import './index.css';
 
 const plugins = [
   gfm(),
@@ -24,6 +26,34 @@ const plugins = [
   footnotes(),
   // Add more plugins here
 ];
+
+interface Position {
+  ch: number;
+  line: number;
+  sticky?: string;
+}
+
+interface MouseSelectionConfiguration {
+  unit?:
+    | 'char'
+    | 'word'
+    | 'line'
+    | 'rectangle'
+    | ((
+        cm: CodeMirror.Editor,
+        pos: Position,
+      ) => { from: Position; to: Position });
+
+  extend?: boolean;
+  addNew?: boolean;
+  moveOnDrag?: boolean;
+}
+
+interface Position {
+  ch: number;
+  line: number;
+  sticky?: string;
+}
 
 const WriteArt: React.FC<{}> = () => {
   const [form] = Form.useForm();
@@ -44,7 +74,6 @@ const WriteArt: React.FC<{}> = () => {
         setPubVis(true);
       }
     });
-
     // 文章编辑
     if (query?.id) {
       getArtDetail(query.id);
@@ -65,11 +94,6 @@ const WriteArt: React.FC<{}> = () => {
   };
 
   const submit = async (): Promise<any> => {
-    if (!localStorage.STARRY_STAR_SKY_ID) {
-      message.error('请先登录！');
-      return;
-    }
-
     if (!curtitle) {
       message.error('请填写标题！');
       return;
@@ -92,7 +116,7 @@ const WriteArt: React.FC<{}> = () => {
         title: curtitle,
         content: value,
         type,
-        user_id: localStorage.STARRY_STAR_SKY_ID || 0,
+        user_id: StorageStore.getUserId() || 0,
         img_url,
         desc,
       };
@@ -103,11 +127,11 @@ const WriteArt: React.FC<{}> = () => {
       });
 
       if (response?.success) {
-        // setPubVis(true);
-        // form.resetFields();
-        // setImg_url('');
-        // setCurtitle('');
-        // setValue('');
+        setPubVis(true);
+        form.resetFields();
+        setImg_url('');
+        setCurtitle('');
+        setValue('');
       }
     });
   };
@@ -187,6 +211,14 @@ const WriteArt: React.FC<{}> = () => {
           <Editor
             value={value}
             plugins={plugins}
+            editorConfig={{
+              configureMouse: (
+                cm: CodeMirror.Editor,
+              ): MouseSelectionConfiguration => {
+                // console.log(cm.getCursor('from'));
+                return { unit: 'rectangle' };
+              },
+            }}
             placeholder="输入文章内容..."
             uploadImages={(files: any): any => {
               getBase64(files[0], (imageUrl: any) => {
@@ -195,9 +227,11 @@ const WriteArt: React.FC<{}> = () => {
                 formDate.append('file', files[0], files[0].name);
                 upLoadFiles(formDate).then((res) => {
                   if (res.code === 0) {
+                    console.log(value);
                     const { data } = res;
                     const defineUrl =
                       value + `![${data.originalname}](${data.path})`;
+                    // insertText(value, `![${data.originalname}](${data.path})`)
                     setValue(defineUrl);
                   }
                 });

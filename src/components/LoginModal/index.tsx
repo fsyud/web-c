@@ -14,6 +14,7 @@ import good3 from '@/assets/svg/good_3.svg';
 import GitHub from '@/assets/svg/GitHub.svg';
 import wechat from '@/assets/svg/wechat.svg';
 import { registerUser, userLogin } from '@/service/user';
+import { StorageStore } from '@/utils/authority';
 
 import styles from './index.less';
 
@@ -41,12 +42,9 @@ const LoginModal: React.FC<LoginModalProps> = (props) => {
       notification.success({
         message: data.msg,
       });
-      localStorage.setItem('STARRY_STAR_SKY', data.access_token);
-      localStorage.setItem('STARRY_STAR_SKY_ID', data.id);
-      localStorage.setItem(
-        'STARRY_STAR_SKY_USER_INFO',
-        JSON.stringify(data.user_info),
-      );
+      StorageStore.setAccessToken(data.access_token);
+      StorageStore.setUserId(data.id);
+      StorageStore.setUserInfoLocalStorage(JSON.stringify(data.user_info));
       onSuccessLogin(true);
     } else {
       notification.error({

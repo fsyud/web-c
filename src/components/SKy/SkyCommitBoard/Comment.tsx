@@ -18,10 +18,10 @@ interface CommentProps {
 
 const Comment: React.FC<CommentProps> = (props) => {
   const { commitSta, placeholder, sumbitForm } = props;
-
   const [emojivis, setEmojivis] = useState<boolean>(false);
   const [chatContent, setChatContent] = useState<any>('');
   const [focusSta, setFocusSta] = useState<boolean>(true);
+  const [areaLocal, setareaLocal] = useState<number>(0);
 
   useEffect(() => {
     // inpurtRef.current = true;
@@ -44,7 +44,10 @@ const Comment: React.FC<CommentProps> = (props) => {
 
   const onClickEmoji = (emoji: any, event: any): void => {
     event.nativeEvent.stopImmediatePropagation();
-    const content = chatContent + `${emoji.native}`;
+    const content =
+      chatContent.substring(0, areaLocal) +
+      `${emoji.native}` +
+      chatContent.substring(areaLocal, chatContent.length);
     setChatContent(content);
   };
 
@@ -59,6 +62,7 @@ const Comment: React.FC<CommentProps> = (props) => {
     >
       <TextArea
         onChange={onChange}
+        id="uaual-comment"
         value={chatContent}
         autoFocus={focusSta}
         autoSize={{ minRows: 1, maxRows: 6 }}
@@ -89,6 +93,9 @@ const Comment: React.FC<CommentProps> = (props) => {
             <li
               onClick={(e: any) => {
                 setEmojivis(!emojivis);
+                const test = document.querySelector('#uaual-comment');
+                // @ts-ignore
+                setareaLocal(test?.selectionEnd);
               }}
             >
               <img src={smile1} />

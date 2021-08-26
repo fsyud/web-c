@@ -11,6 +11,17 @@ const Menus = [
   { key: '3', label: '小书', path: '/book' },
 ];
 
+const menuTitle: GLOBAL.titleMrnuProps[] = [
+  { title: 'starry - 代码里的时光', router: '/home' },
+  { title: '时刻 - starry', router: '/awhile' },
+  { title: '小书 - starry', router: '/book' },
+  { title: '未找到 - starry！', router: '/404' },
+  { title: '标签列表 - starry', router: '/tag-column' },
+  { title: '写文章 - starry', router: '/writeArt' },
+  { title: '编辑文章 - starry', router: '/writeArt?id' },
+  { title: '用户信息设置 - starry', router: '/user' },
+];
+
 // 类型
 const tyoeArr: GLOBAL.tyoeArrType[] = [
   { v: 1, n: '全部' },
@@ -93,4 +104,4 @@ const btnConf: GLOBAL.tagType[] = [
   { type: 1, name: '最新' },
 ];
 
-export { Menus, tyoeArr, typeDefine, btnConf };
+export { Menus, menuTitle, tyoeArr, typeDefine, btnConf };

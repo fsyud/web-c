@@ -13,4 +13,8 @@ declare namespace GLOBAL {
       icon?: any;
     }[];
   };
+  type titleMrnuProps = {
+    title: string;
+    router: string;
+  };
 }

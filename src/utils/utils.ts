@@ -43,13 +43,13 @@ export const getDefaultMarkedOptions = (): any => {
 
   marked.use({
     highlight(code: string, lang: string) {
-      // if (lang) {
-      //   const language = lang.toLowerCase();
-      //   const grammar = Prism.languages[language];
-      //   if (grammar) {
-      //     return Prism.highlight(code, grammar, language);
-      //   }
-      // }
+      if (lang) {
+        const language = lang.toLowerCase();
+        const grammar = Prism.languages[language];
+        if (grammar) {
+          return Prism.highlight(code, grammar, language);
+        }
+      }
       return hljs.highlightAuto(code).value;
     },
   });
@@ -66,6 +66,33 @@ export const getDefaultMarkedOptions = (): any => {
 
 export function resetMarkedOptions() {
   marked.setOptions(getDefaultMarkedOptions());
+}
+
+export function insertText(texteara: HTMLTextAreaElement, str: string): string {
+  // @ts-ignore
+  if (document.selection) {
+    // @ts-ignore
+    const sel = document.selection.createRange();
+    sel.text = str;
+  } else if (
+    typeof texteara.selectionStart === 'number' &&
+    typeof texteara.selectionEnd === 'number'
+  ) {
+    const startPos = texteara.selectionStart;
+    const endPos = texteara.selectionEnd;
+    let cursorPos = startPos;
+    const tmpStr = texteara.value;
+    texteara.value =
+      tmpStr.substring(0, startPos) +
+      str +
+      tmpStr.substring(endPos, tmpStr.length);
+    cursorPos += str.length;
+    texteara.selectionStart = texteara.selectionEnd = cursorPos;
+  } else {
+    texteara.value += str;
+  }
+
+  return texteara.value;
 }
 
 // 天数计算

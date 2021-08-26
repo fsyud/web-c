@@ -8,6 +8,7 @@ import { ReactComponent as Comits } from '@/assets/svg/commit.svg';
 import { ReactComponent as Greats } from '@/assets/svg/great.svg';
 import { addTwoComment } from '@/service/comment';
 import { DiffDay } from '@/utils/utils';
+import { StorageStore } from '@/utils/authority';
 import styles from './SecondCommit.less';
 
 export interface SecondCommitProps {
@@ -32,7 +33,7 @@ const SecondCommit: React.FC<SecondCommitProps> = (props) => {
       article_id: parentItem.article_id,
       reply_content: values,
       reply_to_user_id: comItem.user?.user_id,
-      user_id: localStorage.STARRY_STAR_SKY_ID,
+      user_id: StorageStore.getUserId(),
       commit_id: parentItem._id,
     };
 

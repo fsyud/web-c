@@ -18,7 +18,7 @@ const Article: React.FC<ArticleProps> = (props) => {
   });
 
   useEffect(() => {
-    console.log(formData);
+    // console.log(formData);
   }, [formData]);
 
   const [form] = Form.useForm();

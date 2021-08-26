@@ -5,6 +5,7 @@ import { UserOutlined } from '@ant-design/icons';
 import SkyEmoji from '@/components/SKy/SkyEmoji';
 import smile1 from '@/assets/svg/smile1.svg';
 import photo from '@/assets/svg/photo.svg';
+import { StorageStore } from '@/utils/authority';
 
 import styles from './index.less';
 
@@ -22,6 +23,7 @@ const SkyComment: React.FC<SkyCommentProps> = (props) => {
   const [emojivis, setEmojivis] = useState<boolean>(false);
 
   const [inputState, setInputState] = useState<boolean>(true);
+  const [areaLocal, setareaLocal] = useState<number>(0);
 
   useEffect(() => {
     document.addEventListener('click', (e) => {
@@ -37,7 +39,10 @@ const SkyComment: React.FC<SkyCommentProps> = (props) => {
 
   const onClickEmoji = (emoji: any, event: any): void => {
     event.nativeEvent.stopImmediatePropagation();
-    const content = chatContent + `${emoji.native}`;
+    const content =
+      chatContent.substring(0, areaLocal) +
+      `${emoji.native}` +
+      chatContent.substring(areaLocal, chatContent.length);
     setChatContent(content);
     onCommitChange(content);
   };
@@ -63,15 +68,16 @@ const SkyComment: React.FC<SkyCommentProps> = (props) => {
       }}
     >
       <div className={styles.header}>
-        {localStorage.STARRY_STAR_SKY_USER_INFO ? (
-          <img
-            src={JSON.parse(localStorage.STARRY_STAR_SKY_USER_INFO)?.avatar_url}
-          />
+        {StorageStore.getUserInfoLocalStorage() ? (
+          <img src={StorageStore.getUserInfoLocalStorage()?.avatar_url} />
         ) : (
           <Avatar icon={<UserOutlined />} />
         )}
         <TextArea
-          onChange={onChange}
+          id="sky-comment"
+          onChange={(e) => {
+            onChange(e);
+          }}
           value={chatContent}
           autoSize={{ minRows: 3, maxRows: 6 }}
           placeholder="输入评论..."
@@ -96,6 +102,9 @@ const SkyComment: React.FC<SkyCommentProps> = (props) => {
             <li
               onClick={(e: any) => {
                 setEmojivis(!emojivis);
+                const test = document.querySelector('#sky-comment');
+                // @ts-ignore
+                setareaLocal(test?.selectionEnd);
               }}
             >
               <img src={smile1} />

@@ -27,8 +27,10 @@ const PublishForm: React.FC<PublishFormProps> = (props) => {
   };
 
   useEffect(() => {
-    setImgurl(defaultImgUrl);
-  }, [props]);
+    if (defaultImgUrl) {
+      setImgurl(defaultImgUrl);
+    }
+  }, [defaultImgUrl]);
 
   const getBase64 = (img: any, callback: any) => {
     const reader = new FileReader();

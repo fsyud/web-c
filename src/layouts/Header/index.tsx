@@ -8,6 +8,7 @@ import { getUser } from '@/service/user';
 // import enUS from 'antd/lib/locale/en_US';
 import zh_CN from 'antd/es/locale/zh_CN';
 import { useMediaQuery } from 'beautiful-react-hooks';
+import { StorageStore } from '@/utils/authority';
 import LoginModal from '@/components/LoginModal';
 import setting from '@/assets/svg/setting.svg';
 import ownner from '@/assets/svg/ownner.svg';
@@ -68,13 +69,9 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
 
   // 监听是否登录状态
   useEffect(() => {
-    if (
-      localStorage.STARRY_STAR_SKY &&
-      localStorage.STARRY_STAR_SKY_USER_INFO
-    ) {
+    if (StorageStore.getUserId() && StorageStore.getUserInfoLocalStorage()) {
       setLoginsta(true);
-      const data = JSON.parse(localStorage.STARRY_STAR_SKY_USER_INFO || '');
-      setAvators(data?.avatar_url || '');
+      setAvators(StorageStore.getUserInfoLocalStorage()?.avatar_url || '');
     }
   });
 
@@ -111,9 +108,7 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
     setMenuKey(key);
 
     if (key === 'loginout') {
-      localStorage.removeItem('STARRY_STAR_SKY');
-      localStorage.removeItem('STARRY_STAR_SKY_ID');
-      localStorage.removeItem('STARRY_STAR_SKY_USER_INFO');
+      StorageStore.removeAllUserLocal();
       window.location.reload();
     }
     if (key === 'setting') {

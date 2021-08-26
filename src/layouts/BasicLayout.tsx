@@ -10,7 +10,7 @@ import TeAwhile from './content/TeAwhile';
 import TeBook from './content/TeBook';
 import Header from './Header';
 import TeArt from './content/TeArt';
-import { Menus } from '@/constant';
+import { Menus, menuTitle } from '@/constant';
 import githubs from '@/assets/svg/GitHub.svg';
 import styles from './index.less';
 
@@ -21,10 +21,11 @@ export interface BasicLayoutType {
 }
 
 const BasicLayout: React.FC<BasicLayoutType> = (props) => {
+  const history = useHistory();
+  const curPath = history.location.pathname;
   const { scroller } = useSelector(({ global }: any) => {
     return { ...global };
   });
-  const history = useHistory();
   const { dispatch, children } = props;
   const [languages, setLanguages] = useState<any>(zh_CN);
 
@@ -46,11 +47,11 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
   };
 
   // 不同路由之间
-  const DiffContent = <T extends React.ReactNode>(ELE: T): any => {
-    const curPath = history.location.pathname;
+  const DiffContent = <T extends React.ReactNode>(ELE: T): React.ReactNode => {
     if (curPath.includes(Menus[0].path) || curPath === '/') {
       return <TeHome children={ELE} />;
     } else if (curPath.includes(Menus[1].path)) {
+      document.title = Menus[1].label;
       return <TeAwhile children={ELE} />;
     } else if (
       curPath.includes(Menus[2].path) ||

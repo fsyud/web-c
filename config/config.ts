@@ -74,5 +74,4 @@ export default defineConfig({
   headScripts,
   metas,
   favicon: './pencil.ico',
-  title: 'StarryStar - 代码里不仅有bug 还有时光',
 });

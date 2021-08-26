@@ -8,6 +8,7 @@ import Comment from '@/components/SKy/SkyCommitBoard/Comment';
 import { addTwoComment } from '@/service/comment';
 import SecondCommit from './SecondCommit';
 import { DiffDay } from '@/utils/utils';
+import { StorageStore } from '@/utils/authority';
 import styles from './SingleComment.less';
 
 export interface SingleCommentProps {
@@ -29,7 +30,7 @@ const SingleComment: React.FC<SingleCommentProps> = (props) => {
       article_id: item.article_id,
       reply_content: values,
       reply_to_user_id: item.oneComment?.user_id,
-      user_id: localStorage.STARRY_STAR_SKY_ID,
+      user_id: StorageStore.getUserId(),
       commit_id: item._id,
     };
 

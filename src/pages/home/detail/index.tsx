@@ -3,6 +3,7 @@ import { useParams, useDispatch, useSelector, history } from 'umi';
 import { getStringDay } from '@/utils/utils';
 import throttle from 'lodash/throttle';
 import classnames from 'classnames';
+import { Helmet } from 'react-helmet';
 import { Skeleton, Card, Row, Col, message, Tag, Space, Divider } from 'antd';
 import { useMediaQuery, useWindowScroll } from 'beautiful-react-hooks';
 import Tocify from '@/components/Article/MarkdownBody/tocify';
@@ -17,6 +18,7 @@ import ArtList from '@/components/Article/ArtList';
 import fire from '@/assets/svg/fire.svg';
 import SkeletonPrivite from '@/components/SkeletonPrivite';
 import data_img from '@/assets/svg/data.svg';
+import { StorageStore } from '@/utils/authority';
 import RightSide from './RightSide';
 
 import { typeDefine } from '@/constant';
@@ -84,13 +86,10 @@ const Detail: React.FC<DetailProps> = (props) => {
   useEffect(() => {
     // 滚动事件
     window.addEventListener('scroll', throttle(onScroll, 1000));
-
     // 角色判断是否可以编辑
-    const userInfo = localStorage.STARRY_STAR_SKY_USER_INFO;
+    const userInfo = StorageStore.getUserInfoLocalStorage();
 
-    console.log(JSON.parse(userInfo));
-
-    if (userInfo && JSON.parse(userInfo).type === 1 + '') {
+    if (userInfo && userInfo?.type === 1 + '') {
       setIsAdmin(true);
     }
   }, []);
@@ -104,6 +103,7 @@ const Detail: React.FC<DetailProps> = (props) => {
 
   // 评论总条数
   const commitNum = useMemo(() => {
+    console.log(commentsList);
     let total = 0;
     for (let i = 0; i < commentsList.length; i++) {
       total += commentsList[i].secondCommit.length;
@@ -210,16 +210,16 @@ const Detail: React.FC<DetailProps> = (props) => {
   };
 
   const sumbitComment = async (): Promise<any> => {
-    if (!localStorage.STARRY_STAR_SKY_ID) {
+    if (!StorageStore.getUserId()) {
       message.error('请登录后评论！');
       return;
     }
 
     const res = await addOneComment({
       article_id: _id,
-      user_id: localStorage.STARRY_STAR_SKY_ID,
+      user_id: StorageStore.getUserId(),
       content: commentValue,
-      name: '纳兹',
+      name: '',
     });
 
     if (res.code === 0) {
@@ -254,6 +254,9 @@ const Detail: React.FC<DetailProps> = (props) => {
   return (
     <div className={`${styles.art_detail} home_contain`}>
       <Row>
+        <Helmet>
+          <title>{detail?.title ? detail.title : '无标题'}</title>
+        </Helmet>
         <Col span={isTabletOrMobile ? 24 : 18} className={styles.teart_left}>
           <div className={styles.art_containt}>
             <Skeleton active avatar loading={!content} paragraph={{ rows: 4 }}>

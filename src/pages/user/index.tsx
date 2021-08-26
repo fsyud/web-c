@@ -22,6 +22,7 @@ import {
   SettingOutlined,
 } from '@ant-design/icons';
 import { userUpdate, getUser } from '@/service/user';
+import { StorageStore } from '@/utils/authority';
 
 import styles from './index.less';
 
@@ -39,7 +40,7 @@ const User: React.FC<{}> = () => {
   }, []);
 
   const getUserInfo = async (): Promise<any> => {
-    const { data } = await getUser(localStorage.STARRY_STAR_SKY_ID);
+    const { data } = await getUser(StorageStore.getUserId());
     if (data) {
       setImgPath(data.avatar_url);
       setImgurl(data.avatar_url);
@@ -95,16 +96,13 @@ const User: React.FC<{}> = () => {
       ...values,
       ...{
         avatar_url: imgPath,
-        id: localStorage.getItem('STARRY_STAR_SKY_ID'),
+        id: StorageStore.getUserId(),
       },
     };
     const data = await userUpdate(userObj);
     if (data.code === 0) {
+      StorageStore.setUserInfoLocalStorage(JSON.stringify(userObj));
       message.success('更新成功！');
-      localStorage.setItem(
-        'STARRY_STAR_SKY_USER_INFO',
-        JSON.stringify(userObj),
-      );
       window.location.reload();
     }
   };
