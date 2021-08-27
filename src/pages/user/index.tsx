@@ -91,7 +91,6 @@ const User: React.FC<{}> = () => {
 
   // 提交
   const onFinish = async (values: any): Promise<any> => {
-    console.log(imgPath);
     const userObj = {
       ...values,
       ...{

@@ -17,7 +17,7 @@ export async function userLogin(params: API.userInfo) {
 }
 
 // 用户修改信息
-export async function userUpdate(params: API.userInfo) {
+export async function userUpdate(params: API.updateUser) {
   return request('/api/login/update_userinfo', {
     method: 'POST',
     data: params,
