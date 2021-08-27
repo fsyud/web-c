@@ -19,7 +19,9 @@ const ArtTool: React.FC<ArtToolProps> = (props) => {
           <LikeTwoTone />
         </div>
         <div className={styles.at_one}>
-          <MessageTwoTone />
+          <a href="#all_comment">
+            <MessageTwoTone />
+          </a>
         </div>
         <div className={styles.at_one}>
           <img

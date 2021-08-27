@@ -6,6 +6,7 @@ import { getArticleList } from '@/service/home';
 import locationSvg from '@/assets/svg/location.svg';
 import githubSvg from '@/assets/svg/github1.svg';
 import telegram from '@/assets/svg/telegram.svg';
+import { UserOutlined } from '@ant-design/icons';
 
 import styles from './RightSide.less';
 
@@ -19,7 +20,7 @@ const RightSide: React.FC<RightSideProps> = (props) => {
 
   const [aboutart, setAboutart] = useState<any[]>([]);
 
-  const { content, type } = detail;
+  const { content, type, author_user_info } = detail;
 
   useEffect(() => {
     if (type) {
@@ -46,13 +47,21 @@ const RightSide: React.FC<RightSideProps> = (props) => {
           <div className={styles.teart_one}>
             <h5>关于作者</h5>
             <div className={styles.userInfo}>
-              <Avatar
-                className={styles.avatar_animate}
-                src={require('@/assets/avator.jpeg')}
-              />
+              {author_user_info?.avatar_url ? (
+                <img
+                  className={styles.avatar_animate}
+                  src={author_user_info.avatar_url}
+                />
+              ) : (
+                <Avatar
+                  className={styles.avatar_animate}
+                  icon={<UserOutlined />}
+                />
+              )}
+
               <div className={styles.right}>
-                <h4>纳兹</h4>
-                <h6>全栈 @one peace</h6>
+                <h4>{author_user_info?.username}</h4>
+                <h6>{author_user_info?.job}</h6>
               </div>
             </div>
 

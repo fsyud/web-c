@@ -313,7 +313,7 @@ const Detail: React.FC<DetailProps> = (props) => {
                   />
                 </Space>
                 <Card bordered={false} className={styles.comment_card}>
-                  <div className={styles.comment_head}>
+                  <div id="all_comment" className={styles.comment_head}>
                     全部评论（{commitNum}）
                     <img src={fire} />
                   </div>
