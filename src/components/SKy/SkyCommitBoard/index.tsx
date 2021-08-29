@@ -20,7 +20,7 @@ interface SkyCommitBoardProps {
 const SkyCommitBoard: React.FC<SkyCommitBoardProps> = (props) => {
   const dispatch = useDispatch();
   const { Item } = props;
-  const [commitSta, setCommitSta] = useState<boolean>(true);
+  const [commitSta, setCommitSta] = useState<boolean>(false);
   const [clears, setClears] = useState<boolean>(false);
 
   const { oneWhile, secondWhile } = Item;

@@ -65,11 +65,7 @@ const TeAwhile: React.FC<TeAwhileProps> = ({ children }) => {
         )}
 
         <Col span={isTabletOrMobile ? 24 : 15} className={styles.teawhile_main}>
-          <section className={styles.init_section}>
-            <Skeleton active loading={false}>
-              {children}
-            </Skeleton>
-          </section>
+          <section className={styles.init_section}>{children}</section>
         </Col>
 
         {!isTabletOrMobile && (
