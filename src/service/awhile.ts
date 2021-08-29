@@ -23,3 +23,11 @@ export async function addOneAwhile(params: awhileParamsType) {
     data: params,
   });
 }
+
+// 添加二级时刻评论
+export async function addTwoAwhile(params: awhileParamsType) {
+  return request('/api/awhile/addTwo', {
+    method: 'POST',
+    data: params,
+  });
+}

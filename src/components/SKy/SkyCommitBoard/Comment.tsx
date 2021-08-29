@@ -14,22 +14,27 @@ interface CommentProps {
   placeholder?: string;
   style?: React.CSSProperties;
   sumbitForm: (value: string) => void;
+  isClear?: boolean;
 }
 
 const Comment: React.FC<CommentProps> = (props) => {
-  const { commitSta, placeholder, sumbitForm } = props;
+  const { commitSta, placeholder, sumbitForm, isClear } = props;
   const [emojivis, setEmojivis] = useState<boolean>(false);
   const [chatContent, setChatContent] = useState<any>('');
   const [focusSta, setFocusSta] = useState<boolean>(true);
   const [areaLocal, setareaLocal] = useState<number>(0);
 
   useEffect(() => {
-    // inpurtRef.current = true;
-
     document.addEventListener('click', (e) => {
       setEmojivis(false);
     });
   }, []);
+
+  useEffect(() => {
+    if (isClear) {
+      setChatContent('');
+    }
+  }, [isClear]);
 
   const commitStyle = (): string => {
     return classnames({
@@ -67,9 +72,7 @@ const Comment: React.FC<CommentProps> = (props) => {
         autoFocus={focusSta}
         autoSize={{ minRows: 1, maxRows: 6 }}
         placeholder={placeholder}
-        onBlur={() => {
-          console.log('onBlur');
-        }}
+        onBlur={() => {}}
         onFocus={() => {
           if (emojivis) {
             setEmojivis(false);

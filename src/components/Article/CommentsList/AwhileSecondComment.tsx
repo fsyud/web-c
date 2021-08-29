@@ -1,56 +1,60 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'umi';
-import { Avatar, message } from 'antd';
 import classnames from 'classnames';
+import { Avatar, message } from 'antd';
+import { useDispatch } from 'umi';
 import { UserOutlined } from '@ant-design/icons';
 import Comment from '@/components/SKy/SkyCommitBoard/Comment';
 import { ReactComponent as Comits } from '@/assets/svg/commit.svg';
 import { ReactComponent as Greats } from '@/assets/svg/great.svg';
-import { addTwoComment } from '@/service/comment';
+import { addTwoAwhile } from '@/service/awhile';
 import { DiffDay } from '@/utils/utils';
 import { StorageStore } from '@/utils/authority';
-import styles from './SecondCommit.less';
+import styles from './AwhileSecondComment.less';
 
-export interface SecondCommitProps {
+export interface AwhileSecondCommentProps {
   comItem: any;
-  parentItem: any;
   curIndex: number;
+  curItem: any;
 }
 
-const SecondCommit: React.FC<SecondCommitProps> = (props) => {
+const AwhileSecondComment: React.FC<AwhileSecondCommentProps> = (props) => {
   const dispatch = useDispatch();
-  const { comItem, parentItem, curIndex } = props;
-
-  document.addEventListener('click', (e) => {
-    setSecondCommitSta(false);
-  });
+  const { comItem, curIndex, curItem } = props;
 
   const [secondCommitSta, setSecondCommitSta] = useState<boolean>(false);
+  const [clears, setClears] = useState<boolean>(false);
+
+  useEffect(() => {
+    document.addEventListener('click', (e) => {
+      setSecondCommitSta(false);
+    });
+  }, []);
 
   // 三级级评论提交
   const sumbitForm = async (values: string): Promise<any> => {
     const params = {
-      article_id: parentItem.article_id,
-      reply_content: values,
-      reply_to_user_id: comItem.user?.user_id,
+      awhile_id: curItem?._id,
+      content: values,
+      reply_to_user_id: curItem?.oneWhile?.user_id,
       user_id: StorageStore.getUserId(),
-      commit_id: parentItem._id,
     };
 
-    const data = await addTwoComment(params);
+    const data = await addTwoAwhile(params);
 
     if (data.code === 0) {
-      message.success('回复留言成功！');
-
+      message.success('回复成功！');
+      setClears(true);
+      setTimeout(() => {
+        setClears(false);
+      }, 200);
       dispatch({
-        type: 'article/getComments',
+        type: 'awhile/IsRefresh',
         payload: {
-          article_id: parentItem.article_id || 1,
+          isRefresh: true,
         },
       });
-      setSecondCommitSta(false);
     } else {
-      message.error('回复留言失败！');
+      message.success('回复失败！');
     }
   };
 
@@ -61,7 +65,7 @@ const SecondCommit: React.FC<SecondCommitProps> = (props) => {
   };
 
   return (
-    <div className={styles.sub_comment}>
+    <div className={styles.sub_comment_form}>
       <div className={styles.sub_avator}>
         <a>
           {comItem.user?.avatar ? (
@@ -73,7 +77,13 @@ const SecondCommit: React.FC<SecondCommitProps> = (props) => {
       </div>
 
       <div className={styles.sub_main}>
-        <div className={styles.user_box}>
+        <div
+          className={styles.user_box}
+          onClick={(e: any) => {
+            e.nativeEvent.stopImmediatePropagation();
+            setSecondCommitSta(false);
+          }}
+        >
           <span className={oneSpan()}>
             {comItem.user?.user_name}{' '}
             {comItem?.user?.type === 1 && (
@@ -91,13 +101,22 @@ const SecondCommit: React.FC<SecondCommitProps> = (props) => {
           <span>{DiffDay(comItem.create_times)}</span>
         </div>
 
-        <div className={styles.sub_content}>{comItem.reply_content}</div>
+        <div
+          className={styles.sub_content}
+          onClick={(e: any) => {
+            e.nativeEvent.stopImmediatePropagation();
+            setSecondCommitSta(false);
+          }}
+        >
+          {comItem.reply_content}
+        </div>
 
         <div className={styles.action_box}>
           <div
             className={styles.one}
             onClick={(e: any) => {
               e.nativeEvent.stopImmediatePropagation();
+              setSecondCommitSta(false);
             }}
           >
             <Greats />0
@@ -112,21 +131,20 @@ const SecondCommit: React.FC<SecondCommitProps> = (props) => {
             <Comits />
           </div>
         </div>
-        <div className={styles.sub_comment_form}>
-          {secondCommitSta && (
-            <Comment
-              style={{ background: '#fff', borderTop: 'none' }}
-              sumbitForm={(values: string) => {
-                sumbitForm(values);
-              }}
-              placeholder={`回复${comItem.user?.user_name}...`}
-              commitSta={false}
-            />
-          )}
-        </div>
+        {secondCommitSta && (
+          <Comment
+            style={{ background: '#f7f8fa', width: '100%' }}
+            sumbitForm={(values: string) => {
+              sumbitForm(values);
+            }}
+            isClear={clears}
+            placeholder={`回复${comItem.user?.user_name}...`}
+            commitSta={false}
+          />
+        )}
       </div>
     </div>
   );
 };
 
-export default SecondCommit;
+export default AwhileSecondComment;

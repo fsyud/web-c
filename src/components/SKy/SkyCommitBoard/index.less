@@ -7,9 +7,9 @@
 
       a {
         img {
-          width: 32px;
-          height: 32px;
-          border-radius: 16px;
+          width: 46px;
+          height: 46px;
+          border-radius: 23px;
         }
       }
 
@@ -30,41 +30,79 @@
       }
     }
   }
-}
 
-.main {
-  padding-top: 6px;
-  padding-bottom: 15px;
-  font-size: 14px;
-  color: #17181a;
-  overflow: hidden;
-  white-space: pre-line;
-  line-height: 20px;
-}
+  .main {
+    padding-top: 6px;
+    padding-bottom: 15px;
+    font-size: 14px;
+    color: #17181a;
+    overflow: hidden;
+    white-space: pre-line;
+    line-height: 20px;
+  }
 
-.tags {
-  font-size: 14px;
-  display: inline-block;
-  line-height: 20px;
-  color: #1d7dfa;
-}
+  .tags {
+    font-size: 14px;
+    display: inline-block;
+    line-height: 20px;
+    color: #1d7dfa;
+    margin-bottom: 8px;
+  }
 
-.footer {
-  display: flex;
-  flex-direction: row-reverse;
-
-  .f_one {
-    margin-right: 32px;
+  .footer {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    color: #4e5969;
+    border-top: 1px solid #ebebeb;
+    padding: 4px 0;
 
-    img {
-      width: 16px;
-      height: 16px;
-      margin-right: 6px;
+    .f_one {
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
       color: #4e5969;
+      position: relative;
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 0;
+        margin-top: -1rem;
+        width: 1px;
+        height: 2rem;
+        background-color: #ebebeb;
+      }
+
+      &:last-child {
+        &:after {
+          content: none;
+        }
+      }
+
+      img {
+        width: 16px;
+        height: 16px;
+        margin-right: 6px;
+        color: #4e5969;
+      }
+    }
+  }
+
+  .awhile_arapper {
+    display: flex;
+    flex-direction: column;
+
+    .title {
+      display: flex;
+      align-items: center;
+      position: relative;
+      line-height: 24px;
+      font-weight: 500;
+      font-size: 16px;
+      color: #1d2129;
+      width: 100%;
+      padding-bottom: 8px;
     }
   }
 }

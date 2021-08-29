@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'umi';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'umi';
 import { Row, Col, Skeleton, Radio, Space } from 'antd';
 import { useMediaQuery } from 'beautiful-react-hooks';
 import { topicConfList } from '@/constant';
@@ -12,8 +12,18 @@ interface TeAwhileProps {
 const TeAwhile: React.FC<TeAwhileProps> = ({ children }) => {
   const [curRadio, setCurRadio] = useState<number>(999);
 
+  const { curIndex } = useSelector(({ awhile }: any) => {
+    return { ...awhile };
+  });
+
   const dispatch = useDispatch();
   const isTabletOrMobile = useMediaQuery('(max-width: 1024px)');
+
+  useEffect(() => {
+    if (curIndex === 999) {
+      setCurRadio(curIndex);
+    }
+  }, [curIndex]);
 
   const onChange = (e: any): void => {
     const { value } = e.target;

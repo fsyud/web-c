@@ -85,6 +85,8 @@
 
   .skeleton {
     margin-top: 16px;
+    background: #fff;
+    padding: 16px;
   }
 
   .awhile_content {
@@ -92,6 +94,12 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 16px;
+
+    :global {
+      .ant-card-body {
+        padding-bottom: 4px;
+      }
+    }
   }
 
   .h_main__end {

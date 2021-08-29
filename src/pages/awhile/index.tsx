@@ -25,7 +25,7 @@ const Regard: React.FC<RegardProps> = (props) => {
   const pageSize = 15;
   const dispatch = useDispatch();
 
-  const { curIndex } = useSelector(({ awhile }: any) => {
+  const { curIndex, isRefresh } = useSelector(({ awhile }: any) => {
     return { ...awhile };
   });
 
@@ -73,6 +73,21 @@ const Regard: React.FC<RegardProps> = (props) => {
   }, [curIndex]);
 
   useEffect(() => {
+    if (isRefresh) {
+      getAwhile({ curPage: 1, curTag: curIndex, type: 'default' });
+
+      setTimeout(() => {
+        dispatch({
+          type: 'awhile/IsRefresh',
+          payload: {
+            isRefresh: false,
+          },
+        });
+      }, 200);
+    }
+  }, [isRefresh]);
+
+  useEffect(() => {
     return () => {
       window.removeEventListener('scroll', throttle(onScroll, 1000));
     };
@@ -102,6 +117,7 @@ const Regard: React.FC<RegardProps> = (props) => {
           if (type === 'default') {
             setCurList({ type: type, data: data });
           } else {
+            // 滚动行为
             setCurList({ type: 'add', data: [] });
           }
         } else {
@@ -208,6 +224,7 @@ const Regard: React.FC<RegardProps> = (props) => {
             autoSize={{ minRows: 3, maxRows: 6 }}
             onChange={onChange}
             value={chatContent}
+            maxLength={1000}
           />
 
           {selectTopic && (

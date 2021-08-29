@@ -13,7 +13,10 @@ const SkyEmoji: React.FC<SkyEmojiProps> = (props) => {
   const { onClickEmoji, visible } = props;
 
   return (
-    <div className={styles.skyemoji}>
+    <div
+      className={styles.skyemoji}
+      onClick={(e: any) => e.nativeEvent.stopImmediatePropagation()}
+    >
       <div className={styles.emojiContainer}>
         <Picker
           set="twitter"
