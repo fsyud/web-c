@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Skeleton, Radio, Space } from 'antd';
 import { useMediaQuery } from 'beautiful-react-hooks';
+import { topicConfList } from '@/constant';
 import styles from './index.less';
 
 interface TeAwhileProps {
@@ -18,11 +19,15 @@ const TeAwhile: React.FC<TeAwhileProps> = ({ children }) => {
             <aside>
               <Skeleton active loading={false}>
                 <Space direction="vertical">
-                  <Radio.Group defaultValue="a" buttonStyle="solid">
-                    <Radio.Button value="a">推荐</Radio.Button>
-                    <Radio.Button value="b">热门</Radio.Button>
-                    <Radio.Button value="c">上班摸鱼</Radio.Button>
-                    <Radio.Button value="d">其他</Radio.Button>
+                  <Radio.Group defaultValue={999} buttonStyle="solid">
+                    {[
+                      ...topicConfList.slice(0, 9),
+                      ...[{ type: 1000, name: '更多片刻 +' }],
+                    ].map((s: GLOBAL.tagType, index: number) => (
+                      <Radio.Button key={index} value={s.type}>
+                        {s.name}
+                      </Radio.Button>
+                    ))}
                   </Radio.Group>
                 </Space>
               </Skeleton>

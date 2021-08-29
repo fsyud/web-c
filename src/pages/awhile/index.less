@@ -1,6 +1,12 @@
 .ahile {
   background: #f8f8f8;
 
+  :global {
+    .ant-card-body {
+      padding: 12px;
+    }
+  }
+
   .head_input {
     :global {
       textarea.ant-input {
@@ -11,13 +17,37 @@
         }
       }
     }
+
+    .topic_pick {
+      display: flex;
+      flex-direction: row;
+      margin-top: 10px;
+
+      span {
+        font-size: 13px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 12px;
+        border: 1px solid #007fff;
+        border-radius: 14px;
+        text-align: center;
+        color: #007fff;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: pointer;
+      }
+    }
   }
 
   .header_card__footer {
     display: flex;
     flex-direction: row;
-    padding: 10px 0;
-    height: 53px;
+    padding: 0 0 10px 0;
+    height: 42px;
+    margin-top: 8px;
 
     .header_card__tool {
       display: flex;
@@ -38,6 +68,7 @@
           align-items: center;
           color: #007fff;
           margin-right: 24px;
+          position: relative;
 
           img {
             width: 18px;

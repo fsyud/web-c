@@ -204,7 +204,10 @@ const User: React.FC<{}> = () => {
                     {imgurl && (
                       <div
                         className={styles.back_upload}
-                        onClick={() => setImgurl('')}
+                        onClick={() => {
+                          setImgurl('');
+                          setImgPath('');
+                        }}
                       >
                         撤销上传
                       </div>

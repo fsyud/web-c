@@ -12,6 +12,7 @@ declare namespace GLOBAL {
       parents: number;
       icon?: any;
     }[];
+    icon?: any;
   };
   type titleMrnuProps = {
     title: string;

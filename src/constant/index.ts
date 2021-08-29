@@ -4,6 +4,9 @@ import nestjs from '@/assets/tags/nestjs.png';
 import node from '@/assets/tags/node.svg';
 import react from '@/assets/tags/react.svg';
 import typescript from '@/assets/tags/typescript.svg';
+import waiting from '@/assets/awhile/waiting.svg';
+import get from '@/assets/awhile/get.svg';
+import minecraft from '@/assets/awhile/minecraft.png';
 
 const Menus = [
   { key: '1', label: '首页', path: '/home' },
@@ -104,4 +107,28 @@ const btnConf: GLOBAL.tagType[] = [
   { type: 1, name: '最新' },
 ];
 
-export { Menus, menuTitle, tyoeArr, typeDefine, btnConf };
+const topicConfList: GLOBAL.tagType[] = [
+  { type: 999, name: '推荐' },
+  { type: 1, name: '上班摸鱼', icon: waiting },
+  { type: 2, name: '今天学到了', icon: get },
+  { type: 3, name: '每日算法题', icon: minecraft },
+  { type: 4, name: '开发工具推荐', icon: minecraft },
+  { type: 5, name: '优秀开源推荐', icon: minecraft },
+  { type: 6, name: '今日最佳', icon: minecraft },
+  { type: 7, name: '读书笔记', icon: minecraft },
+  { type: 8, name: '提问回答', icon: minecraft },
+  { type: 9, name: '好文推荐', icon: minecraft },
+  { type: 10, name: '代码秀', icon: minecraft },
+  { type: 11, name: '人在职场', icon: minecraft },
+  { type: 12, name: '划个知识点', icon: minecraft },
+  { type: 13, name: '下班打卡', icon: minecraft },
+  { type: 14, name: '什么值得买', icon: minecraft },
+  { type: 15, name: '来啊，斗图吧', icon: minecraft },
+  { type: 16, name: '游戏玩家俱乐部', icon: minecraft },
+  { type: 17, name: '值得收藏的歌单', icon: minecraft },
+  { type: 18, name: '求职中', icon: minecraft },
+  { type: 19, name: '进击的 React', icon: minecraft },
+  { type: 20, name: '定个小目标', icon: minecraft },
+];
+
+export { Menus, menuTitle, tyoeArr, typeDefine, btnConf, topicConfList };
