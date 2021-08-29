@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import { DiffDay } from '@/utils/utils';
 import great from '@/assets/svg/great.svg';
 import commit from '@/assets/svg/commit.svg';
+import { topicConfList } from '@/constant';
 import Comment from './Comment';
 import styles from './index.less';
 
-const SkyCommitBoard: React.FC<{}> = () => {
+interface SkyCommitBoardProps {
+  Item: any;
+}
+
+const SkyCommitBoard: React.FC<SkyCommitBoardProps> = (props) => {
+  const { Item } = props;
   const [commitSta, setCommitSta] = useState<boolean>(true);
+
+  const { oneWhile } = Item;
 
   useEffect(() => {
     document.addEventListener('click', (e) => {
@@ -25,14 +34,25 @@ const SkyCommitBoard: React.FC<{}> = () => {
             <img src={require('@/assets/avator.jpeg')} alt="error" />
           </a>
           <div className={styles.art_h__right}>
-            <div className={styles.name}>月下</div>
+            <div className={styles.name}>{oneWhile?.user_name}</div>
             <div className={styles.meta}>
-              <time>{'2020-08-09'}</time>
+              <time>{DiffDay(oneWhile?.create_times)}</time>
             </div>
           </div>
         </div>
       </div>
-      <div className={styles.main}>asdasd</div>
+      <div className={styles.main}>{oneWhile?.content}</div>
+      {Item?.tag !== 999 && (
+        <div className={styles.tags}>
+          #
+          {
+            topicConfList.find((s: GLOBAL.tagType) => s.type === Item?.tag)
+              ?.name
+          }
+          #
+        </div>
+      )}
+
       <div className={styles.footer}>
         <div
           className={styles.f_one}

@@ -1,5 +1,4 @@
-import { Effect, Reducer } from 'umi';
-import { message } from 'antd';
+import { Reducer } from 'umi';
 
 export interface whileModelType {
   namespace: string;
@@ -8,18 +7,18 @@ export interface whileModelType {
   };
   effects: {};
   reducers: {
-    artList: Reducer<any>;
+    awhileIndex: Reducer<any>;
   };
 }
 
 const whileModel: whileModelType = {
-  namespace: 'while',
+  namespace: 'awhile',
   state: {
-    curIndex: 1,
+    curIndex: 999,
   },
   effects: {},
   reducers: {
-    artList(state, { payload }) {
+    awhileIndex(state, { payload }) {
       return {
         ...state,
         ...payload,

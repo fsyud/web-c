@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'umi';
 import { Row, Col, Skeleton, Radio, Space } from 'antd';
 import { useMediaQuery } from 'beautiful-react-hooks';
 import { topicConfList } from '@/constant';
@@ -9,7 +10,21 @@ interface TeAwhileProps {
 }
 
 const TeAwhile: React.FC<TeAwhileProps> = ({ children }) => {
+  const [curRadio, setCurRadio] = useState<number>(999);
+
+  const dispatch = useDispatch();
   const isTabletOrMobile = useMediaQuery('(max-width: 1024px)');
+
+  const onChange = (e: any): void => {
+    const { value } = e.target;
+    setCurRadio(value);
+    dispatch({
+      type: 'awhile/awhileIndex',
+      payload: {
+        curIndex: value,
+      },
+    });
+  };
 
   return (
     <div className={styles.teawhile}>
@@ -19,7 +34,11 @@ const TeAwhile: React.FC<TeAwhileProps> = ({ children }) => {
             <aside>
               <Skeleton active loading={false}>
                 <Space direction="vertical">
-                  <Radio.Group defaultValue={999} buttonStyle="solid">
+                  <Radio.Group
+                    buttonStyle="solid"
+                    onChange={onChange}
+                    value={curRadio}
+                  >
                     {[
                       ...topicConfList.slice(0, 9),
                       ...[{ type: 1000, name: '更多片刻 +' }],
