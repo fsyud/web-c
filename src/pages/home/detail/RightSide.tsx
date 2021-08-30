@@ -21,8 +21,6 @@ const RightSide: React.FC<RightSideProps> = (props) => {
 
   const { content, type, author_user_info } = detail;
 
-  console.log(author_user_info);
-
   useEffect(() => {
     if (type) {
       getSameArt(type);
