@@ -5,8 +5,6 @@ import hljs from 'highlight.js';
 import 'highlight.js/styles/github.css';
 
 export const rendererLink = (href: string, title: string, text: string) => {
-  console.log(href, title, text);
-
   let url = href;
   let target: boolean | string = false;
   if (url.slice(0, 1) !== '#') {

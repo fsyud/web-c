@@ -37,6 +37,15 @@
         flex-direction: row;
         align-items: center;
 
+        :global {
+          .ant-avatar {
+            span {
+              font-size: 28px;
+              margin-top: 10px;
+            }
+          }
+        }
+
         .avatar_animate {
           width: 50px;
           height: 50px;
@@ -71,7 +80,13 @@
 
           img {
             width: 22px;
-            margin-right: 20px;
+            margin-right: 12px;
+          }
+
+          a {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
           }
         }
       }
@@ -90,9 +105,10 @@
         .ant-anchor-wrapper {
           padding: 8px 16px !important;
           background: none !important;
+          max-height: calc(100vh - 100px) !important;
 
           .ant-anchor {
-            font-size: 15px !important;
+            font-size: 14px !important;
 
             .ant-anchor-link {
               padding-top: 5px;

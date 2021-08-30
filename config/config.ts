@@ -73,5 +73,5 @@ export default defineConfig({
   },
   headScripts,
   metas,
-  favicon: './pencil.ico',
+  favicon: './icon.ico',
 });

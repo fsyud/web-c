@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Tocify from '@/components/Article/MarkdownBody/tocify';
 import { Skeleton, Affix, Avatar } from 'antd';
 import { getArticleList } from '@/service/home';
-
-import locationSvg from '@/assets/svg/location.svg';
+// import locationSvg from '@/assets/svg/location.svg';
 import githubSvg from '@/assets/svg/github1.svg';
-import telegram from '@/assets/svg/telegram.svg';
+// import telegram from '@/assets/svg/telegram.svg';
 import { UserOutlined } from '@ant-design/icons';
 
 import styles from './RightSide.less';
@@ -21,6 +20,8 @@ const RightSide: React.FC<RightSideProps> = (props) => {
   const [aboutart, setAboutart] = useState<any[]>([]);
 
   const { content, type, author_user_info } = detail;
+
+  console.log(author_user_info);
 
   useEffect(() => {
     if (type) {
@@ -61,23 +62,32 @@ const RightSide: React.FC<RightSideProps> = (props) => {
 
               <div className={styles.right}>
                 <h4>{author_user_info?.username}</h4>
-                <h6>{author_user_info?.job}</h6>
+                <h6>
+                  {author_user_info?.job} @{author_user_info?.company}
+                </h6>
               </div>
             </div>
 
             <div className={styles.extra_item}>
-              <div className={styles.item}>
+              {/* <div className={styles.item}>
                 <img src={locationSvg} />
                 Shanghai
-              </div>
-              <div className={styles.item}>
-                <img src={githubSvg} />
-                <a href="https://github.com/starryskystar">@starryskystar</a>
-              </div>
-              <div className={styles.item}>
+              </div> */}
+              {/* <div className={styles.item}>
                 <img src={telegram} />
                 @Naze7777
-              </div>
+              </div> */}
+              {author_user_info?.author_web && (
+                <div className={styles.item}>
+                  <img src={githubSvg} />
+                  <a
+                    title={author_user_info.author_we}
+                    href={author_user_info.author_web}
+                  >
+                    {author_user_info.author_web}
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </aside>

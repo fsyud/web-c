@@ -12,50 +12,59 @@
 
   .teawhile_left {
     max-height: 500px;
-    .box();
 
-    aside {
-      padding: 12px;
+    .affix {
+      aside {
+        padding: 12px 6px;
+        background-color: #fff;
+        border-radius: 4px;
 
-      :global {
-        .ant-space {
-          width: 100%;
-          .ant-space-item {
+        :global {
+          .ant-space {
             width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
 
-            .ant-radio-button-wrapper {
-              padding: 0;
-              max-width: 100px;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              white-space: nowrap;
+            .ant-space-item {
+              width: 100%;
               display: flex;
               align-items: center;
               justify-content: center;
-              padding: 9px;
 
-              &:hover {
-                background: rgb(250, 249, 249);
-              }
+              .ant-radio-group {
+                width: 112px;
 
-              span {
-                &:nth-of-type(2) {
-                  color: #909090;
-                  font-size: 14px;
+                .ant-radio-button-wrapper {
+                  padding: 0;
+                  max-width: 112px;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  padding: 9px;
+
+                  &:hover {
+                    background: rgb(250, 249, 249);
+                  }
+
+                  span {
+                    &:nth-of-type(2) {
+                      color: #909090;
+                      font-size: 14px;
+                    }
+                  }
                 }
-              }
-            }
 
-            .ant-radio-button-wrapper-checked {
-              &:hover {
-                background: #1890ff;
-              }
-              span {
-                &:nth-of-type(2) {
-                  color: #fff;
+                .ant-radio-button-wrapper-checked {
+                  &:hover {
+                    background: #1890ff;
+                  }
+
+                  span {
+                    &:nth-of-type(2) {
+                      color: #fff;
+                    }
+                  }
                 }
               }
             }

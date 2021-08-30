@@ -17,6 +17,7 @@ export default [
         path: '/detail/:id',
         name: 'detail',
         component: '@/pages/home/detail',
+        title: '文章详情 - 星空',
       },
       {
         path: '/tag-column',

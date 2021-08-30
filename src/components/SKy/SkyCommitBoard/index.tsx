@@ -73,7 +73,9 @@ const SkyCommitBoard: React.FC<SkyCommitBoardProps> = (props) => {
           </div>
         </div>
       </div>
-      <div className={styles.main}>{oneWhile?.content}</div>
+      <div className={styles.main}>
+        <div className={styles.main_content}>{oneWhile?.content}</div>
+      </div>
       {Item?.tag !== 999 && (
         <div className={styles.tags}>
           #

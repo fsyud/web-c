@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import { Skeleton, Card, Input, Button, message } from 'antd';
 import { useSelector, useDispatch } from 'umi';
+import { useWindowScroll } from 'beautiful-react-hooks';
 import SkyEmoji from '@/components/SKy/SkyEmoji';
 import CommitBoard from '@/components/SKy/SkyCommitBoard';
 import throttle from 'lodash/throttle';
@@ -23,6 +24,7 @@ interface RegardProps {}
 
 const Regard: React.FC<RegardProps> = (props) => {
   const pageSize = 15;
+  let topScollerValue = 0;
   const dispatch = useDispatch();
 
   const { curIndex, isRefresh } = useSelector(({ awhile }: any) => {
@@ -92,6 +94,36 @@ const Regard: React.FC<RegardProps> = (props) => {
       window.removeEventListener('scroll', throttle(onScroll, 1000));
     };
   }, []);
+
+  useWindowScroll(
+    throttle(() => {
+      let scrollTop =
+        window.pageYOffset ||
+        window.document.documentElement?.scrollTop ||
+        window.document.body?.scrollTop ||
+        0;
+
+      if (topScollerValue <= scrollTop) {
+        dispatch({
+          type: 'global/getScroller',
+          payload: {
+            scroller: true,
+          },
+        });
+      } else {
+        dispatch({
+          type: 'global/getScroller',
+          payload: {
+            scroller: false,
+          },
+        });
+      }
+
+      setTimeout(() => {
+        topScollerValue = scrollTop;
+      });
+    }, 100),
+  );
 
   const getAwhile = async (conf: {
     curPage?: number; // 当前页数

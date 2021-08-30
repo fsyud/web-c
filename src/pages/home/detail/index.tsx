@@ -31,6 +31,8 @@ const Detail: React.FC<DetailProps> = (props) => {
   const params: any = useParams();
   const pageSize = 10;
 
+  let topScollerValue = 0;
+
   const reducer = (state: any[], action: { type: string; data?: any[] }) => {
     switch (action.type) {
       case 'add':
@@ -103,7 +105,6 @@ const Detail: React.FC<DetailProps> = (props) => {
 
   // 评论总条数
   const commitNum = useMemo(() => {
-    console.log(commentsList);
     let total = 0;
     for (let i = 0; i < commentsList.length; i++) {
       total += commentsList[i].secondCommit.length;
@@ -160,7 +161,13 @@ const Detail: React.FC<DetailProps> = (props) => {
 
   useWindowScroll(
     throttle(() => {
-      if (window.scrollY > 10) {
+      let scrollTop =
+        window.pageYOffset ||
+        window.document.documentElement?.scrollTop ||
+        window.document.body?.scrollTop ||
+        0;
+
+      if (topScollerValue <= scrollTop) {
         dispatch({
           type: 'global/getScroller',
           payload: {
@@ -175,6 +182,10 @@ const Detail: React.FC<DetailProps> = (props) => {
           },
         });
       }
+
+      setTimeout(() => {
+        topScollerValue = scrollTop;
+      });
     }, 100),
   );
 

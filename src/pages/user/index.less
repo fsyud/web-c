@@ -8,7 +8,7 @@
   .a_side {
     background-color: #fff;
     min-height: 620px;
-    margin-top: 24px;
+    margin-top: 16px;
     padding: 8px;
 
     :global {
@@ -39,8 +39,8 @@
 
   .a_right {
     min-height: 620px;
-    margin-left: 24px;
-    margin-top: 24px;
+    margin-left: 16px;
+    margin-top: 16px;
     display: flex;
     flex-direction: row;
 
@@ -70,6 +70,28 @@
       min-width: 240px;
       width: calc(100% - 250px);
       margin-right: 60px;
+
+      :global {
+        .ant-divider-horizontal {
+          margin: 18px 0;
+        }
+
+        .ant-row {
+          margin-bottom: 0;
+        }
+
+        .ant-form-item-control-input-content {
+          input,
+          textarea {
+            color: #1d2129;
+            background: #fafafa;
+
+            &:focus {
+              background: #fff;
+            }
+          }
+        }
+      }
     }
 
     .right {

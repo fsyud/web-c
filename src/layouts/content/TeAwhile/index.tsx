@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'umi';
-import { Row, Col, Skeleton, Radio, Space } from 'antd';
+import { Row, Col, Skeleton, Radio, Space, Affix } from 'antd';
 import { useMediaQuery } from 'beautiful-react-hooks';
 import { topicConfList } from '@/constant';
 import styles from './index.less';
@@ -41,26 +41,28 @@ const TeAwhile: React.FC<TeAwhileProps> = ({ children }) => {
       <Row>
         {!isTabletOrMobile && (
           <Col span={3} className={styles.teawhile_left}>
-            <aside>
-              <Skeleton active loading={false}>
-                <Space direction="vertical">
-                  <Radio.Group
-                    buttonStyle="solid"
-                    onChange={onChange}
-                    value={curRadio}
-                  >
-                    {[
-                      ...topicConfList.slice(0, 9),
-                      ...[{ type: 1000, name: '更多片刻 +' }],
-                    ].map((s: GLOBAL.tagType, index: number) => (
-                      <Radio.Button key={index} value={s.type}>
-                        {s.name}
-                      </Radio.Button>
-                    ))}
-                  </Radio.Group>
-                </Space>
-              </Skeleton>
-            </aside>
+            <Affix className={styles.affix} offsetTop={80}>
+              <aside>
+                <Skeleton active loading={false}>
+                  <Space direction="vertical">
+                    <Radio.Group
+                      buttonStyle="solid"
+                      onChange={onChange}
+                      value={curRadio}
+                    >
+                      {[
+                        ...topicConfList.slice(0, 9),
+                        ...[{ type: 1000, name: '更多片刻 +' }],
+                      ].map((s: GLOBAL.tagType, index: number) => (
+                        <Radio.Button key={index} value={s.type}>
+                          {s.name}
+                        </Radio.Button>
+                      ))}
+                    </Radio.Group>
+                  </Space>
+                </Skeleton>
+              </aside>
+            </Affix>
           </Col>
         )}
 

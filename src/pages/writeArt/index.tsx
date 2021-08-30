@@ -12,7 +12,7 @@ import math from '@bytemd/plugin-math';
 import footnotes from '@bytemd/plugin-footnotes';
 import { upLoadFiles } from '@/service/common';
 import PublishForm from '@/components/Article/PublishForm';
-import { insertText } from '@/utils/utils';
+// import { insertText } from '@/utils/utils';
 import { StorageStore } from '@/utils/authority';
 import 'bytemd/dist/index.min.css';
 import styles from './index.less';
@@ -233,14 +233,14 @@ const WriteArt: React.FC<{}> = () => {
           <Editor
             value={value}
             plugins={plugins}
-            editorConfig={{
-              configureMouse: (
-                cm: CodeMirror.Editor,
-              ): MouseSelectionConfiguration => {
-                // console.log(cm.getCursor('from'));
-                return { unit: 'rectangle' };
-              },
-            }}
+            // editorConfig={{
+            //   configureMouse: (
+            //     cm: CodeMirror.Editor,
+            //   ): MouseSelectionConfiguration => {
+            //     console.log(cm.getCursor('from'));
+            //     return { unit: 'word' };
+            //   },
+            // }}
             placeholder="输入文章内容..."
             uploadImages={(files: any): any => {
               getBase64(files[0], (imageUrl: any) => {

@@ -49,6 +49,7 @@ const User: React.FC<{}> = () => {
         job: data.job,
         company: data.company,
         introduce: data.introduce,
+        author_web: data.author_web,
       });
     }
   };
@@ -143,7 +144,7 @@ const User: React.FC<{}> = () => {
           <Col span={18}>
             <div className={styles.a_right}>
               {selectVal === 'a' && (
-                <Card title="个人资料">
+                <Card bordered={false} title="个人资料">
                   <div className={styles.left}>
                     <Form
                       name="basic"
@@ -163,6 +164,10 @@ const User: React.FC<{}> = () => {
                       <Divider />
                       <Form.Item label="公司" name="company">
                         <Input placeholder="填写你的公司" />
+                      </Form.Item>
+                      <Divider />
+                      <Form.Item label="个人主页" name="author_web">
+                        <Input placeholder="填写你的个人主页" />
                       </Form.Item>
                       <Divider />
                       <Form.Item label="个人介绍" name="introduce">
@@ -216,7 +221,9 @@ const User: React.FC<{}> = () => {
                 </Card>
               )}
 
-              {selectVal === 'b' && <Card title="账号设置"></Card>}
+              {selectVal === 'b' && (
+                <Card bordered={false} title="账号设置"></Card>
+              )}
             </div>
           </Col>
         </Row>

@@ -84,7 +84,13 @@ export default class Tocify {
 
   render() {
     return (
-      <Anchor style={{ padding: 24 }} affix showInkInFixed>
+      <Anchor
+        onChange={(val: string) => {
+          // console.log(val);
+        }}
+        style={{ padding: 24 }}
+        showInkInFixed
+      >
         {this.renderToc(this.tocItems)}
       </Anchor>
     );
