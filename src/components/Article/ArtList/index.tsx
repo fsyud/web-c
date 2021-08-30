@@ -3,7 +3,7 @@ import { Skeleton } from 'antd';
 import eye from '@/assets/svg/eye.svg';
 import great from '@/assets/svg/great.svg';
 import commit from '@/assets/svg/commit.svg';
-import { DiffDay } from '@/utils/utils';
+import { DiffDay, createSuperLabel } from '@/utils/utils';
 import { typeDefine } from '@/constant';
 
 import styles from './index.less';
@@ -13,8 +13,7 @@ interface ArtListProps {
 
 const ArtList: React.FC<ArtListProps> = ({ item }) => {
   const ScanArticle = (id: string): void => {
-    const w: any = window.open('about:blank');
-    w.location.href = `/detail/${id}`;
+    createSuperLabel(`/detail/${id}`, 'art_list_click');
   };
 
   return (
