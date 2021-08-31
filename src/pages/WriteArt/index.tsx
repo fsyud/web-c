@@ -65,6 +65,8 @@ const WriteArt: React.FC<{}> = () => {
   const [defImgUrl, setDefImgUrl] = useState<string>('');
   const [detailInfo, setDetailInfo] = useState<any>();
 
+  const [isSumbit, setIsSumbit] = useState<boolean>(false);
+
   const {
     location: { query },
   } = history;
@@ -154,6 +156,11 @@ const WriteArt: React.FC<{}> = () => {
         setImg_url('');
         setCurtitle('');
         setValue('');
+
+        setIsSumbit(true);
+        setTimeout(() => {
+          setIsSumbit(false);
+        }, 200);
       }
     });
   };
@@ -198,6 +205,7 @@ const WriteArt: React.FC<{}> = () => {
                 handleUploadImg={(params: any) => setImg_url(params)}
                 form={form}
                 defaultImgUrl={defImgUrl}
+                isSumbit={isSumbit}
               />
             </div>
             <div className={styles.panel_footer}>

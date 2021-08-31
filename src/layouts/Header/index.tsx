@@ -102,14 +102,21 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
     }
   };
 
-  // 下拉菜单点击
+  /**
+   * @description: 用户菜单下拉选项
+   * @param {object} item
+   * @return {*}
+   */
   const menuClick = (item: { key: any }): void => {
     const { key } = item;
     setMenuKey(key);
 
     if (key === 'loginout') {
-      StorageStore.removeAllUserLocal();
-      window.location.reload();
+      const Info = confirm('确定登出么？每片星空下都需要有梦想的人！');
+      if (Info) {
+        StorageStore.removeAllUserLocal();
+        window.location.reload();
+      }
     }
     if (key === 'setting') {
       history.push('/user');

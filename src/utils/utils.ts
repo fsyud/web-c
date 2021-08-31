@@ -68,6 +68,11 @@ export const rendererParagraph = (text: string) => {
   return `<p>${text.replace(regExp, '$1<a href="/$2">@$2</a>$3')}</p>`;
 };
 
+/**
+ * @description: prism marked渲染返回配置项
+ * @param {*} any
+ * @return {*}
+ */
 export const getDefaultMarkedOptions = (): any => {
   const renderer: any = new marked.Renderer();
 
@@ -101,6 +106,12 @@ export function resetMarkedOptions() {
   marked.setOptions(getDefaultMarkedOptions());
 }
 
+/**
+ * @description: 字符串插入
+ * @param {HTMLTextAreaElement} texteara 输入框实例
+ * @param {string} str 插入字符串
+ * @return {*}
+ */
 export function insertText(texteara: HTMLTextAreaElement, str: string): string {
   // @ts-ignore
   if (document.selection) {
@@ -128,7 +139,11 @@ export function insertText(texteara: HTMLTextAreaElement, str: string): string {
   return texteara.value;
 }
 
-// 天数计算
+/**
+ * @description: 根据时间戳计算天数
+ * @param {any} params
+ * @return {*}
+ */
 export const DiffDay = (params: any): string => {
   let isDay: string;
   //获取当前时间
@@ -164,4 +179,13 @@ export const createSuperLabel = (url: string, id: string) => {
     document.body.appendChild(a);
   }
   a.click();
+};
+
+/**
+ * @description: 需要截取的字符串
+ * @param {string} url
+ * @return {*}
+ */
+export const GithubStringSlice = (url: string): string => {
+  return url.split('/').pop() || '';
 };

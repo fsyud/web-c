@@ -61,10 +61,11 @@ const About: React.FC<{}> = () => {
       sort,
     };
 
+    // state 3 => 返回已审核文章
     if (where?.type === 100) {
-      params.where = {};
+      params.where = { ...{ state: 3 } };
     } else {
-      params.where = where;
+      params.where = { ...where, ...{ state: 3 } };
     }
     const res: API.reponseData = await getArticleList(params);
     if (res && Array.isArray(res.data)) {

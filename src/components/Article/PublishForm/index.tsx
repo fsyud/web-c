@@ -13,10 +13,11 @@ type PublishFormProps = {
   form: FormInstance;
   handleUploadImg: (params: any) => void;
   defaultImgUrl: string;
+  isSumbit: boolean;
 };
 
 const PublishForm: React.FC<PublishFormProps> = (props) => {
-  const { form, handleUploadImg, defaultImgUrl } = props;
+  const { form, handleUploadImg, defaultImgUrl, isSumbit } = props;
 
   const [imgurl, setImgurl] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -31,6 +32,12 @@ const PublishForm: React.FC<PublishFormProps> = (props) => {
       setImgurl(defaultImgUrl);
     }
   }, [defaultImgUrl]);
+
+  useEffect(() => {
+    if (isSumbit) {
+      setImgurl('');
+    }
+  }, [isSumbit]);
 
   const getBase64 = (img: any, callback: any) => {
     const reader = new FileReader();

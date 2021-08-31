@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Tocify from '@/components/Article/MarkdownBody/tocify';
 import { Skeleton, Affix, Avatar } from 'antd';
+import { GithubStringSlice } from '@/utils/utils';
 import { getArticleList } from '@/service/home';
 // import locationSvg from '@/assets/svg/location.svg';
 import githubSvg from '@/assets/svg/github1.svg';
@@ -82,7 +83,7 @@ const RightSide: React.FC<RightSideProps> = (props) => {
                     title={author_user_info.author_we}
                     href={author_user_info.author_web}
                   >
-                    {author_user_info.author_web}
+                    {GithubStringSlice(author_user_info.author_web)}
                   </a>
                 </div>
               )}
