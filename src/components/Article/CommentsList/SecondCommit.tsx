@@ -37,10 +37,10 @@ const SecondCommit: React.FC<SecondCommitProps> = (props) => {
       commit_id: parentItem._id,
     };
 
-    const data = await addTwoComment(params);
+    const { data } = await addTwoComment(params);
 
-    if (data.code === 0) {
-      message.success('回复留言成功！');
+    if (data) {
+      message.success(data.msg);
 
       dispatch({
         type: 'article/getComments',

@@ -103,7 +103,11 @@ const Detail: React.FC<DetailProps> = (props) => {
     };
   }, []);
 
-  // 评论总条数
+  /**
+   * @description: 评论总条数
+   * @param {*} useMemo
+   * @return {*}
+   */
   const commitNum = useMemo(() => {
     let total = 0;
     for (let i = 0; i < commentsList.length; i++) {
@@ -113,6 +117,11 @@ const Detail: React.FC<DetailProps> = (props) => {
     return total;
   }, [commentsList]);
 
+  /**
+   * @description: 获取文章详情
+   * @param {*}
+   * @return {*}
+   */
   const getArtList = async (conf: {
     curPage?: number; // 当前页数
     type: string; // 类型
@@ -216,10 +225,20 @@ const Detail: React.FC<DetailProps> = (props) => {
     }
   };
 
+  /**
+   * @description: 评论输入框改变
+   * @param {string} value
+   * @return {*}
+   */
   const onCommitChange = (value: string) => {
     setCommentValue(value);
   };
 
+  /**
+   * @description: 一级评论提交
+   * @param {*} Promise
+   * @return {*}
+   */
   const sumbitComment = async (): Promise<any> => {
     if (!StorageStore.getUserId()) {
       message.error('请登录后评论！');

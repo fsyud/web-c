@@ -34,10 +34,12 @@ const SingleComment: React.FC<SingleCommentProps> = (props) => {
       commit_id: item._id,
     };
 
-    const data = await addTwoComment(params);
+    const { data } = await addTwoComment(params);
 
-    if (data.code === 0) {
-      message.success('回复留言成功！');
+    console.log(data);
+
+    if (data) {
+      message.success(data.msg);
       dispatch({
         type: 'article/getComments',
         payload: {
@@ -101,7 +103,7 @@ const SingleComment: React.FC<SingleCommentProps> = (props) => {
                   sumbitForm={(values: string) => {
                     sumbitForm(values, item);
                   }}
-                  placeholder={`回复${item?.oneComment.user_name}...`}
+                  placeholder={`回复${item?.oneComment?.user_name}...`}
                   commitSta={false}
                 />
               )}
