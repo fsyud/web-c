@@ -2,6 +2,7 @@ declare namespace API {
   type userInfo = {
     name: string;
     password: string;
+    type?: string;
   };
   type updateUser = {
     username?: string;

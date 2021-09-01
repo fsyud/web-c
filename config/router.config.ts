@@ -50,8 +50,16 @@ export default [
         title: '用户信息 - 星空',
       },
       {
+        path: '/404',
+        name: '404',
         component: '@/pages/404',
         title: '错误页面！请返回首页',
+      },
+      {
+        path: '/protocol',
+        name: 'protocol',
+        component: '@/pages/protocol',
+        title: '用户协议 - 星空',
       },
     ],
   },

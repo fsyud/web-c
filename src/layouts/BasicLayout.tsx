@@ -4,7 +4,6 @@ import { ConfigProvider, Layout } from 'antd';
 import { useHistory, useSelector } from 'umi';
 // import enUS from 'antd/lib/locale/en_US';
 import zh_CN from 'antd/es/locale/zh_CN';
-import { Dispatch } from 'umi';
 import TeHome from './content/TeHome';
 import TeAwhile from './content/TeAwhile';
 import TeBook from './content/TeBook';
@@ -16,9 +15,7 @@ import styles from './index.less';
 
 const { Content } = Layout;
 
-export interface BasicLayoutType {
-  dispatch?: Dispatch;
-}
+export interface BasicLayoutType {}
 
 const BasicLayout: React.FC<BasicLayoutType> = (props) => {
   const history = useHistory();
@@ -26,7 +23,7 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
   const { scroller } = useSelector(({ global }: any) => {
     return { ...global };
   });
-  const { dispatch, children } = props;
+  const { children } = props;
   const [languages, setLanguages] = useState<any>(zh_CN);
 
   useEffect(() => {
@@ -87,7 +84,15 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
     );
   };
 
-  return <>{ContentNode()}</>;
+  const IS_CHILDREN = (): any => {
+    return (
+      <>
+        {curPath.includes('protocol') ? <div>{children}</div> : ContentNode()}
+      </>
+    );
+  };
+
+  return <>{IS_CHILDREN()}</>;
 };
 
 export default BasicLayout;

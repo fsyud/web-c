@@ -18,18 +18,25 @@
     }
 
     .pto_one {
-      top: -182px;
+      left: 123px;
+      top: -183px;
 
       img {
-        height: 180px;
+        height: 120px;
+        top: 63px;
+        left: -35px;
       }
     }
 
     .pto_two {
       top: -194px;
+      left: 100px;
 
       img {
-        height: 220px;
+        height: 120px;
+        width: 120px;
+        top: 74px;
+        left: -4px;
       }
     }
 
@@ -38,7 +45,10 @@
       left: 99px;
 
       img {
-        height: 180px;
+        height: 120px;
+        width: 120px;
+        top: 62px;
+        left: -22px;
       }
     }
   }
@@ -50,6 +60,7 @@
 
     .ant-modal-body {
       padding-top: 16px;
+      padding-bottom: 12px;
     }
 
     .ant-form-item {
@@ -75,13 +86,33 @@
   .extra_login {
     .extra_login__head {
       display: flex;
-      flex-direction: row-reverse;
+      justify-content: space-between;
+
+      :global {
+        .ant-btn {
+          &:first-child {
+            margin-left: -14px;
+            font-size: 13px;
+          }
+
+          &:last-child {
+            margin-right: -14px;
+            font-size: 13px;
+          }
+        }
+      }
+
+      .is_password {
+        color: rgb(196, 194, 194);
+      }
     }
+
     ul {
       list-style: none;
       padding-left: 0;
       display: flex;
       flex-direction: row;
+      margin-bottom: 0;
 
       li {
         display: flex;
@@ -89,18 +120,24 @@
         justify-content: center;
 
         div {
-          width: 60px;
-          height: 60px;
-          border-radius: 30px;
+          width: 40px;
+          height: 40px;
+          border-radius: 20px;
           display: flex;
           background-color: #f4f8fb;
           justify-content: center;
           align-items: center;
+
           img {
             width: 30px;
           }
         }
       }
+    }
+
+    .warn_info {
+      font-size: 12px;
+      margin-top: 8px;
     }
   }
 }

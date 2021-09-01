@@ -94,11 +94,19 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
     console.log(value);
   };
 
-  // 登录成功
-  const onSuccessLogin = (params: boolean): void => {
+  /**
+   * @description: 登录成功 回掉函数
+   * @param {boolean} params
+   * @param {number} type
+   * @return {*}
+   */
+  const onSuccessLogin = (params: boolean, type: number): void => {
     if (params) {
       setModalVisable(false);
-      window.location.reload();
+
+      if (type === 1) {
+        window.location.reload();
+      }
     }
   };
 
@@ -231,7 +239,6 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
         onSuccessLogin={onSuccessLogin}
         maskClosable
         closable
-        title="登录"
         onCancel={() => setModalVisable(false)}
       />
     </Header>
