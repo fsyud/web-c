@@ -1,5 +1,6 @@
 import React from 'react';
 import { Skeleton } from 'antd';
+import LazyLoad from 'react-lazyload';
 import eye from '@/assets/svg/eye.svg';
 import great from '@/assets/svg/great.svg';
 import commit from '@/assets/svg/commit.svg';
@@ -56,7 +57,9 @@ const ArtList: React.FC<ArtListProps> = ({ item }) => {
                   </div>
                 </div>
                 <div className={styles.photo}>
-                  {s.img_url && <img src={s.img_url || ''} />}
+                  <LazyLoad height={183} offset={100} once>
+                    {s.img_url && <img src={s.img_url || ''} />}
+                  </LazyLoad>
                 </div>
               </li>
             );
