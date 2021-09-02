@@ -15,6 +15,7 @@ import GitHub from '@/assets/svg/GitHub.svg';
 import wechat from '@/assets/svg/wechat.svg';
 import { registerUser, userLogin } from '@/service/user';
 import { StorageStore } from '@/utils/authority';
+import { createSuperLabel } from '@/utils/utils';
 
 import styles from './index.less';
 
@@ -126,6 +127,7 @@ const LoginModal: React.FC<LoginModalProps> = (props) => {
       className={styles.login}
       title={stateTxt}
       forceRender
+      centered
       destroyOnClose
       footer={null}
       width={318}
@@ -227,8 +229,13 @@ const LoginModal: React.FC<LoginModalProps> = (props) => {
         )}
         <div className={styles.warn_info}>
           注册登录即表示同意{' '}
-          <a onClick={() => window.open('/protocol', '_blank')}>用户协议</a>、{' '}
-          <a>隐私政策</a>
+          <a onClick={() => createSuperLabel('/protocol', 'protocol')}>
+            用户协议
+          </a>
+          、
+          <a onClick={() => createSuperLabel('/privacy', 'privacy')}>
+            隐私政策
+          </a>
         </div>
       </div>
     </Modal>

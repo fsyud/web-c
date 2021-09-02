@@ -61,6 +61,12 @@ export default [
         component: '@/pages/protocol',
         title: '用户协议 - 星空',
       },
+      {
+        path: '/privacy',
+        name: 'privacy',
+        component: '@/pages/protocol/privacy',
+        title: '隐私政策 - 星空',
+      },
     ],
   },
 ];

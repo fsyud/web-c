@@ -87,7 +87,11 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
   const IS_CHILDREN = (): any => {
     return (
       <>
-        {curPath.includes('protocol') ? <div>{children}</div> : ContentNode()}
+        {curPath.includes('protocol') || curPath.includes('privacy') ? (
+          <div>{children}</div>
+        ) : (
+          ContentNode()
+        )}
       </>
     );
   };
