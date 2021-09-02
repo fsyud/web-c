@@ -57,7 +57,7 @@ const ArtList: React.FC<ArtListProps> = ({ item }) => {
                   </div>
                 </div>
                 <div className={styles.photo}>
-                  <LazyLoad height={183} offset={100} once>
+                  <LazyLoad height={130} offset={10} once>
                     {s.img_url && <img src={s.img_url || ''} />}
                   </LazyLoad>
                 </div>
