@@ -4,6 +4,10 @@ import { Typography } from 'antd';
 const { Paragraph } = Typography;
 
 import ThreeDImage from '@/components/ThreeDImage';
+import balls from '@/assets/svg/balls.svg';
+import computer from '@/assets/svg/computer.svg';
+import together from '@/assets/svg/together.svg';
+import music from '@/assets/svg/music.svg';
 
 import styles from './index.less';
 
@@ -12,7 +16,10 @@ const Aboout: React.FC<{}> = () => {
     <div className={styles.about}>
       <h2>about</h2>
 
-      <Paragraph>Virgo has a strong obsessive-compulsive disorder.</Paragraph>
+      <Paragraph>
+        <img className={styles.balls} src={balls} />
+        Virgo has a strong obsessive-compulsive disorder.
+      </Paragraph>
 
       <Paragraph>
         University computer major, I did not expect it in the days after.
@@ -24,6 +31,7 @@ const Aboout: React.FC<{}> = () => {
         grass, dew, dandelion, etc.
       </Paragraph>
       <Paragraph>
+        <img src={together} />
         Like games CrazyRacing KartRider, League of Legends. The technology is
         justified.
       </Paragraph>
@@ -32,26 +40,26 @@ const Aboout: React.FC<{}> = () => {
         "Ghost Blowing Lantern", "Red Sorghum Family", etc. Friends who like to
         read can discuss together.
       </Paragraph>
+
+      <Paragraph>
+        <img src={music} />I like music. I am currently learning guitar by
+        myself and trying my best to climb the grid! Friends who like guitars
+        can communicate together!
+      </Paragraph>
+
       <Paragraph>
         I like basketball. I have been exposed to basketball for a long time,
         and I am good at position guards. Signature action killer crossover! !
       </Paragraph>
 
       <Paragraph>
-        I like music. I am currently learning guitar by myself and trying my
-        best to climb the grid! Friends who like guitars can communicate
-        together!
-      </Paragraph>
-
-      <Paragraph>
-        {' '}
+        <img src={computer} />
         Like computers, after contacting computers, I was deeply captured by the
-        computer world. This is a great thing! ! ! !{' '}
+        computer world. This is a great thing! ! ! !
       </Paragraph>
       <Paragraph>
-        {' '}
         Currently working in a medical company, mainly engaged in the
-        development of react, vue and visualization{' '}
+        development of react, vue and visualization
       </Paragraph>
       <h2>Can find me in these places</h2>
 

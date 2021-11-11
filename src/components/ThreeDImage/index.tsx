@@ -28,7 +28,7 @@ const ThreeDImage: React.FC<{}> = () => {
             </div>
             <div className="out_right">
               <img
-                src="https://z3.ax1x.com/2021/11/11/IdXj3D.jpg"
+                src="https://z3.ax1x.com/2021/11/11/IdjSud.jpg"
                 className="pic"
               />
             </div>
@@ -47,7 +47,7 @@ const ThreeDImage: React.FC<{}> = () => {
 
             <span className="in_front">
               <img
-                src="https://z3.ax1x.com/2021/11/11/IdjPEt.jpg"
+                src="https://z3.ax1x.com/2021/11/11/Idj9HI.jpg"
                 className="in_pic"
               />
             </span>

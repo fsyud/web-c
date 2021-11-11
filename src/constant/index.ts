@@ -11,14 +11,13 @@ import minecraft from '@/assets/awhile/minecraft.png';
 const Menus = [
   { key: '1', label: 'Home', path: '/home' },
   { key: '2', label: 'Boiling', path: '/awhile' },
-  { key: '3', label: 'About', path: '/about' },
-  { key: '4', label: 'Project', path: '/project' },
+  { key: '3', label: 'Project', path: '/project' },
+  { key: '4', label: 'About', path: '/about' },
 ];
 
 const menuTitle: GLOBAL.titleMrnuProps[] = [
   { title: 'starry - 代码里的时光', router: '/home' },
   { title: '时刻 - starry', router: '/awhile' },
-  { title: '小书 - starry', router: '/book' },
   { title: '未找到 - starry！', router: '/404' },
   { title: '标签列表 - starry', router: '/tag-column' },
   { title: '写文章 - starry', router: '/writeArt' },
