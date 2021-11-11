@@ -9,7 +9,7 @@ import TeAwhile from './content/TeAwhile';
 import TeBook from './content/TeBook';
 import Header from './Header';
 import TeArt from './content/TeArt';
-import { Menus, menuTitle } from '@/constant';
+import { Menus } from '@/constant';
 import githubs from '@/assets/svg/GitHub.svg';
 import styles from './index.less';
 
@@ -51,7 +51,8 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
       document.title = Menus[1].label;
       return <TeAwhile children={ELE} />;
     } else if (
-      curPath.includes(Menus[2].path) ||
+      curPath.includes('about') ||
+      curPath.includes('project') ||
       curPath.includes('404') ||
       curPath.includes('tag-column') ||
       curPath.includes('writeArt') ||

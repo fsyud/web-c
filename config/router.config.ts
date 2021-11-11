@@ -32,10 +32,16 @@ export default [
         title: '时刻 - 星空',
       },
       {
-        path: '/book',
-        name: 'book',
-        component: '@/pages/book',
-        title: '小书 - 星空',
+        path: '/about',
+        name: 'about',
+        component: '@/pages/about',
+        title: '关于 - 星空',
+      },
+      {
+        path: '/project',
+        name: 'project',
+        component: '@/pages/project',
+        title: '项目 - 星空',
       },
       {
         path: '/writeArt',
