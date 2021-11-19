@@ -192,7 +192,7 @@ const Regard: React.FC<RegardProps> = (props) => {
     });
 
     if (data) {
-      message.success(data.msg);
+      message.success('发布成功，博主审核中！');
       setChatContent('');
       setSelectTopic('');
 
@@ -324,9 +324,13 @@ const Regard: React.FC<RegardProps> = (props) => {
         loading={curList.length === 0}
       >
         {curList.map((s: any, i: number) => (
-          <Card key={i} bordered={false} className={styles.awhile_content}>
-            <CommitBoard Item={s} />
-          </Card>
+          <div key={i}>
+            {s.state === 2 && (
+              <Card bordered={false} className={styles.awhile_content}>
+                <CommitBoard Item={s} />
+              </Card>
+            )}
+          </div>
         ))}
       </Skeleton>
 

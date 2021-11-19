@@ -9,10 +9,10 @@ import get from '@/assets/awhile/get.svg';
 import minecraft from '@/assets/awhile/minecraft.png';
 
 const Menus = [
-  { key: '1', label: 'Home', path: '/home' },
-  { key: '2', label: 'Boiling', path: '/awhile' },
-  { key: '3', label: 'Project', path: '/project' },
-  { key: '4', label: 'About', path: '/about' },
+  { key: '1', label: '首页', path: '/home' },
+  { key: '2', label: '沸点', path: '/awhile' },
+  { key: '3', label: '项目', path: '/project' },
+  { key: '4', label: '关于', path: '/about' },
 ];
 
 const menuTitle: GLOBAL.titleMrnuProps[] = [

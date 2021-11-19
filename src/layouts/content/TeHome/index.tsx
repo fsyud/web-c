@@ -3,11 +3,10 @@ import { Row, Col, Affix } from 'antd';
 import classnames from 'classnames';
 import { history } from 'umi';
 import { useMediaQuery } from 'beautiful-react-hooks';
-// import { Sparklines, SparklinesBars, SparklinesLine } from 'react-sparklines';
 import { getHotArticle } from '@/service/home';
 import communicate from '@/assets/svg/communicate.svg';
 import questionnaire from '@/assets/svg/questionnaire.svg';
-import paywechat from '@/assets/svg/pay_wechat.svg';
+import comnumber from '@/assets/svg/comnumber.svg';
 import study from '@/assets/svg/study.svg';
 import styles from './index.less';
 
@@ -102,7 +101,7 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
                 </aside>
                 <aside>
                   <div className={styles.tehome_one}>
-                    <h5>最新片刻</h5>
+                    <h5>最新沸点</h5>
                     <ul className={styles.tehome_moment}>
                       <li>上班摸鱼</li>
                     </ul>
@@ -139,46 +138,18 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
                   <p>版权所有 © 2021 starryskystar</p>
                   <h6 className={styles.wechat}>
                     <img
-                      src={paywechat}
+                      src={comnumber}
                       onMouseEnter={() => setQrcode(true)}
                       onMouseOut={() => setQrcode(false)}
                     />
 
                     {qrcode && (
                       <div className={styles.qrcode}>
-                        <h4>赞赏博主（开源不易）</h4>
-                        <img src={require('@/assets/pay.jpeg')} />
+                        <h4>公众号</h4>
+                        <img src={require('@/assets/code.jpg')} />
                       </div>
                     )}
                   </h6>
-
-                  {/* <Sparklines
-                    data={[
-                      5,
-                      10,
-                      5,
-                      20,
-                      8,
-                      15,
-                      5,
-                      10,
-                      5,
-                      9,
-                      10,
-                      25,
-                      23,
-                      11,
-                      1,
-                      79,
-                    ]}
-                    limit={20}
-                    style={{ height: 30 }}
-                  >
-                    <SparklinesBars style={{ fill: '#41c3f9' }} />
-                    <SparklinesLine
-                      style={{ stroke: '#41c3f9', fill: 'none' }}
-                    />
-                  </Sparklines> */}
                 </aside>
               </div>
             </Affix>
