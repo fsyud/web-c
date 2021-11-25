@@ -30,7 +30,6 @@
 ![image](https://user-images.githubusercontent.com/26371465/143414247-03d6b632-00c0-4c73-8aa4-cac1268dde3d.png)
 
 ## Login
-![image](https://user-images.githubusercontent.com/26371465/143414428-92f7892e-2411-4fdf-92bf-1cac45a7504b.png)
 ![image](https://user-images.githubusercontent.com/26371465/143414500-bb5f42a8-b2a8-4eb0-9019-a0fc4fe71bf6.png)
 ![image](https://user-images.githubusercontent.com/26371465/143414531-417dee6d-0fe9-4db7-ba7b-8c6bb5567493.png)
 
