@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import { history } from 'umi';
 import { useMediaQuery } from 'beautiful-react-hooks';
 import { getHotArticle } from '@/service/home';
+import { getAwhileList } from '@/service/awhile';
 import communicate from '@/assets/svg/communicate.svg';
 import questionnaire from '@/assets/svg/questionnaire.svg';
 import comnumber from '@/assets/svg/comnumber.svg';
@@ -17,16 +18,25 @@ interface TeHomeProps {
 const TeHome: React.FC<TeHomeProps> = ({ children }) => {
   const isTabletOrMobile = useMediaQuery('(max-width: 1024px)');
   const [hots, setHots] = useState<any[]>([]);
+  const [whiles, setWhiles] = useState<any[]>([]);
   const [qrcode, setQrcode] = useState<boolean>(false);
 
   useEffect(() => {
     getHotArt();
+    getWhile();
   }, []);
 
   const getHotArt = async (): Promise<any> => {
     const { data } = await getHotArticle();
     if (data) {
       setHots(data.splice(0, 4));
+    }
+  };
+
+  const getWhile = async (): Promise<any> => {
+    const { data } = await getAwhileList({ page: 1, pageSize: 4, tag: 999 });
+    if (data) {
+      setWhiles(data);
     }
   };
 
@@ -73,7 +83,7 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
                     >
                       <img src={communicate} alt="error" />
                     </div>
-                    <span>发片刻</span>
+                    <span>发沸点</span>
                   </li>
                   <li>
                     <div
@@ -83,7 +93,7 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
                     >
                       <img src={study} alt="error" />
                     </div>
-                    <span>撰小书</span>
+                    <span>创作</span>
                   </li>
                 </ul>
               </div>
@@ -100,10 +110,20 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
                   />
                 </aside>
                 <aside>
-                  <div className={styles.tehome_one}>
+                  <div className={`${styles.tehome_one} ${styles.tehome_hot}`}>
                     <h5>最新沸点</h5>
                     <ul className={styles.tehome_moment}>
-                      <li>上班摸鱼</li>
+                      {whiles.map((s: any, i: number) => (
+                        <li
+                          onClick={() => {
+                            history.push('/awhile');
+                          }}
+                          key={i}
+                          title={s.title}
+                        >
+                          {s?.oneWhile?.content}
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </aside>

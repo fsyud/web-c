@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Card } from 'antd';
 import styles from './index.less';
 import { typeDefine } from '@/constant';

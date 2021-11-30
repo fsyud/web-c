@@ -9,7 +9,11 @@ export type awhileParamsType = {
 };
 
 // 获取时刻列表
-export async function getAwhileList(params: { tag?: string | number }) {
+export async function getAwhileList(params: {
+  tag?: string | number;
+  page?: number;
+  pageSize?: number;
+}) {
   return request('/api/awhile/list', {
     method: 'POST',
     data: params,
