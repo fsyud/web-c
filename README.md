@@ -16,9 +16,32 @@
 
 > 基于react、umjs、antd开发的博客c端，功能实现了文章过滤筛选，评论、多角色权限、移动端适配、图片上传、在线markdown书写等功能。后端服务基于nestjs。后续可能会升级ssr的版本，谢谢关注！
 
-### 🏠 [Homepage](https://www.starryskystar.space/)
+### 🏠 [Blog address](https://www.starryskystar.space/)
+## home
+![image](https://user-images.githubusercontent.com/26371465/143413965-96dcb8fa-409d-43a3-b0cf-37a03edcd838.png)
+
+## boiling
+![image](https://user-images.githubusercontent.com/26371465/143414050-91f042b8-0cc0-4bdd-a399-124e5aeb838f.png)
+
+## project
+![image](https://user-images.githubusercontent.com/26371465/143414147-3236f5b1-7846-4fb2-b170-277e01872bc7.png)
+
+## about
+![image](https://user-images.githubusercontent.com/26371465/143414247-03d6b632-00c0-4c73-8aa4-cac1268dde3d.png)
+
+## Login
+![image](https://user-images.githubusercontent.com/26371465/143414531-417dee6d-0fe9-4db7-ba7b-8c6bb5567493.png)
+
+## Write article
+![image](https://user-images.githubusercontent.com/26371465/143414600-f57fb06d-93cf-47c6-b113-ce7b6b351539.png)
+
+
+## setting
+![image](https://user-images.githubusercontent.com/26371465/143414651-70d63fd2-7dd3-4b69-8588-5a15798e1328.png)
+
+
+
 bolg head
-<img width="1353" alt="iShot2021-08-23 20 57 50" src="https://user-images.githubusercontent.com/26371465/130451066-877778f7-cd0a-4b40-ad62-cea37023aee3.png">
 ## Prerequisites
 
 - npm >=6.14.11
