@@ -5,7 +5,7 @@ import { useDispatch } from 'umi';
 import { UserOutlined } from '@ant-design/icons';
 import Comment from '@/components/SKy/SkyCommitBoard/Comment';
 import { ReactComponent as Comits } from '@/assets/svg/commit.svg';
-import { ReactComponent as Greats } from '@/assets/svg/great.svg';
+import { ReactComponent as Greats } from '@/assets/svg/greats.svg';
 import { addTwoAwhile } from '@/service/awhile';
 import { DiffDay } from '@/utils/utils';
 import { StorageStore } from '@/utils/authority';

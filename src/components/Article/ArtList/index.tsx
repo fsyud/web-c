@@ -2,7 +2,7 @@ import React from 'react';
 import { Skeleton } from 'antd';
 import LazyLoad from 'react-lazyload';
 import eye from '@/assets/svg/eye.svg';
-import great from '@/assets/svg/great.svg';
+import great from '@/assets/svg/greats.svg';
 import commit from '@/assets/svg/commit.svg';
 import { DiffDay, createSuperLabel } from '@/utils/utils';
 import { typeDefine } from '@/constant';

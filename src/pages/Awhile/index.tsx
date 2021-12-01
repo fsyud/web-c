@@ -137,6 +137,7 @@ const Regard: React.FC<RegardProps> = (props) => {
       page: curPage || 1,
       pageSize,
       tag: curTag || 999,
+      state: 2,
     };
 
     const { data } = await getAwhileList(params);
@@ -325,11 +326,9 @@ const Regard: React.FC<RegardProps> = (props) => {
       >
         {curList.map((s: any, i: number) => (
           <div key={i}>
-            {s.state === 2 && (
-              <Card bordered={false} className={styles.awhile_content}>
-                <CommitBoard Item={s} />
-              </Card>
-            )}
+            <Card bordered={false} className={styles.awhile_content}>
+              <CommitBoard Item={s} />
+            </Card>
           </div>
         ))}
       </Skeleton>

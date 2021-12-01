@@ -3,7 +3,7 @@
 .header {
   position: fixed;
   z-index: 999;
-  background-color: #fff;
+  background-color: #20232a;
   width: 100%;
   margin: auto;
   display: flex;
@@ -28,6 +28,7 @@
       font-size: 26px;
       font-weight: 500;
       font-family: arial, 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+      color: #61dafb;
     }
   }
 
@@ -35,12 +36,19 @@
     border-bottom: none;
     margin-bottom: 4px;
     margin-left: -22px;
+    background-color: #20232a;
 
     :global {
       .ant-menu-item {
         a {
-          color: #66686d;
+          color: #fff;
           font-size: 16px;
+        }
+      }
+
+      .ant-menu-item-selected {
+        a {
+          color: #61dafb;
         }
       }
     }
@@ -81,6 +89,20 @@
             color: #fff;
             background-color: #1e80ff;
             border: none;
+          }
+        }
+
+        .ant-input-group-addon {
+          .ant-btn {
+            background-color: #000;
+            border-color: #61dafb;
+          }
+        }
+
+        .ant-btn-group {
+          .ant-btn {
+            background-color: #000;
+            border: 1px #61dafb solid;
           }
         }
       }

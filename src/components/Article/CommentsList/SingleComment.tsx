@@ -3,7 +3,7 @@ import { Avatar, message } from 'antd';
 import { useDispatch } from 'umi';
 import { UserOutlined } from '@ant-design/icons';
 import { ReactComponent as Comits } from '@/assets/svg/commit.svg';
-import { ReactComponent as Greats } from '@/assets/svg/great.svg';
+import { ReactComponent as Greats } from '@/assets/svg/greats.svg';
 import Comment from '@/components/SKy/SkyCommitBoard/Comment';
 import { addTwoComment } from '@/service/comment';
 import SecondCommit from './SecondCommit';

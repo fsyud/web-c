@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { message, Divider } from 'antd';
 import { useDispatch } from 'umi';
 import { DiffDay } from '@/utils/utils';
-import great from '@/assets/svg/great.svg';
+import great from '@/assets/svg/greats.svg';
 import commit from '@/assets/svg/commit.svg';
 import share1 from '@/assets/svg/share1.svg';
 import { topicConfList } from '@/constant';
