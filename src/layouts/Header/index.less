@@ -50,9 +50,17 @@
         a {
           color: #61dafb;
         }
+
+        &::after {
+          content: none;
+        }
       }
       .ant-menu-item-active {
         border-bottom: 2px solid #61dafb !important;
+
+        &::after {
+          content: none;
+        }
       }
     }
   }
@@ -186,6 +194,7 @@
 
           :global {
             .ant-menu-item {
+              color: #61dafb;
               img {
                 width: 14px;
                 height: 14px;
