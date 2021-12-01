@@ -134,7 +134,7 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
   const menu: React.ReactElement = (
     <Menu onClick={handleMenuClick} style={{ width: 103 }}>
       <Menu.Item key="1">发片刻</Menu.Item>
-      <Menu.Item key="2">写小书</Menu.Item>
+      <Menu.Item key="2">创作</Menu.Item>
     </Menu>
   );
 

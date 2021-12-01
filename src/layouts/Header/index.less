@@ -19,9 +19,8 @@
     flex-direction: row;
 
     img {
-      width: 36px;
-      height: 36px;
-      margin-right: 4px;
+      width: 60px;
+      margin-right: 8px;
     }
 
     strong {
@@ -47,9 +46,13 @@
       }
 
       .ant-menu-item-selected {
+        border-bottom: 2px solid #61dafb;
         a {
           color: #61dafb;
         }
+      }
+      .ant-menu-item-active {
+        border-bottom: 2px solid #61dafb !important;
       }
     }
   }
@@ -146,6 +149,17 @@
       }
 
       :global {
+        .ant-btn {
+          border: 1px solid #61dafb;
+
+          background-color: #000;
+          color: #61dafb;
+
+          &:hover {
+            color: #fff;
+          }
+        }
+
         .ant-btn-link:hover {
           color: #06f;
         }
