@@ -41,12 +41,14 @@
       .ant-menu-item {
         a {
           color: #fff;
-          font-size: 16px;
+          font-size: 18px;
+          font-weight: 300;
         }
       }
 
       .ant-menu-item-selected {
         border-bottom: 2px solid #61dafb;
+
         a {
           color: #61dafb;
         }
@@ -55,6 +57,7 @@
           content: none;
         }
       }
+
       .ant-menu-item-active {
         border-bottom: 2px solid #61dafb !important;
 
@@ -98,22 +101,36 @@
 
           .ant-btn-default {
             color: #fff;
-            background-color: #1e80ff;
+            background-color: #61dafb;
             border: none;
           }
         }
 
         .ant-input-group-addon {
+          background-color: #20232a;
           .ant-btn {
-            background-color: #000;
-            border-color: #61dafb;
+            background-color: #20232a;
+            border: none;
           }
         }
 
         .ant-btn-group {
           .ant-btn {
-            background-color: #000;
-            border: 1px #61dafb solid;
+            background-color: #20232a;
+            border: 1px #20232a solid;
+          }
+        }
+
+        .ant-input-wrapper {
+          .ant-input {
+            background: transparent;
+            border: none;
+            color: #fff;
+
+            &:focus {
+              background-color: rgb(39, 39, 39);
+              border: none !important;
+            }
           }
         }
       }
@@ -126,6 +143,7 @@
         margin-left: 10px;
         cursor: pointer;
         transition: all 0.3s;
+        color: #fff;
 
         > span {
           vertical-align: middle;
@@ -148,8 +166,8 @@
       margin-left: 32px;
 
       .register {
-        border: 1px solid #06f;
-        color: #06f;
+        border: 1px solid #61dafb;
+        color: #61dafb;
       }
 
       .register:hover {
@@ -169,7 +187,7 @@
         }
 
         .ant-btn-link:hover {
-          color: #06f;
+          color: #61dafb;
         }
       }
 
@@ -177,6 +195,7 @@
         position: relative;
 
         .avtors_img {
+          cursor: pointer;
           img {
             width: 32px;
             height: 32px;
@@ -194,7 +213,8 @@
 
           :global {
             .ant-menu-item {
-              color: #61dafb;
+              color: #fff;
+
               img {
                 width: 14px;
                 height: 14px;
