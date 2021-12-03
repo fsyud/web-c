@@ -312,9 +312,7 @@ const Regard: React.FC<RegardProps> = (props) => {
             </ul>
             <SkyEmoji visible={emojivis} onClickEmoji={onClickEmoji} />
           </div>
-          <Button type="primary" onClick={submitAwile}>
-            发布
-          </Button>
+          <Button onClick={submitAwile}>发布</Button>
         </div>
       </Card>
 

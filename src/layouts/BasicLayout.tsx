@@ -22,8 +22,6 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
   const history = useHistory();
   const curPath = history.location.pathname;
 
-  console.log(history.location);
-
   const { scroller } = useSelector(({ global }: any) => {
     return { ...global };
   });

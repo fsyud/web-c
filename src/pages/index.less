@@ -1,55 +1,58 @@
 .starry {
   margin-top: -20px;
+  display: flex;
+  flex-direction: column;
 
-  section {
-    background: url('./../assets/pic/gun.png') no-repeat;
-    background-position: right;
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    background-color: #282c34;
-    position: relative;
-    height: 500px;
-
-    .introduce {
-      width: 1000px;
-      margin: 100px auto;
-      font-family: 'Fuzzy Bubbles', cursive;
-
-      h1 {
-        color: #fff;
-        font-size: 30px;
-      }
-
-      p {
-        color: #fff;
-        font-weight: 300;
-
-        font-size: 15px;
-      }
-    }
-
-    .go {
-      bottom: 0;
-      width: 100%;
+  .starry_main {
+    section {
+      background: url('./../assets/pic/gun.png') no-repeat;
+      background-position: right;
       display: flex;
-      justify-content: center;
-      margin-top: 100px;
-      position: absolute;
-      bottom: 100px;
+      flex-direction: column;
+      height: 500px;
+      background-color: #282c34;
+      position: relative;
 
-      .btn_primary {
-        font-size: 16px;
-        background-color: #61dafb;
-        color: #000000;
-        padding: 10px 25px;
-        white-space: nowrap;
-        transition: background-color 0.2s ease-out;
-        -webkit-transition: background-color 0.2s ease-out;
-        cursor: pointer;
+      .introduce {
+        margin: 100px auto;
+        font-family: 'Fuzzy Bubbles', cursive;
+        width: 100%;
 
-        &:hover {
-          background-color: #fff;
+        h1 {
+          color: #fff;
+          font-size: 30px;
+        }
+
+        p {
+          color: #fff;
+          font-weight: 300;
+
+          font-size: 15px;
+        }
+      }
+
+      .go {
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 100px;
+        position: absolute;
+        bottom: 100px;
+
+        .btn_primary {
+          font-size: 16px;
+          background-color: #61dafb;
+          color: #000000;
+          padding: 10px 25px;
+          white-space: nowrap;
+          transition: background-color 0.2s ease-out;
+          -webkit-transition: background-color 0.2s ease-out;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #fff;
+          }
         }
       }
     }
@@ -57,11 +60,15 @@
 
   article {
     margin: 24px 0;
+    height: 100%;
 
     .desc {
       margin: 0 auto;
-      width: 1000px;
       color: #282c34;
+
+      .one_card {
+        margin-top: 24px;
+      }
 
       h1 {
         font-family: 'Bangers', cursive;
@@ -74,13 +81,13 @@
   }
 
   footer {
-    width: 100vw;
-    height: 200px;
+    height: 240px;
     background-color: #282c34;
+    display: flex;
 
     .foot {
-      width: 1000px;
       margin: 0 auto;
+      width: 100%;
 
       .annotation {
         color: #999;
@@ -88,7 +95,8 @@
       }
 
       .contain {
-        padding-top: 80px;
+        padding-top: 0;
+
         h3 {
           color: #fff;
           font-family: 'Bangers', cursive;
@@ -98,6 +106,41 @@
           width: 80px;
           height: 80px;
         }
+      }
+    }
+  }
+}
+
+.mainStyle {
+  .starry_main {
+    background-color: #282c34;
+
+    section {
+      width: 1000px;
+      margin: 0 auto;
+    }
+  }
+
+  .article_style {
+    min-height: 400px;
+
+    .desc {
+      width: 1000px;
+      margin: 0 auto;
+    }
+  }
+
+  footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    height: 200px;
+
+    .foot {
+      width: 1000px;
+
+      .contain {
+        padding-top: 60px;
       }
     }
   }
