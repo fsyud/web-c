@@ -4,6 +4,7 @@ import { ConfigProvider, Layout } from 'antd';
 import { useHistory, useSelector } from 'umi';
 // import enUS from 'antd/lib/locale/en_US';
 import zh_CN from 'antd/es/locale/zh_CN';
+import TeFirst from './content/TeFirst';
 import TeHome from './content/TeHome';
 import TeAwhile from './content/TeAwhile';
 import TeBook from './content/TeBook';
@@ -20,6 +21,9 @@ export interface BasicLayoutType {}
 const BasicLayout: React.FC<BasicLayoutType> = (props) => {
   const history = useHistory();
   const curPath = history.location.pathname;
+
+  console.log(history.location);
+
   const { scroller } = useSelector(({ global }: any) => {
     return { ...global };
   });
@@ -44,12 +48,16 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
   };
 
   // 不同路由之间
-  const DiffContent = <T extends React.ReactNode>(ELE: T): React.ReactNode => {
-    if (curPath.includes(Menus[0].path) || curPath === '/') {
-      return <TeHome children={ELE} />;
+  const DiffContent = <T extends React.ReactNode>(
+    ELEMENT: T,
+  ): React.ReactNode => {
+    if (curPath === '/') {
+      return <TeFirst children={ELEMENT} />;
+    } else if (curPath.includes(Menus[0].path)) {
+      return <TeHome children={ELEMENT} />;
     } else if (curPath.includes(Menus[1].path)) {
       document.title = Menus[1].label;
-      return <TeAwhile children={ELE} />;
+      return <TeAwhile children={ELEMENT} />;
     } else if (
       curPath.includes('about') ||
       curPath.includes('project') ||
@@ -58,9 +66,9 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
       curPath.includes('writeArt') ||
       curPath.includes('user')
     ) {
-      return <TeBook children={ELE} />;
+      return <TeBook children={ELEMENT} />;
     } else if (curPath.includes('detail')) {
-      return <TeArt children={ELE} />;
+      return <TeArt children={ELEMENT} />;
     }
   };
 

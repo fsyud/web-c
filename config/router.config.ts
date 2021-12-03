@@ -5,7 +5,9 @@ export default [
     routes: [
       {
         path: '/',
-        redirect: '/home',
+        name: 'index',
+        component: '@/pages',
+        title: '星空 - 光明如同日月星辰 代码不止',
       },
       {
         path: '/home',

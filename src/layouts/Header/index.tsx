@@ -37,6 +37,7 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
   // 去除nav样式
   const curActiveKey = (): string => {
     if (
+      curPath === '/' ||
       curPath.includes('detail') ||
       curPath.includes('writeArt') ||
       curPath.includes('tag-column') ||
@@ -163,7 +164,7 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
     <Header className={styles.header}>
       <Row>
         <Col span={10}>
-          <Link to={Menus[0].path} style={{ color: 'black' }}>
+          <Link to={'./'} style={{ color: 'black' }}>
             <div className={styles.logo}>
               <img src={require('@/assets/boal1.png')} alt="error" />
               <strong>星空</strong>
@@ -187,7 +188,6 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
         {isTabletOrMobile && (
           <Col span={14} className={styles.header_r__main}>
             <div className={styles.header_right}>
-              {/* <Button type="link">注册</Button> */}
               {!loginsta && (
                 <Button
                   className={styles.register}
