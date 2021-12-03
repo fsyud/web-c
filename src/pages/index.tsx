@@ -68,9 +68,7 @@ const StarryStarSky: React.FC<{}> = () => {
         <div className={styles.foot}>
           <Row className={styles.contain} gutter={16}>
             <Col span={8}>
-              <p className={styles.annotation}>
-                Copyright © 2021 Facebook Inc.
-              </p>
+              <p className={styles.annotation}>Copyright © 2021 Starry star.</p>
             </Col>
             <Col span={8}>
               <h3>THE PUBLIC</h3>
