@@ -13,6 +13,7 @@ export async function getAwhileList(params: {
   tag?: string | number;
   page?: number;
   pageSize?: number;
+  state?: number;
 }) {
   return request('/api/awhile/list', {
     method: 'POST',
