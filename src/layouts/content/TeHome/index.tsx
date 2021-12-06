@@ -29,7 +29,7 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
   const getHotArt = async (): Promise<any> => {
     const { data } = await getHotArticle();
     if (data) {
-      setHots(data.splice(0, 4));
+      setHots(data);
     }
   };
 
@@ -129,7 +129,7 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
                 </aside>
                 <aside>
                   <div className={`${styles.tehome_one} ${styles.tehome_hot}`}>
-                    <h5>热门</h5>
+                    <h5>热门文章</h5>
                     <ul className={styles.tehome_moment}>
                       {hots.map((s: any, i: number) => (
                         <li

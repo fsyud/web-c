@@ -27,4 +27,10 @@ declare namespace API {
     data: any[];
     message: string;
   };
+  type ItemParms = {
+    _id?: string;
+    title: string; // 项目标题
+    desc: string;
+    img_url: string; // 项目封面图片
+  };
 }

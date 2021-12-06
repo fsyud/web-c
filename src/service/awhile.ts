@@ -35,3 +35,10 @@ export async function addTwoAwhile(params: awhileParamsType) {
     data: params,
   });
 }
+
+// 获取热门时刻
+export async function getHotAwhile() {
+  return request('/api/awhile/hot', {
+    method: 'POST',
+  });
+}

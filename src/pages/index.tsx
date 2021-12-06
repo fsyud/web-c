@@ -38,7 +38,7 @@ const StarryStarSky: React.FC<{}> = () => {
 
             <div className={styles.go}>
               <PrimaryButton onClick={() => history.push('./home')}>
-                进入博客
+                ENTER
               </PrimaryButton>
             </div>
           </section>
