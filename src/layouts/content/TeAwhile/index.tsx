@@ -90,26 +90,28 @@ const TeAwhile: React.FC<TeAwhileProps> = ({ children }) => {
 
         {!isTabletOrMobile && (
           <Col span={6} className={styles.teawhile_aside}>
-            <aside>
-              <Skeleton active loading={false}>
-                <div className={`${styles.tehome_one} ${styles.tehome_hot}`}>
-                  <h5>精选沸点</h5>
-                  <ul className={styles.tehome_moment}>
-                    {hots.map((s: any, i: number) => (
-                      <li
-                        onClick={() => {
-                          searchHot(s._id);
-                        }}
-                        key={i}
-                        title={s.title}
-                      >
-                        {s?.oneWhile?.content || ''}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </Skeleton>
-            </aside>
+            <Affix offsetTop={80}>
+              <aside>
+                <Skeleton active loading={false}>
+                  <div className={`${styles.tehome_one} ${styles.tehome_hot}`}>
+                    <h5>精选沸点</h5>
+                    <ul className={styles.tehome_moment}>
+                      {hots.map((s: any, i: number) => (
+                        <li
+                          onClick={() => {
+                            searchHot(s._id);
+                          }}
+                          key={i}
+                          title={s.title}
+                        >
+                          {s?.oneWhile?.content || ''}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </Skeleton>
+              </aside>
+            </Affix>
           </Col>
         )}
       </Row>
