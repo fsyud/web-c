@@ -49,11 +49,6 @@ const TeAwhile: React.FC<TeAwhileProps> = ({ children }) => {
     });
   };
 
-  const searchHot = (pmrams: any) => {
-    const w: any = window.open('about:blank');
-    w.location.href = `/detail/${pmrams}`;
-  };
-
   return (
     <div className={styles.teawhile}>
       <Row>
@@ -97,13 +92,7 @@ const TeAwhile: React.FC<TeAwhileProps> = ({ children }) => {
                     <h5>精选沸点</h5>
                     <ul className={styles.tehome_moment}>
                       {hots.map((s: any, i: number) => (
-                        <li
-                          onClick={() => {
-                            searchHot(s._id);
-                          }}
-                          key={i}
-                          title={s.title}
-                        >
+                        <li key={i} title={s.title}>
                           {s?.oneWhile?.content || ''}
                         </li>
                       ))}
