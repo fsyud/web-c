@@ -39,8 +39,9 @@
   position: absolute;
   width: 200px;
   height: 200px;
-  opacity: 0.5;
+  opacity: 0.3  ;
   transition: all .4s;
+  border: 1px #fff solid;
 }
 
 /*定义所有图片样式*/

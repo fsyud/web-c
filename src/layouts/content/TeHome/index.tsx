@@ -34,7 +34,12 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
   };
 
   const getWhile = async (): Promise<any> => {
-    const { data } = await getAwhileList({ page: 1, pageSize: 4, tag: 999 });
+    const { data } = await getAwhileList({
+      page: 1,
+      pageSize: 4,
+      tag: 999,
+      state: 2,
+    });
     if (data) {
       setWhiles(data);
     }

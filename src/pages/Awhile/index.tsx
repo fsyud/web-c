@@ -294,7 +294,6 @@ const Regard: React.FC<RegardProps> = (props) => {
                   图片
                 </li>
               )}
-
               <li>
                 <img src={link} />
                 链接
