@@ -22,11 +22,28 @@
 
 ## MOBILE
 
+![ffff](https://user-images.githubusercontent.com/26371465/145363841-2fc1e244-482b-4baf-9396-ff46716715c9.gif)
 
-![JJJJ](https://user-images.githubusercontent.com/26371465/145362505-a250a87d-7ec5-4573-bd7c-9d1da9176c03.gif)
 
 
-> 基于react、umjs、antd开发的博客c端，功能实现了文章过滤筛选，评论、多角色权限、移动端适配、图片上传、在线markdown书写等功能。后端服务基于nestjs。后续可能会升级ssr的版本，谢谢关注！
+> 基于react、umjs、antd开发的博客c端，功能实现了文章过滤筛选，评论、多角色权限、移动端适配、图片上传、在线markdown书写等功能。后端服务基于nestjs。后续会升级ssr的版本，谢谢关注！
+
+
+## 已经完成功能
+
+- [x] 登录  
+- [x] 注册  
+- [x] 文章列表
+- [x] 文章在线发布
+- [x] 文章在线编辑
+- [x] 关于  
+- [x] 评论
+- [x] 留言
+- [x] 文章详情（支持代码语法高亮）
+- [x] 移动端适配
+- [x] 在线修改个人信息，上传头像
+- [x] 留言板  
+- [ ] 点赞（后续准备使用redis实现）
 
 ### 🏠 [Blog address](https://www.starryskystar.space/)
 
