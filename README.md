@@ -14,41 +14,40 @@
   </a>
 </p>
 
+# 简介
 
+## PC
 
-![213123](https://user-images.githubusercontent.com/26371465/144995153-d1c45be7-9f32-444c-8d04-4cb60a4da63c.gif)
+![kookko](https://user-images.githubusercontent.com/26371465/145361241-66bbd923-aeb5-4ad6-b6cd-f8a337e3a220.gif)
 
+## MOBILE
 
-
-
-> 基于react、umjs、antd开发的博客c端，功能实现了文章过滤筛选，评论、多角色权限、移动端适配、图片上传、在线markdown书写等功能。后端服务基于nestjs。后续可能会升级ssr的版本，谢谢关注！
-
-### 🏠 [Blog address](https://www.starryskystar.space/)
-## home
-![image](https://user-images.githubusercontent.com/26371465/143413965-96dcb8fa-409d-43a3-b0cf-37a03edcd838.png)
-
-## boiling
-![image](https://user-images.githubusercontent.com/26371465/143414050-91f042b8-0cc0-4bdd-a399-124e5aeb838f.png)
-
-## project
-![image](https://user-images.githubusercontent.com/26371465/143414147-3236f5b1-7846-4fb2-b170-277e01872bc7.png)
-
-## about
-![image](https://user-images.githubusercontent.com/26371465/143414247-03d6b632-00c0-4c73-8aa4-cac1268dde3d.png)
-
-## Login
-![image](https://user-images.githubusercontent.com/26371465/143414531-417dee6d-0fe9-4db7-ba7b-8c6bb5567493.png)
-
-## Write article
-![image](https://user-images.githubusercontent.com/26371465/143414600-f57fb06d-93cf-47c6-b113-ce7b6b351539.png)
-
-
-## setting
-![image](https://user-images.githubusercontent.com/26371465/143414651-70d63fd2-7dd3-4b69-8588-5a15798e1328.png)
+![ffff](https://user-images.githubusercontent.com/26371465/145363841-2fc1e244-482b-4baf-9396-ff46716715c9.gif)
 
 
 
-bolg head
+> 基于react、umjs、antd开发的博客c端，功能实现了文章过滤筛选，评论、多角色权限、移动端适配、图片上传、在线markdown书写等功能。后端服务基于nestjs、express、nodejs。后续会升级ssr的版本，谢谢关注！
+
+
+## 已经完成功能
+
+- [x] 登录  
+- [x] 注册  
+- [x] 文章列表
+- [x] 文章在线发布
+- [x] 文章在线编辑
+- [x] 关于  
+- [x] 评论
+- [x] 留言
+- [x] 文章详情（支持代码语法高亮）
+- [x] 移动端适配
+- [x] 在线修改个人信息，上传头像
+- [x] 留言板  
+- [ ] 点赞（后续准备使用redis实现）
+
+### 🏠 完整效果请看 [https://www.starryskystar.space](https://www.starryskystar.space/)
+
+
 ## Prerequisites
 
 - npm >=6.14.11
