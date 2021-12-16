@@ -8,7 +8,6 @@ import { getAwhileList } from '@/service/awhile';
 import communicate from '@/assets/svg/communicate.svg';
 import questionnaire from '@/assets/svg/questionnaire.svg';
 import comnumber from '@/assets/svg/comnumber.svg';
-import study from '@/assets/svg/study.svg';
 import styles from './index.less';
 
 interface TeHomeProps {
@@ -90,16 +89,6 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
                     </div>
                     <span>发沸点</span>
                   </li>
-                  <li>
-                    <div
-                      onClick={() => {
-                        history.push('/book');
-                      }}
-                    >
-                      <img src={study} alt="error" />
-                    </div>
-                    <span>创作</span>
-                  </li>
                 </ul>
               </div>
             </aside>
@@ -107,12 +96,8 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
             <Affix offsetTop={80}>
               <div className={styles.tehome_fix}>
                 <aside className={styles.advertis}>
-                  <div className={styles.about_author}>作者</div>
-                  <img
-                    src={
-                      'https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/db99263b3641425b96356b04ea6821d0~tplv-k3u1fbpfcp-watermark.image'
-                    }
-                  />
+                  <div className={styles.about_author}>广告</div>
+                  <img src={'https://s4.ax1x.com/2021/12/16/T96Gm4.jpg'} />
                 </aside>
                 <aside>
                   <div className={`${styles.tehome_one} ${styles.tehome_hot}`}>
