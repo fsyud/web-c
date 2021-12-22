@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Layout, Menu, Row, Col, Button, Dropdown, Input, Avatar } from 'antd';
-import { Link, SelectLang, history } from 'umi';
+import { Link, history } from 'umi';
 import { DownOutlined } from '@ant-design/icons';
 import { Menus } from '@/constant';
 import classnames from 'classnames';
-import { getUser } from '@/service/user';
-// import enUS from 'antd/lib/locale/en_US';
 import zh_CN from 'antd/es/locale/zh_CN';
 import { useMediaQuery } from 'beautiful-react-hooks';
 import { StorageStore } from '@/utils/authority';
@@ -134,8 +132,7 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
 
   const menu: React.ReactElement = (
     <Menu onClick={handleMenuClick} style={{ width: 103 }}>
-      <Menu.Item key="1">发片刻</Menu.Item>
-      <Menu.Item key="2">创作</Menu.Item>
+      <Menu.Item key="1">去留言</Menu.Item>
     </Menu>
   );
 
@@ -220,17 +217,8 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
               >
                 写文章
               </Dropdown.Button>
-              <SelectLang className={styles.action} />
+              {/* <SelectLang className={styles.action} /> */}
             </div>
-
-            {/* <Radio.Group size="small" value={languages} onChange={changeLocale}>
-            <Radio.Button key="en" value={enUS}>
-              English
-            </Radio.Button>
-            <Radio.Button key="cn" value={zh_CN}>
-              中文
-            </Radio.Button>
-          </Radio.Group> */}
           </Col>
         )}
       </Row>

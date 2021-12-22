@@ -87,7 +87,7 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
                     >
                       <img src={communicate} alt="error" />
                     </div>
-                    <span>发沸点</span>
+                    <span>去留言</span>
                   </li>
                 </ul>
               </div>
@@ -95,10 +95,10 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
 
             <Affix offsetTop={80}>
               <div className={styles.tehome_fix}>
-                <aside className={styles.advertis}>
+                {/* <aside className={styles.advertis}>
                   <div className={styles.about_author}>广告</div>
                   <img src={'https://s4.ax1x.com/2021/12/16/T96Gm4.jpg'} />
-                </aside>
+                </aside> */}
                 <aside>
                   <div className={`${styles.tehome_one} ${styles.tehome_hot}`}>
                     <h5>最新沸点</h5>

@@ -30,15 +30,18 @@ const StarryStarSky: React.FC<{}> = () => {
         <Col span={24} className={styles.starry_main}>
           <section>
             <div className={styles.introduce}>
-              <h1>A sentence of the day</h1>
-              <p>My working week and my Sunday rest</p>
+              <h1>
+                The only limit to our realization of tomorrow will be our doubts
+                of today.
+              </h1>
+              <p>——Franklin</p>
 
-              <p>我的工作天，我的休息日</p>
+              <p>实现明天理想的唯一障碍是今天的疑虑</p>
             </div>
 
             <div className={styles.go}>
               <PrimaryButton onClick={() => history.push('./home')}>
-                ENTER
+                进入博客
               </PrimaryButton>
             </div>
           </section>

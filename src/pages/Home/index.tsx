@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useReducer } from 'react';
-import { Divider, Radio } from 'antd';
+import { Divider, Radio, Affix } from 'antd';
+import { useWindowScroll } from 'beautiful-react-hooks';
+import { useDispatch } from 'umi';
 import throttle from 'lodash/throttle';
+import { Mutual } from '@/utils/mutual';
 import { getArticleList } from '@/service/home';
 import TagSelect from '@/components/Article/TagSelect';
 import ArtList from '@/components/Article/ArtList';
@@ -12,6 +15,8 @@ import data_img from '@/assets/svg/data.svg';
 import styles from './index.less';
 
 const About: React.FC<{}> = () => {
+  const dispatch = useDispatch();
+
   const pageSize = 15;
 
   const reducer = (state: any[], action: { type: string; data?: any[] }) => {
@@ -92,6 +97,8 @@ const About: React.FC<{}> = () => {
     });
   };
 
+  useWindowScroll(Mutual.affixMenuScroller(dispatch));
+
   useEffect(() => {
     window.addEventListener('scroll', throttle(onScroll, 1000));
   }, []);
@@ -151,28 +158,32 @@ const About: React.FC<{}> = () => {
   return (
     <>
       <div className={`${styles.home} home_contain`}>
-        <div className={styles.h_tags}>
-          <TagSelect
-            changeTag={changeTag}
-            list={[...[{ type: 100, name: '推荐' }, ...typeDefine]]}
-          />
-        </div>
-        <Divider />
-        <div className={styles.h_header__link}>
-          <Radio.Group
-            value={radioType}
-            onChange={(e: any) => secondTypesChange(e)}
-            size="small"
-            buttonStyle="solid"
-          >
-            {btnConf.map((s: GLOBAL.tagType, index: number) => (
-              <Radio.Button key={index} value={s.type}>
-                {s.name}
-              </Radio.Button>
-            ))}
-          </Radio.Group>
-        </div>
-        <Divider />
+        <Affix offsetTop={0}>
+          <div className={styles.heads}>
+            <div className={styles.h_tags}>
+              <TagSelect
+                changeTag={changeTag}
+                list={[...[{ type: 100, name: '推荐' }, ...typeDefine]]}
+              />
+            </div>
+            <Divider />
+            <div className={styles.h_header__link}>
+              <Radio.Group
+                value={radioType}
+                onChange={(e: any) => secondTypesChange(e)}
+                size="small"
+                buttonStyle="solid"
+              >
+                {btnConf.map((s: GLOBAL.tagType, index: number) => (
+                  <Radio.Button key={index} value={s.type}>
+                    {s.name}
+                  </Radio.Button>
+                ))}
+              </Radio.Group>
+            </div>
+            <Divider />
+          </div>
+        </Affix>
 
         <div className={styles.h_main}>
           <ArtList item={curList} />

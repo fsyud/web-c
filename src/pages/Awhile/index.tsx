@@ -2,6 +2,7 @@ import React, { useState, useEffect, useReducer } from 'react';
 import { Skeleton, Card, Input, Button, message } from 'antd';
 import { useSelector, useDispatch } from 'umi';
 import { useWindowScroll } from 'beautiful-react-hooks';
+import { Mutual } from '@/utils/mutual';
 import SkyEmoji from '@/components/SKy/SkyEmoji';
 import CommitBoard from '@/components/SKy/SkyCommitBoard';
 import throttle from 'lodash/throttle';
@@ -95,35 +96,7 @@ const Regard: React.FC<RegardProps> = (props) => {
     };
   }, []);
 
-  useWindowScroll(
-    throttle(() => {
-      let scrollTop =
-        window.pageYOffset ||
-        window.document.documentElement?.scrollTop ||
-        window.document.body?.scrollTop ||
-        0;
-
-      if (topScollerValue <= scrollTop) {
-        dispatch({
-          type: 'global/getScroller',
-          payload: {
-            scroller: true,
-          },
-        });
-      } else {
-        dispatch({
-          type: 'global/getScroller',
-          payload: {
-            scroller: false,
-          },
-        });
-      }
-
-      setTimeout(() => {
-        topScollerValue = scrollTop;
-      });
-    }, 100),
-  );
+  useWindowScroll(Mutual.ptchMenuScroller(dispatch));
 
   const getAwhile = async (conf: {
     curPage?: number; // 当前页数

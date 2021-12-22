@@ -31,7 +31,7 @@ export default [
         path: '/awhile',
         name: 'awhile',
         component: '@/pages/awhile',
-        title: '时刻 - 星空',
+        title: '留言 - 星空',
       },
       {
         path: '/about',
