@@ -63,7 +63,7 @@ const Aboout: React.FC<{}> = () => {
       </Paragraph>
       <h2>Can find me in these places</h2>
 
-      <Paragraph>Email: starrystarsky7@163.com</Paragraph>
+      <Paragraph>Email: starryskystar@163.com</Paragraph>
       <Paragraph>
         Github:
         <a href="https://github.com/starryskystar">@starryskystar</a>
