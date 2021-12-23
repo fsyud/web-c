@@ -158,32 +158,33 @@ const About: React.FC<{}> = () => {
   return (
     <>
       <div className={`${styles.home} home_contain`}>
-        <Affix offsetTop={0}>
-          <div className={styles.heads}>
+        <div className={styles.heads}>
+          <Affix offsetTop={0}>
             <div className={styles.h_tags}>
               <TagSelect
                 changeTag={changeTag}
                 list={[...[{ type: 100, name: '推荐' }, ...typeDefine]]}
               />
             </div>
-            <Divider />
-            <div className={styles.h_header__link}>
-              <Radio.Group
-                value={radioType}
-                onChange={(e: any) => secondTypesChange(e)}
-                size="small"
-                buttonStyle="solid"
-              >
-                {btnConf.map((s: GLOBAL.tagType, index: number) => (
-                  <Radio.Button key={index} value={s.type}>
-                    {s.name}
-                  </Radio.Button>
-                ))}
-              </Radio.Group>
-            </div>
-            <Divider />
+          </Affix>
+          <Divider />
+
+          <div className={styles.h_header__link}>
+            <Radio.Group
+              value={radioType}
+              onChange={(e: any) => secondTypesChange(e)}
+              size="small"
+              buttonStyle="solid"
+            >
+              {btnConf.map((s: GLOBAL.tagType, index: number) => (
+                <Radio.Button key={index} value={s.type}>
+                  {s.name}
+                </Radio.Button>
+              ))}
+            </Radio.Group>
           </div>
-        </Affix>
+          <Divider />
+        </div>
 
         <div className={styles.h_main}>
           <ArtList item={curList} />

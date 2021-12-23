@@ -11,7 +11,6 @@ import TeBook from './content/TeBook';
 import Header from './Header';
 import TeArt from './content/TeArt';
 import { Menus } from '@/constant';
-import githubs from '@/assets/svg/GitHub.svg';
 import styles from './index.less';
 
 const { Content } = Layout;
@@ -74,14 +73,12 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
   const ContentNode = (): React.ReactNode => {
     return (
       <div className={styles.init_page}>
-        <div className={styles.github}>
-          <a href="https://github.com/starryskystar">
-            <img src={githubs} />
-          </a>
-        </div>
         <ConfigProvider locale={languages}>
           <Layout>
             {!scroller && <Header curLanguages={curLanguages} />}
+            {scroller && curPath.includes(Menus[0].path) && (
+              <div className={styles.second_header}></div>
+            )}
             <Content className={styles.site_layout}>
               {DiffContent(children)}
             </Content>

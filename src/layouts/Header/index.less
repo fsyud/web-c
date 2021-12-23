@@ -3,13 +3,31 @@
 .header {
   position: fixed;
   z-index: 999;
-  background-color: #20232a;
   width: 100%;
   margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  // box-shadow: 0 1px 8px rgb(231, 235, 247);
+  background-color: #fff;
+  box-shadow: 0 1px 2px #f1f1f1;
+
+  .github {
+    position: absolute;
+    right: 20px;
+    top: 19px;
+    z-index: 1000;
+    width: 22px;
+    height: 22px;
+    background-color: #fff;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 28px;
+    }
+  }
 
   .logo {
     position: absolute;
@@ -27,7 +45,6 @@
       font-size: 26px;
       font-weight: 500;
       font-family: arial, 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
-      color: #61dafb;
     }
   }
 
@@ -35,39 +52,13 @@
     border-bottom: none;
     margin-bottom: 4px;
     margin-left: -22px;
-    background-color: #20232a;
 
     :global {
       .ant-menu-item {
         a {
-          color: #fff;
           font-size: 18px;
           font-weight: 300;
         }
-      }
-
-      .ant-menu-item-selected {
-        border-bottom: 2px solid #61dafb;
-
-        a {
-          color: #61dafb;
-        }
-
-        &::after {
-          content: none;
-        }
-      }
-
-      .ant-menu-item-active {
-        border-bottom: 2px solid #61dafb !important;
-
-        &::after {
-          content: none;
-        }
-      }
-
-      .ant-menu-submenu-title {
-        color: #fff;
       }
     }
   }
@@ -102,42 +93,6 @@
       :global {
         .ant-btn-group {
           margin-left: 16px;
-
-          .ant-btn-default {
-            color: #fff;
-            background-color: #61dafb;
-            border: none;
-          }
-        }
-
-        .ant-input-group-addon {
-          background-color: #20232a;
-          left: 2px;
-          .ant-btn {
-            background-color: #20232a;
-            border: none;
-          }
-        }
-
-        .ant-btn-group {
-          .ant-btn {
-            background-color: #20232a;
-            border: 1px #20232a solid;
-          }
-        }
-
-        .ant-input-wrapper {
-          .ant-input {
-            background: transparent;
-            border: none;
-            color: #fff;
-            margin-right: 4px;
-
-            &:focus {
-              background-color: rgb(54, 53, 53) !important;
-              border: none !important;
-            }
-          }
         }
       }
 
@@ -171,37 +126,12 @@
       align-items: center;
       margin-left: 32px;
 
-      .register {
-        border: 1px solid #61dafb;
-        color: #61dafb;
-      }
-
-      .register:hover {
-        background-color: rgba(0, 102, 255, 0.11);
-      }
-
-      :global {
-        .ant-btn {
-          border: 1px solid #61dafb;
-
-          background-color: #000;
-          color: #61dafb;
-
-          &:hover {
-            color: #fff;
-          }
-        }
-
-        .ant-btn-link:hover {
-          color: #61dafb;
-        }
-      }
-
       .user_menu {
         position: relative;
 
         .avtors_img {
           cursor: pointer;
+
           img {
             width: 32px;
             height: 32px;

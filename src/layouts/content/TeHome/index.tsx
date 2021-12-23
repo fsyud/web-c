@@ -93,7 +93,7 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
               </div>
             </aside>
 
-            <Affix offsetTop={80}>
+            <Affix offsetTop={57}>
               <div className={styles.tehome_fix}>
                 {/* <aside className={styles.advertis}>
                   <div className={styles.about_author}>广告</div>

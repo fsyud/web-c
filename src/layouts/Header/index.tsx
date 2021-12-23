@@ -4,12 +4,12 @@ import { Link, history } from 'umi';
 import { DownOutlined } from '@ant-design/icons';
 import { Menus } from '@/constant';
 import classnames from 'classnames';
-import zh_CN from 'antd/es/locale/zh_CN';
 import { useMediaQuery } from 'beautiful-react-hooks';
 import { StorageStore } from '@/utils/authority';
 import LoginModal from '@/components/LoginModal';
 import setting from '@/assets/svg/setting.svg';
 import ownner from '@/assets/svg/ownner.svg';
+import githubs from '@/assets/svg/GitHub.svg';
 import loginouts from '@/assets/svg/loginout.svg';
 
 import styles from './index.less';
@@ -23,7 +23,6 @@ interface HeadersProps {
 
 const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
   const curPath = history.location.pathname;
-  const [languages, setLanguages] = useState<any>(zh_CN);
   const [modalVisable, setModalVisable] = useState<boolean>(false);
   const [loginsta, setLoginsta] = useState<boolean>(false);
   const [itemSta, setItemSta] = useState<boolean>(true);
@@ -47,12 +46,6 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
     }
   };
   const [cur, setCur] = useState<string>(curActiveKey());
-
-  const changeLocale = (e: any) => {
-    const localeValue = e.target.value;
-    setLanguages(localeValue);
-    curLanguages(localeValue);
-  };
 
   const avatorStyle = (): string => {
     return classnames({
@@ -136,7 +129,7 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
     </Menu>
   );
 
-  const menuAvator = (
+  const menuAvator: React.ReactElement = (
     <Menu
       onClick={menuClick}
       className={avatorStyle()}
@@ -159,6 +152,12 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
 
   return (
     <Header className={styles.header}>
+      <div className={styles.github}>
+        <a href="https://github.com/starryskystar">
+          <img src={githubs} />
+        </a>
+      </div>
+
       <Row>
         <Col span={10}>
           <Link to={'./'} style={{ color: 'black' }}>
@@ -186,12 +185,7 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
           <Col span={14} className={styles.header_r__main}>
             <div className={styles.header_right}>
               {!loginsta && (
-                <Button
-                  className={styles.register}
-                  onClick={() => setModalVisable(true)}
-                >
-                  登录
-                </Button>
+                <Button onClick={() => setModalVisable(true)}>登录</Button>
               )}
               {loginsta && (
                 <div className={styles.user_menu}>
@@ -217,7 +211,6 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
               >
                 写文章
               </Dropdown.Button>
-              {/* <SelectLang className={styles.action} /> */}
             </div>
           </Col>
         )}

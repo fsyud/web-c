@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet';
 import { Skeleton, Card, Row, Col, message, Tag, Space, Divider } from 'antd';
 import { useMediaQuery, useWindowScroll } from 'beautiful-react-hooks';
 import Tocify from '@/components/Article/MarkdownBody/tocify';
+import { Mutual } from '@/utils/mutual';
 import ArtTool from '@/components/Article/ArtTool';
 import { getArticleList } from '@/service/home';
 import BackTop from '@/components/Article/BackTop';
@@ -168,35 +169,7 @@ const Detail: React.FC<DetailProps> = (props) => {
     }
   };
 
-  useWindowScroll(
-    throttle(() => {
-      let scrollTop =
-        window.pageYOffset ||
-        window.document.documentElement?.scrollTop ||
-        window.document.body?.scrollTop ||
-        0;
-
-      if (topScollerValue <= scrollTop) {
-        dispatch({
-          type: 'global/getScroller',
-          payload: {
-            scroller: true,
-          },
-        });
-      } else {
-        dispatch({
-          type: 'global/getScroller',
-          payload: {
-            scroller: false,
-          },
-        });
-      }
-
-      setTimeout(() => {
-        topScollerValue = scrollTop;
-      });
-    }, 100),
-  );
+  useWindowScroll(Mutual.affixMenuScroller(dispatch));
 
   const onScroll = () => {
     const scrollElement: any = window.document.querySelector('.home_contain');

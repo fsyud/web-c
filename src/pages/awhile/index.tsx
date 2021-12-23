@@ -25,7 +25,6 @@ interface RegardProps {}
 
 const Regard: React.FC<RegardProps> = (props) => {
   const pageSize = 15;
-  let topScollerValue = 0;
   const dispatch = useDispatch();
 
   const { curIndex, isRefresh } = useSelector(({ awhile }: any) => {

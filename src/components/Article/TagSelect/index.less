@@ -1,27 +1,24 @@
 .tag_select {
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+  align-items: center;
+
   :global {
     .ant-tag {
       padding: 4px 20px;
       border: none;
-      color: #646464;
-      background-color: #f6f6f6 !important;
-      margin-bottom: 14px;
       cursor: pointer;
 
       &:hover {
-        background-color: rgb(32, 35, 42) !important;
-        color: #fff;
+        color: #1890ff;
       }
     }
 
     .active {
-      color: #61dafb;
-      background-color: rgb(32, 35, 42) !important;
+      background-color: #1890ff;
       font-weight: 500;
-
-      &:hover {
-        color: #61dafb;
-      }
+      color: #fff;
     }
   }
 }
