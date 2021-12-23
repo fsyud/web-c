@@ -1,0 +1,25 @@
+.pig_hole {
+  background-color: #fff;
+  padding: 24px 48px;
+  display: flex;
+  justify-content: center;
+
+  :global {
+    .ant-timeline {
+      width: 100%;
+
+      .ant-timeline-item {
+        padding-bottom: 55px;
+        font-size: 16px;
+
+        &:last-child {
+          padding-bottom: 0;
+        }
+
+        &:first-child {
+          margin-top: 31px;
+        }
+      }
+    }
+  }
+}

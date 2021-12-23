@@ -89,7 +89,7 @@ const TeAwhile: React.FC<TeAwhileProps> = ({ children }) => {
               <aside>
                 <Skeleton active loading={false}>
                   <div className={`${styles.tehome_one} ${styles.tehome_hot}`}>
-                    <h5>精选沸点</h5>
+                    <h5>精选留言</h5>
                     <ul className={styles.tehome_moment}>
                       {hots.map((s: any, i: number) => (
                         <li key={i} title={s.title}>

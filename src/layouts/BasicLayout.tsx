@@ -61,7 +61,8 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
       curPath.includes('404') ||
       curPath.includes('tag-column') ||
       curPath.includes('writeArt') ||
-      curPath.includes('user')
+      curPath.includes('user') ||
+      curPath.includes('pigeonhole')
     ) {
       return <TeBook children={ELEMENT} />;
     } else if (curPath.includes('detail')) {

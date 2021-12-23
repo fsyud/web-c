@@ -54,34 +54,26 @@ const StarryStarSky: React.FC<{}> = () => {
                 <Row gutter={24}>
                   <Col className={oneCard()} span={isTabletOrMobile ? 24 : 8}>
                     <Card bordered={false}>
-                      <h1>About Xingkong</h1>
-                      <p>I heard a word when I was very young</p>
-                      <p>That's what Bobonnie said</p>
-                      <p>
-                        We live in the gutter, but some people still look up at
-                        the stars
-                      </p>
+                      <h1>网站信息</h1>
+                      <p>前端技术：react + emotion</p>
+                      <p>后端技术：nestjs + mongodb</p>
+                      <p>网站信息：就算你走在低处，也需要仰望星空</p>
                     </Card>
                   </Col>
                   <Col className={oneCard()} span={isTabletOrMobile ? 24 : 8}>
                     <Card bordered={false}>
-                      <h1>About life</h1>
-                      <p>I like the open source of computers and codes</p>
-                      <p>
-                        Currently engaged in full-stack development in a medical
-                        company
-                      </p>
-                      <p>Nice to see you here</p>
+                      <h1>关于作者</h1>
+                      <p>职业：前端</p>
+                      <p>爱好：code、篮球、游戏</p>
+                      <p></p>
+                      <p>擅长：js、css、nodejs、canvas</p>
                     </Card>
                   </Col>
                   <Col className={oneCard()} span={isTabletOrMobile ? 24 : 8}>
                     <Card bordered={false}>
-                      <h1>About the future</h1>
+                      <h1>关于未来</h1>
 
-                      <p>Strive to be a freelancer</p>
-                      <p>Realize the freedom of wealth as soon as possible</p>
-                      <p>To enrich one's own experience</p>
-                      <p>Go to Iceland to see the aurora</p>
+                      <p>目标：财富早日自由</p>
                     </Card>
                   </Col>
                 </Row>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getItem } from '@/service/proitem';
-import { Card, Avatar } from 'antd';
+import { Card } from 'antd';
+import { createSuperLabel } from '@/utils/utils';
 const { Meta } = Card;
 
 import styles from './index.less';
@@ -27,7 +28,13 @@ const Project: React.FC<{}> = () => {
   return (
     <div className={styles.project}>
       {listData.map((item: API.ItemParms, index: number) => (
-        <Card hoverable key={index}>
+        <Card
+          hoverable
+          key={index}
+          onClick={() =>
+            createSuperLabel(`${item.links}`, 'project_list_click')
+          }
+        >
           <img src={item.img_url} />
           <Meta title={item.title} description={item.desc} />
         </Card>

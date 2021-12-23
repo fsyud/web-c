@@ -58,6 +58,12 @@ export default [
         title: '用户信息 - 星空',
       },
       {
+        path: '/pigeonhole',
+        name: 'pigeonhole',
+        component: '@/pages/pigeonhole',
+        title: '归档 - 星空',
+      },
+      {
         path: '/404',
         name: '404',
         component: '@/pages/404',

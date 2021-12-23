@@ -48,9 +48,16 @@ export async function getArtDeatil(params: getArtDeatilParamsType) {
   });
 }
 
-// 获取文章列表
+// 获取热点文章列表
 export async function getHotArticle() {
   return request('/api/home/hot', {
+    method: 'POST',
+  });
+}
+
+// 获取归档列表
+export async function getPigeonholeArticle() {
+  return request('/api/home/pigeon', {
     method: 'POST',
   });
 }

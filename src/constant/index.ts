@@ -12,7 +12,8 @@ const Menus = [
   { key: '1', label: '首页', path: '/home' },
   { key: '2', label: '留言板', path: '/awhile' },
   { key: '3', label: '项目', path: '/project' },
-  { key: '4', label: '关于', path: '/about' },
+  { key: '4', label: '归档', path: '/pigeonhole' },
+  { key: '5', label: '关于', path: '/about' },
 ];
 
 const menuTitle: GLOBAL.titleMrnuProps[] = [

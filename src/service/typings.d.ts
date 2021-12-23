@@ -32,5 +32,6 @@ declare namespace API {
     title: string; // 项目标题
     desc: string;
     img_url: string; // 项目封面图片
+    links?: string; // 项目地址
   };
 }

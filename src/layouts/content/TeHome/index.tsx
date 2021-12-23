@@ -101,7 +101,7 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
                 </aside> */}
                 <aside>
                   <div className={`${styles.tehome_one} ${styles.tehome_hot}`}>
-                    <h5>最新沸点</h5>
+                    <h5>最新留言</h5>
                     <ul className={styles.tehome_moment}>
                       {whiles.map((s: any, i: number) => (
                         <li
