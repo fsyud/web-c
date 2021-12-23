@@ -23,19 +23,27 @@ const Pigeonhole: React.FC<{}> = () => {
     <div className={styles.pig_hole}>
       <Timeline mode="alternate">
         {list.length > 0 &&
-          list.map((item: any) => {
+          list.map((item: any, index: number) => {
             return (
-              <Timeline.Item
-                label={moment(item?.create_times).format('YYYY-M-D')}
-              >
-                <a
-                  onClick={() =>
-                    createSuperLabel(`/detail/${item._id}`, 'pigon_list_click')
-                  }
+              <div key={index}>
+                <Timeline.Item
+                  dot={<ClockCircleOutlined style={{ fontSize: '16px' }} />}
                 >
-                  {item.title}
-                </a>
-              </Timeline.Item>
+                  {moment(item?.create_times).format('YYYY-M-D')}
+                </Timeline.Item>
+                <Timeline.Item>
+                  <a
+                    onClick={() =>
+                      createSuperLabel(
+                        `/detail/${item._id}`,
+                        'pigon_list_click',
+                      )
+                    }
+                  >
+                    {item.title}
+                  </a>
+                </Timeline.Item>
+              </div>
             );
           })}
       </Timeline>
