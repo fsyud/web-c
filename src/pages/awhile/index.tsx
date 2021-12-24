@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import { Skeleton, Card, Input, Button, message } from 'antd';
 import { useSelector, useDispatch } from 'umi';
-import { useWindowScroll } from 'beautiful-react-hooks';
-import { Mutual } from '@/utils/mutual';
 import SkyEmoji from '@/components/SKy/SkyEmoji';
 import CommitBoard from '@/components/SKy/SkyCommitBoard';
 import throttle from 'lodash/throttle';
@@ -94,8 +92,6 @@ const Regard: React.FC<RegardProps> = (props) => {
       window.removeEventListener('scroll', throttle(onScroll, 1000));
     };
   }, []);
-
-  useWindowScroll(Mutual.ptchMenuScroller(dispatch));
 
   const getAwhile = async (conf: {
     curPage?: number; // 当前页数

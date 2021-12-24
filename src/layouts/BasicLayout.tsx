@@ -73,19 +73,70 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
   // defaultFooterDom
   const ContentNode = (): React.ReactNode => {
     return (
-      <div className={styles.init_page}>
-        <ConfigProvider locale={languages}>
-          <Layout>
-            {!scroller && <Header curLanguages={curLanguages} />}
-            {scroller && curPath.includes(Menus[0].path) && (
-              <div className={styles.second_header}></div>
-            )}
-            <Content className={styles.site_layout}>
-              {DiffContent(children)}
-            </Content>
-          </Layout>
-        </ConfigProvider>
-      </div>
+      <section className={`${styles.join_section}`}>
+        <div className={styles.join_element_one}>
+          <img src={require('@/assets/images/join/icon-1.png')} alt="icon" />
+        </div>
+        <div className={styles.join_element_two}>
+          <img src={require('@/assets/images/join/icon-2.png')} alt="icon" />
+        </div>
+        <div className={styles.join_element_three}>
+          <img src={require('@/assets/images/join/icon-3.png')} alt="icon" />
+        </div>
+        <div className={styles.join_element_four}>
+          <img src={require('@/assets/images/join/icon-4.png')} alt="icon" />
+        </div>
+        <div className={styles.join_element_five}>
+          <img src={require('@/assets/images/join/icon-5.png')} alt="icon" />
+        </div>
+        <div className={styles.join_element_six}>
+          <img src={require('@/assets/images/join/icon-6.png')} alt="icon" />
+        </div>
+        <div className={styles.join_element_seven}>
+          <img src={require('@/assets/images/join/icon-7.png')} alt="icon" />
+        </div>
+        <div className={styles.join_element_eight}>
+          <img src={require('@/assets/images/join/icon-5.png')} alt="icon" />
+        </div>
+        <div className={styles.join_element_nine}>
+          <img src={require('@/assets/images/join/icon-6.png')} alt="icon" />
+        </div>
+        <div className={styles.join_element_ten}>
+          <img src={require('@/assets/images/join/icon-7.png')} alt="icon" />
+        </div>
+        <div className={styles.join_element_eleven}>
+          <img src={require('@/assets/images/join/icon-5.png')} alt="icon" />
+        </div>
+        <div className={styles.join_element_twelve}>
+          <img src={require('@/assets/images/join/icon-6.png')} alt="icon" />
+        </div>
+        <div className={styles.join_element_thirteen}>
+          <img src={require('@/assets/images/join/icon-7.png')} alt="icon" />
+        </div>
+        <div className={styles.join_element_fourteen}>
+          <img src={require('@/assets/images/join/icon-5.png')} alt="icon" />
+        </div>
+        <div className={styles.join_element_fifteen}>
+          <img src={require('@/assets/images/join/icon-6.png')} alt="icon" />
+        </div>
+        <div className={styles.join_element_sixteen}>
+          <img src={require('@/assets/images/join/icon-7.png')} alt="icon" />
+        </div>
+
+        <div className={styles.init_page}>
+          <ConfigProvider locale={languages}>
+            <Layout>
+              {!scroller && <Header curLanguages={curLanguages} />}
+              {scroller && curPath.includes(Menus[0].path) && (
+                <div className={styles.second_header}></div>
+              )}
+              <Content className={styles.site_layout}>
+                {DiffContent(children)}
+              </Content>
+            </Layout>
+          </ConfigProvider>
+        </div>
+      </section>
     );
   };
 

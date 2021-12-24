@@ -1,13 +1,11 @@
 import React from 'react';
 import { Typography } from 'antd';
-
-const { Paragraph } = Typography;
-
-import ThreeDImage from '@/components/ThreeDImage';
 import balls from '@/assets/svg/balls.svg';
 import computer from '@/assets/svg/computer.svg';
 import together from '@/assets/svg/together.svg';
 import music from '@/assets/svg/music.svg';
+
+const { Paragraph } = Typography;
 
 import styles from './index.less';
 
@@ -69,7 +67,6 @@ const Aboout: React.FC<{}> = () => {
         <a href="https://github.com/starryskystar">@starryskystar</a>
       </Paragraph>
       <Paragraph>Telegram: @NaZe7777</Paragraph>
-      <ThreeDImage />
     </div>
   );
 };

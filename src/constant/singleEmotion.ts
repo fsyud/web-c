@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 
 export const PrimaryButton = styled.button`
   font-size: 17px;
-  background-color: #61dafb;
-  color: #000000;
+  background-color: #1890ff;
+  color: #fff;
   border-radius: 3px;
   font-weight: bold;
   padding: 10px 25px;
@@ -14,5 +14,6 @@ export const PrimaryButton = styled.button`
   border: none;
   &:hover {
     background-color: #fff;
+    color: #000000;
   }
 `;

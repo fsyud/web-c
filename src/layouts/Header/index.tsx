@@ -162,7 +162,6 @@ const Headers: React.FC<HeadersProps> = ({ curLanguages }) => {
         <Col span={10}>
           <Link to={'./'} style={{ color: 'black' }}>
             <div className={styles.logo}>
-              <img src={require('@/assets/boal1.png')} alt="error" />
               <strong>星空</strong>
             </div>
           </Link>

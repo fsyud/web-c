@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Timeline } from 'antd';
+import { useDispatch } from 'umi';
+import { useWindowScroll } from 'beautiful-react-hooks';
 import { createSuperLabel } from '@/utils/utils';
+import { Mutual } from '@/utils/mutual';
 import moment from 'moment';
 import { ClockCircleOutlined } from '@ant-design/icons';
 import { getPigeonholeArticle } from '@/service/home';
@@ -8,11 +11,14 @@ import { getPigeonholeArticle } from '@/service/home';
 import styles from './index.less';
 
 const Pigeonhole: React.FC<{}> = () => {
+  const dispatch = useDispatch();
   const [list, setList] = useState<any[]>([]);
 
   useEffect(() => {
     getList();
   }, []);
+
+  useWindowScroll(Mutual.affixMenuScroller(dispatch));
 
   const getList = async (): Promise<any> => {
     const res = await getPigeonholeArticle();
