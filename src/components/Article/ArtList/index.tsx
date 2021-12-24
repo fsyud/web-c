@@ -1,10 +1,11 @@
 import React from 'react';
 import { Skeleton } from 'antd';
+import { history, useDispatch } from 'umi';
 import LazyLoad from 'react-lazyload';
 import eye from '@/assets/svg/eye.svg';
 import great from '@/assets/svg/greats.svg';
 import commit from '@/assets/svg/commit.svg';
-import { DiffDay, createSuperLabel } from '@/utils/utils';
+import { DiffDay } from '@/utils/utils';
 import { typeDefine } from '@/constant';
 
 import styles from './index.less';
@@ -13,8 +14,16 @@ interface ArtListProps {
 }
 
 const ArtList: React.FC<ArtListProps> = ({ item }) => {
+  const dispatch = useDispatch();
   const ScanArticle = (id: string): void => {
-    createSuperLabel(`/detail/${id}`, 'art_list_click');
+    history.push(`/detail/${id}`);
+
+    dispatch({
+      type: 'global/getScroller',
+      payload: {
+        scroller: false,
+      },
+    });
   };
 
   return (

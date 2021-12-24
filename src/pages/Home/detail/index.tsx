@@ -32,8 +32,6 @@ const Detail: React.FC<DetailProps> = (props) => {
   const params: any = useParams();
   const pageSize = 10;
 
-  let topScollerValue = 0;
-
   const reducer = (state: any[], action: { type: string; data?: any[] }) => {
     switch (action.type) {
       case 'add':
@@ -65,6 +63,8 @@ const Detail: React.FC<DetailProps> = (props) => {
   const isTabletOrMobile = useMediaQuery('(max-width: 1024px)');
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     dispatch({
       type: 'article/getArticleDetail',
       payload: {

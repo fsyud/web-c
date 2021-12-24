@@ -67,6 +67,7 @@ export default defineConfig({
         css: true,
       },
     ],
+    ['react-activation/babel'],
   ],
   alias: {
     '@/': path.resolve(__dirname, '../src/'),

@@ -33,16 +33,12 @@ const StarryStarSky: React.FC<{}> = () => {
             alt="element"
           />
         </div>
-        {/* <div className={styles.banner_element_one}>
-          <img src={require('@/assets/images/banner/man1.png')} alt="element" />
-        </div> */}
         <div className={styles.banner_element_two}>
           <img src={require('@/assets/images/banner/man3.png')} alt="element" />
         </div>
         <div className={styles.banner_element_three}>
           <img src={require('@/assets/images/banner/man2.png')} alt="element" />
         </div>
-
         <div className={styles.banner_element_seven}>
           <img
             src={require('@/assets/images/banner/ship3.png')}
