@@ -65,7 +65,6 @@
     "moment": "^2.29.1",
     "prismjs": "^1.24.1",
     "qrcode.react": "^1.0.1",
-    "react-activation": "^0.9.7",
     "react-helmet": "^6.1.0",
     "react-lazyload": "^3.2.0",
     "react-mouse-particles": "^1.1.2",

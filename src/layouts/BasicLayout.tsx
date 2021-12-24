@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { ConfigProvider, Layout } from 'antd';
 // @ts-ignore
 import { useHistory, useSelector } from 'umi';
-import { AliveScope } from 'react-activation';
 // import enUS from 'antd/lib/locale/en_US';
 import zh_CN from 'antd/es/locale/zh_CN';
 import TeFirst from './content/TeFirst';
@@ -52,11 +51,7 @@ const BasicLayout: React.FC<BasicLayoutType> = (props) => {
     if (curPath === '/') {
       return <TeFirst children={ELEMENT} />;
     } else if (curPath.includes(Menus[0].path)) {
-      return (
-        <AliveScope>
-          <TeHome children={ELEMENT} />
-        </AliveScope>
-      );
+      return <TeHome children={ELEMENT} />;
     } else if (curPath.includes(Menus[1].path)) {
       document.title = Menus[1].label;
       return <TeAwhile children={ELEMENT} />;
