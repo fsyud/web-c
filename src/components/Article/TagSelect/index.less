@@ -1,14 +1,16 @@
 .tag_select {
   display: flex;
   flex-direction: row;
-  height: 40px;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 
   :global {
     .ant-tag {
       padding: 4px 20px;
       border: none;
       cursor: pointer;
+      display: flex;
 
       &:hover {
         color: #1890ff;

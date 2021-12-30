@@ -69,22 +69,22 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
               <div className={styles.tehome_one}>
                 <h5>你的创作</h5>
                 <ul>
-                  <li>
-                    <div
-                      onClick={() => {
-                        history.push('/writeArt');
-                      }}
-                    >
+                  <li
+                    onClick={() => {
+                      history.push('/writeArt');
+                    }}
+                  >
+                    <div>
                       <img src={questionnaire} alt="error" />
                     </div>
                     <span>写文章</span>
                   </li>
-                  <li>
-                    <div
-                      onClick={() => {
-                        history.push('/awhile');
-                      }}
-                    >
+                  <li
+                    onClick={() => {
+                      history.push('/awhile');
+                    }}
+                  >
+                    <div>
                       <img src={communicate} alt="error" />
                     </div>
                     <span>去留言</span>
