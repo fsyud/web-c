@@ -67,7 +67,7 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
           <Col span={6} className={styles.init_aside}>
             <aside>
               <div className={styles.tehome_one}>
-                <h5>写下你想说的</h5>
+                <h5>你的创作</h5>
                 <ul>
                   <li>
                     <div

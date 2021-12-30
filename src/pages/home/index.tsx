@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect, useReducer, useRef } from 'react';
 import { Divider, Radio, Affix } from 'antd';
 import { useWindowScroll } from 'beautiful-react-hooks';
+import { useUpdateEffect } from 'ahooks';
 import { useDispatch } from 'umi';
 import throttle from 'lodash/throttle';
 import { Mutual } from '@/utils/mutual';
@@ -17,7 +18,11 @@ import styles from './index.less';
 const About: React.FC<{}> = () => {
   const dispatch = useDispatch();
 
-  const pageSize = 15;
+  const pageSize = 10;
+
+  useWindowScroll(Mutual.affixMenuScroller(dispatch));
+
+  const scrollContainRef = useRef<any>(null);
 
   const reducer = (state: any[], action: { type: string; data?: any[] }) => {
     switch (action.type) {
@@ -35,15 +40,40 @@ const About: React.FC<{}> = () => {
   const [curList, setCurList] = useReducer(reducer, []);
   const [curPage, setCurPage] = useState<number>(1); // 当前页
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [curNull, setCurNull] = useState<boolean>(false); // 是否有数据
   const [curType, setCurType] = useState<number>(100); // 类型 一级查询
   const [radioType, setRadioType] = useState<any>(btnConf[2].type); // 二级查询
+
+  useEffect(() => {
+    window.addEventListener('scroll', throttle(onScroll, 1000));
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      window.removeEventListener('scroll', throttle(onScroll, 1000));
+    };
+  }, []);
 
   useEffect(() => {
     if (!isLoading) {
       getArtList({ curPage, where: { type: curType }, type: 'add' });
     }
-  }, [curPage]);
+  }, [curPage, isLoading, curType]);
+
+  useUpdateEffect(() => {
+    if (scrollContainRef.current) {
+      if (isLoading) {
+        scrollContainRef.current.removeEventListener(
+          'scroll',
+          throttle(onScroll, 1000),
+        );
+      } else {
+        scrollContainRef.current.addEventListener(
+          'scroll',
+          throttle(onScroll, 1000),
+        );
+      }
+    }
+  }, [isLoading]);
 
   const getArtList = async (conf: {
     curPage?: number; // 当前页数
@@ -51,7 +81,6 @@ const About: React.FC<{}> = () => {
     type: string; // 类型
     sort?: any; // 排序
   }): Promise<any> => {
-    setIsLoading(true);
     const {
       curPage,
       where,
@@ -74,18 +103,10 @@ const About: React.FC<{}> = () => {
     }
     const res: API.reponseData = await getArticleList(params);
     if (res && Array.isArray(res.data)) {
-      if (res.data.length < 15) {
-        if (res.data.length === 0) {
-          setIsLoading(true);
-          setCurList({ type: 'init' });
-        } else {
-          setCurList({ type: type, data: res.data });
-        }
-        setCurNull(true);
-      } else {
-        setIsLoading(false);
-        setCurList({ type: type, data: res.data });
-      }
+      const { data } = res;
+      setIsLoading(data.length < 10);
+
+      setCurList({ type: type, data: res.data });
     }
   };
 
@@ -96,18 +117,6 @@ const About: React.FC<{}> = () => {
       getArtList({ curPage: 1, where: { type: pm }, type: 'default' });
     });
   };
-
-  useWindowScroll(Mutual.affixMenuScroller(dispatch));
-
-  useEffect(() => {
-    window.addEventListener('scroll', throttle(onScroll, 1000));
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      window.removeEventListener('scroll', throttle(onScroll, 1000));
-    };
-  }, []);
 
   const secondTypesChange = (e: any) => {
     const { value } = e.target;
@@ -132,13 +141,9 @@ const About: React.FC<{}> = () => {
   };
 
   const onScroll = () => {
-    const scrollElement: any = window.document.querySelector('.home_contain');
-    let innerHeight = scrollElement?.clientHeight || 0; //屏幕尺寸高度
-    //可滚动容器超出当前窗口显示范围的高度
-    let outerHeight =
-      window.document.documentElement?.clientHeight ||
-      window.document.body?.clientHeight ||
-      0;
+    if (!scrollContainRef.current) return;
+
+    const innerHeight = scrollContainRef.current?.clientHeight || 0; //容器高度
     // scrollTop在页面为滚动时为0，开始滚动后，慢慢增加，滚动到页面底部时
     // 出现innerHeight < (outerHeight + scrollTop)的情况，严格来讲，是接近底部。
     let scrollTop =
@@ -147,8 +152,15 @@ const About: React.FC<{}> = () => {
       window.document.body?.scrollTop ||
       0;
 
-    if (innerHeight < outerHeight + scrollTop && !isLoading) {
-      //加载更多操作
+    //可滚动容器超出当前窗口显示范围的高度
+    let outerHeight =
+      window.document.documentElement?.clientHeight ||
+      window.document.body?.clientHeight ||
+      0;
+
+    // 50 偏移距离 距离底部50px的时候触发
+    if (innerHeight < scrollTop + outerHeight + 10) {
+      // 加载更多操作
       setCurPage((prevPage: number) => {
         return prevPage + 1;
       });
@@ -157,7 +169,7 @@ const About: React.FC<{}> = () => {
 
   return (
     <>
-      <div className={`${styles.home} home_contain`}>
+      <div ref={scrollContainRef} className={`${styles.home}`}>
         <div className={styles.heads}>
           <Affix offsetTop={0}>
             <div className={styles.h_tags}>
@@ -188,8 +200,8 @@ const About: React.FC<{}> = () => {
 
         <div className={styles.h_main}>
           <ArtList item={curList} />
-          {!curNull && curList.length !== 0 && <SkeletonPrivite />}
-          {curNull && (
+          {!isLoading && curList.length !== 0 && <SkeletonPrivite />}
+          {isLoading && (
             <div className={styles.h_main__end}>
               <img src={data_img} alt="error" />
               <strong>没有更多...</strong>
