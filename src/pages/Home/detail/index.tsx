@@ -254,6 +254,21 @@ const Detail: React.FC<DetailProps> = (props) => {
     });
   };
 
+  /**
+   * @description: 点赞
+   * @param {*}
+   * @return {*}
+   */
+  const onLikesClick = async (): Promise<any> => {
+    dispatch({
+      type: 'article/likesArticles',
+      payload: {
+        article_id: params.id || 1,
+        user_id: StorageStore.getUserId(),
+      },
+    });
+  };
+
   return (
     <div className={`${styles.art_detail} home_contain`}>
       <Row>
@@ -352,7 +367,7 @@ const Detail: React.FC<DetailProps> = (props) => {
         )}
       </Row>
 
-      <ArtTool />
+      <ArtTool onLikesClick={onLikesClick} />
       <BackTop />
     </div>
   );

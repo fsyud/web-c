@@ -48,7 +48,7 @@ const ArtList: React.FC<ArtListProps> = ({ item }) => {
                     </div>
                     <div className={styles.f_one}>
                       <img src={great} alt="" />
-                      <strong>{s?.meta?.likes || 0}</strong>
+                      <strong>{s?.meta?.likes?.length - 1 || 0}</strong>
                     </div>
                     <div className={styles.f_one}>
                       <img src={commit} alt="" />

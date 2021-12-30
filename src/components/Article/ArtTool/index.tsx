@@ -7,15 +7,17 @@ var QRCode = require('qrcode.react');
 
 import styles from './index.less';
 
-interface ArtToolProps {}
+interface ArtToolProps {
+  onLikesClick: () => void;
+}
 
-const ArtTool: React.FC<ArtToolProps> = (props) => {
+const ArtTool: React.FC<ArtToolProps> = ({ onLikesClick }) => {
   const [codeSta, setCodeSta] = useState<boolean>(false);
 
   return (
     <Affix offsetTop={120} style={{ position: 'absolute', top: 60, left: -70 }}>
       <div className={styles.art_tool}>
-        <div className={styles.at_one}>
+        <div className={styles.at_one} onClick={() => onLikesClick()}>
           <LikeTwoTone />
         </div>
         <div className={styles.at_one}>
@@ -30,7 +32,9 @@ const ArtTool: React.FC<ArtToolProps> = (props) => {
             onMouseOut={() => setCodeSta(false)}
           />
           {codeSta && (
-            <QRCode className={styles.qrcode} value={document.location.href} />
+            <div className={styles.qrcode_main}>
+              <QRCode value={document.location.href} />
+            </div>
           )}
         </div>
       </div>

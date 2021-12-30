@@ -14,6 +14,11 @@ export type getArtDeatilParamsType = {
   tag?: number | string;
 };
 
+export type likesArticleProps = {
+  curId: string;
+  article_id: string;
+};
+
 // 获取文章列表
 export async function getArticleList(params: homeListParamsType) {
   return request('/api/home/list', {
@@ -59,5 +64,13 @@ export async function getHotArticle() {
 export async function getPigeonholeArticle() {
   return request('/api/home/pigeon', {
     method: 'POST',
+  });
+}
+
+// 获取归档列表
+export async function likesArticle(pmrams: likesArticleProps) {
+  return request('/api/home/likes', {
+    method: 'POST',
+    data: pmrams,
   });
 }
