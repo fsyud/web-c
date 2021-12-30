@@ -171,7 +171,7 @@ const About: React.FC<{}> = () => {
     <>
       <div ref={scrollContainRef} className={`${styles.home}`}>
         <div className={styles.heads}>
-          <Affix offsetTop={0}>
+          <Affix offsetTop={6}>
             <div className={styles.h_tags}>
               <TagSelect
                 changeTag={changeTag}
