@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Affix } from 'antd';
+import { Row, Col, Affix, Tooltip } from 'antd';
 import classnames from 'classnames';
 import { history } from 'umi';
 import { useMediaQuery } from 'beautiful-react-hooks';
@@ -65,8 +65,8 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
 
         {!isTabletOrMobile && (
           <Col span={6} className={styles.init_aside}>
-            <aside>
-              <div className={styles.tehome_one}>
+            <aside className={styles.side_one}>
+              <div>
                 <h5>你的创作</h5>
                 <ul>
                   <li
@@ -75,9 +75,10 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
                     }}
                   >
                     <div>
-                      <img src={questionnaire} alt="error" />
+                      <Tooltip placement="bottom" title="写文章">
+                        <img src={questionnaire} alt="error" />
+                      </Tooltip>
                     </div>
-                    <span>写文章</span>
                   </li>
                   <li
                     onClick={() => {
@@ -85,24 +86,21 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
                     }}
                   >
                     <div>
-                      <img src={communicate} alt="error" />
+                      <Tooltip placement="bottom" title="去留言">
+                        <img src={communicate} alt="error" />
+                      </Tooltip>
                     </div>
-                    <span>去留言</span>
                   </li>
                 </ul>
               </div>
             </aside>
 
             <Affix offsetTop={57}>
-              <div className={styles.tehome_fix}>
-                {/* <aside className={styles.advertis}>
-                  <div className={styles.about_author}>广告</div>
-                  <img src={'https://s4.ax1x.com/2021/12/16/T96Gm4.jpg'} />
-                </aside> */}
-                <aside>
-                  <div className={`${styles.tehome_one} ${styles.tehome_hot}`}>
+              <div>
+                <aside className={styles.side_two}>
+                  <div>
                     <h5>最新留言</h5>
-                    <ul className={styles.tehome_moment}>
+                    <ul>
                       {whiles.map((s: any, i: number) => (
                         <li
                           onClick={() => {
@@ -117,10 +115,10 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
                     </ul>
                   </div>
                 </aside>
-                <aside>
-                  <div className={`${styles.tehome_one} ${styles.tehome_hot}`}>
+                <aside className={styles.side_three}>
+                  <div>
                     <h5>热门文章</h5>
-                    <ul className={styles.tehome_moment}>
+                    <ul>
                       {hots.map((s: any, i: number) => (
                         <li
                           onClick={() => {
@@ -135,7 +133,7 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
                     </ul>
                   </div>
                 </aside>
-                <aside>
+                <aside className={styles.side_four}>
                   <p>
                     <a
                       onClick={() => {
@@ -145,7 +143,7 @@ const TeHome: React.FC<TeHomeProps> = ({ children }) => {
                       皖ICP备2021008857号
                     </a>
                   </p>
-                  <p>版权所有 © 2021 starryskystar</p>
+                  <p>版权所有 © 2022 starryskystar</p>
                   <h6 className={styles.wechat}>
                     <img
                       src={comnumber}

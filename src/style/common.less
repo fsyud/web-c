@@ -16,9 +16,44 @@
 
 .tehome_hot {
   min-height: 86px;
+  background-color: #fff;
+
   ul {
     padding-left: 0;
     margin-bottom: 0;
+
+    li {
+      border-top: 1px solid rgba(0, 0, 0, 0.0625);
+      padding: 8px 0;
+      max-width: 218px;
+      cursor: pointer;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: 400;
+      white-space: nowrap;
+      font-size: 14px;
+
+      &:nth-of-type(1) {
+        border-top: none;
+      }
+
+      &:hover {
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.common_ul {
+  min-height: 86px;
+  background-color: #fff;
+  padding: 16px;
+  margin-top: 16px;
+
+  ul {
+    padding-left: 0;
+    margin-bottom: 0;
+
     li {
       border-top: 1px solid rgba(0, 0, 0, 0.0625);
       padding: 8px 0;
