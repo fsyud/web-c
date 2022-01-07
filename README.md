@@ -55,7 +55,7 @@
 ### 🏠 项目地址 [https://www.starryskystar.space](https://www.starryskystar.space/)
 
 
-## Prerequisites
+## Nodejs版本
 
 - npm >=6.14.11
 - node >=14.16.0
