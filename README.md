@@ -52,7 +52,7 @@
 - [x] 留言板  
 - [ ] 点赞（后续准备使用redis实现）
 
-### 🏠 完整效果请看 [https://www.starryskystar.space](https://www.starryskystar.space/)
+### 🏠 项目地址 [https://www.starryskystar.space](https://www.starryskystar.space/)
 
 
 ## Prerequisites
