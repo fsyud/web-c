@@ -1,4 +1,7 @@
-<h1 align="center">Welcome to Blog-c 👋</h1>
+<h1 align="center">
+![页面 1 (3)](https://user-images.githubusercontent.com/26371465/148507619-46c783e3-3e28-4351-ba32-c05b17bcda33.png)
+
+</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <img src="https://img.shields.io/badge/npm-%3E%3D6.14.11-blue.svg" />
