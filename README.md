@@ -17,8 +17,8 @@
 # 简介
 
 ## PC
+![new-Jan-07-2022 15-10-50](https://user-images.githubusercontent.com/26371465/148506253-d6a48920-34cd-4955-a0ae-38c9c247dced.gif)
 
-![kookko](https://user-images.githubusercontent.com/26371465/145361241-66bbd923-aeb5-4ad6-b6cd-f8a337e3a220.gif)
 
 ## MOBILE
 
