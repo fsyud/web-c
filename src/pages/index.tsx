@@ -70,11 +70,8 @@ const StarryStarSky: React.FC<{}> = () => {
               <section>
                 <div className={styles.introduce}>
                   <h1>
-                    The only limit to our realization of tomorrow will be our
-                    doubts of today.
+                    hope.
                   </h1>
-
-                  <p>实现明天理想的唯一障碍是今天的疑虑</p>
                 </div>
 
                 <div className={styles.go}>
